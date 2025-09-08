@@ -4,7 +4,7 @@ import path from 'path';
 import { createClientsController, deleteClientByIdController, fetchAllClientsController, getClientByIdController } from "../controllers/controller.Clients";
 import { asyncHandler, isToken } from "../middlewares/middleware.Auth";
 
-const publicPath = path.resolve(__dirname, '../', 'public/upload');
+const publicPath = path.resolve(__dirname, '../../', 'public/upload');
 
 const storage = multer.diskStorage({
     destination: function (req, file, cb) {

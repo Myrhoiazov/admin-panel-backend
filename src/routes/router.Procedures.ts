@@ -6,7 +6,7 @@ import { createProcedureController, fetchAllProceduresController, getProcedureBy
 
 const router = express.Router();
 
-const publicPath = path.resolve(__dirname, '../', 'public/upload');
+const publicPath = path.resolve(__dirname, '../../', 'public/upload');
 
 const storage = multer.diskStorage({
     destination: function (req, file, cb) {
