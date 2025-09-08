@@ -24,6 +24,7 @@ app.use(morgan('combined', {
 }));
 app.use(bodyParser.json());
 app.use(cookieParser());
+
 app.use(cors({
     origin: [
         env.CLIENT_URL,
