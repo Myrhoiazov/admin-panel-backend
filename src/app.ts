@@ -31,6 +31,7 @@ app.use(cors({
     ],
     credentials: true
 }));
+
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, 'public'), { maxAge: 31557600000 }));
 app.use(compression());
