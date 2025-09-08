@@ -1,0 +1,96 @@
+
+// /// Таблица «Сеанс / запись»
+// model Appointment {
+//   id          Int        @id @default(autoincrement())
+//   clientId    Int        @map("client_Id")
+//   procedureId Int        @map("procedure_Id")
+//   roomId      Int?       // если понадобится разделять кабинеты/ресурсы
+//   startAt     DateTime
+//   endAt       DateTime
+//   status      AppointmentStatus @default(BOOKED)
+//   note        String?    // комментарий администратора или клиента
+//   // --- связи ---
+//   client      Client     @relation(fields: [clientId], references: [id], onDelete: Cascade)
+//   procedure   Procedure  @relation(fields: [procedureId], references: [id], onDelete: Restrict)
+//   recurring   RecurringRule?
+//   reschedules Reschedule[]
+//   reminders   Notification[]
+
+//   createdAt   DateTime   @default(now())
+//   updatedAt   DateTime   @updatedAt
+
+//   @@map("appointments")
+//   @@index([clientId, startAt])
+// }
+
+// enum AppointmentStatus {
+//   BOOKED
+//   CANCELLED
+//   RESCHEDULED
+//   COMPLETED
+// }
+
+// /// Правило для повторяющихся записей (RRULE‑подобная логика)
+// model RecurringRule {
+//   id            Int          @id @default(autoincrement())
+//   appointmentId Int          @unique @map("appointment_Id") // «родительский» первый сеанс
+//   freq          RecurringFreq
+//   interval      Int          @default(1)  // каждые N единиц
+//   count         Int?         // ограничить кол‑во повторений
+//   until         DateTime?    // или ограничить датой
+//   byWeekDay     String?      // JSON: ["MO","WE"]
+//   // ---
+//   appointment   Appointment  @relation(fields: [appointmentId], references: [id], onDelete: Cascade)
+
+//   @@map("recurring_rules")
+// }
+
+// enum RecurringFreq {
+//   DAILY
+//   WEEKLY
+//   MONTHLY
+//   YEARLY
+// }
+
+// /// Факт переноса сеанса
+// model Reschedule {
+//   id             Int          @id @default(autoincrement())
+//   appointmentId  Int          @map("appointment_Id")
+//   oldStartAt     DateTime
+//   newStartAt     DateTime
+//   reason         String?
+//   // ---
+//   appointment    Appointment  @relation(fields: [appointmentId], references: [id], onDelete: Cascade)
+
+//   createdAt      DateTime     @default(now())
+
+//   @@map("appointments_reschedules")
+// }
+
+// /// Отправленные напоминания (email/SMS/WhatsApp)
+// model Notification {
+//   id             Int          @id @default(autoincrement())
+//   appointmentId  Int          @map("appointment_Id")
+//   channel        NotificationChannel
+//   sentAt         DateTime?
+//   status         NotificationStatus @default(PENDING)
+//   errorText      String?
+//   // ---
+//   appointment    Appointment  @relation(fields: [appointmentId], references: [id], onDelete: Cascade)
+
+//   createdAt      DateTime     @default(now())
+
+//   @@map("appointments_notifications")
+// }
+
+// enum NotificationChannel {
+//   EMAIL
+//   SMS
+//   WHATSAPP
+// }
+
+// enum NotificationStatus {
+//   PENDING   // осталось отправить (cron‑джоб увидит)
+//   SENT
+//   ERROR
+// }

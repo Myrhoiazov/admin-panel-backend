@@ -1,0 +1,64 @@
+// model Procedure {
+//     id           Int     @id @default(autoincrement())
+//     name         String?
+//     description  String? @db.Text
+//     image        String?
+//     preparations String? @db.Text
+
+//     injectionZones    InjectionZone[] // ЗОНИ ІНʼЄКЦІЇ
+//     contraindications Contraindication[] // Протипоказання
+//     rehabilitations   Rehabilitation[] // Реабілітація
+//     results           Result[] // Результат
+
+//     prices    ProcedurePrice[] // Прайс
+//     createdAt DateTime         @default(now())
+//     updatedAt DateTime         @updatedAt
+
+//     @@map("procedures")
+// }
+
+// model InjectionZone {
+//     id          String    @id @default(uuid())
+//     procedure   Procedure @relation(fields: [procedureId], references: [id], onDelete: Cascade)
+//     procedureId Int       @map("procedure_Id")
+//     text        String
+
+//     @@map("procedures_injection_zone")
+// }
+
+// model Contraindication {
+//     id          String    @id @default(uuid())
+//     procedure   Procedure @relation(fields: [procedureId], references: [id], onDelete: Cascade)
+//     procedureId Int       @map("procedure_Id")
+//     text        String
+
+//     @@map("procedures_contraindication")
+// }
+
+// model Rehabilitation {
+//     id          String    @id @default(uuid())
+//     procedure   Procedure @relation(fields: [procedureId], references: [id], onDelete: Cascade)
+//     procedureId Int       @map("procedure_Id")
+//     text        String
+
+//     @@map("procedures_rehabilitation")
+// }
+
+// model Result {
+//     id          String    @id @default(uuid())
+//     procedure   Procedure @relation(fields: [procedureId], references: [id], onDelete: Cascade)
+//     procedureId Int       @map("procedure_Id")
+//     text        String
+
+//     @@map("procedures_result")
+// }
+
+// model ProcedurePrice {
+//     id          String    @id @default(uuid())
+//     procedure   Procedure @relation(fields: [procedureId], references: [id], onDelete: Cascade)
+//     procedureId Int       @map("procedure_Id")
+//     zone        String
+//     price       Decimal
+
+//     @@map("procedures_price")
+// }

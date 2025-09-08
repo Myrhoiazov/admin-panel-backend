@@ -1,0 +1,54 @@
+// model Client {
+//     id           Int            @id @default(autoincrement())
+//     firstName    String?
+//     lastName     String?
+//     birthday     String?
+//     phoneNumber  String?
+//     email        String?
+//     street       String?
+//     houseNumber  String?
+//     postalCode   String?
+//     city         String?
+//     image        String?
+//     province     String?
+//     country      String?
+//     groupId      String?
+//     createdAt    DateTime?      @default(now())
+//     expiresAt    DateTime?
+//     statuses     ClientStatus[]
+//     visitHistory VisitHistory[]
+
+//     @@map("clients")
+// }
+
+// model ClientStatus {
+//     id           Int           @id @default(autoincrement())
+//     clientId     Int           @map("client_Id")
+//     loyaltyLevel LoyaltyLevel?
+//     notes        String?
+
+//     createdAt DateTime @default(now())
+//     updatedAt DateTime @updatedAt
+
+//     client Client @relation(fields: [clientId], references: [id], onDelete: Cascade)
+
+//     @@map("client_status")
+// }
+
+// model VisitHistory {
+//     id             Int     @id @default(autoincrement())
+//     clientId       Int     @map("client_Id")
+//     procedureName  String
+//     doctorName     String?
+//     cost           Float
+//     wasSuccessful  Boolean @default(true)
+//     clientFeedback String?
+//     isComplaint    Boolean @default(false)
+
+//     createdAt DateTime @default(now())
+//     updatedAt DateTime @updatedAt
+
+//     client Client @relation(fields: [clientId], references: [id], onDelete: Cascade)
+
+//     @@map("visit_history")
+// }

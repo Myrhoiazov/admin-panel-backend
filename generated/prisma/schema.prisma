@@ -1,0 +1,290 @@
+generator client {
+  provider = "prisma-client-js"
+  output   = "../generated/prisma"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id        Int       @id @default(autoincrement())
+  firstName String?
+  lastName  String?
+  email     String    @unique
+  password  String
+  salt      String?
+  role      UserRole  @default(MANAGER)
+  isActive  Boolean   @default(false)
+  lastLogin DateTime?
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+  comments  Comment[]
+  sessions  Session[]
+
+  @@map("users")
+}
+
+model Session {
+  id           Int      @id @default(autoincrement())
+  userId       Int      @map("user_Id")
+  refreshToken String   @unique @db.VarChar(250)
+  ipAddress    String?
+  userAgent    String?
+  isRevoked    Boolean  @default(false)
+  createdAt    DateTime @default(now())
+  expiresAt    DateTime
+  updatedAt    DateTime @updatedAt
+  user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([userId], map: "sessions_user_Id_fkey")
+  @@map("sessions")
+}
+
+model Procedure {
+  id                Int                @id @default(autoincrement())
+  name              String?
+  description       String?            @db.Text
+  image             String?
+  createdAt         DateTime           @default(now())
+  updatedAt         DateTime           @updatedAt
+  appoiment         Appointment[]
+  contraindications Contraindication[]
+  injectionZones    InjectionZone[]
+  preparations      Preparetions[]
+  prices            ProcedurePrice[]
+  rehabilitations   Rehabilitation[]
+  results           Result[]
+
+  @@map("procedures")
+}
+
+model Preparetions {
+  id          String    @id @default(uuid())
+  procedureId Int       @map("procedure_Id")
+  text        String
+  procedure   Procedure @relation(fields: [procedureId], references: [id], onDelete: Cascade)
+
+  @@index([procedureId], map: "procedures_preparetions_procedure_Id_fkey")
+  @@map("procedures_preparetions")
+}
+
+model InjectionZone {
+  id          String    @id @default(uuid())
+  procedureId Int       @map("procedure_Id")
+  text        String
+  procedure   Procedure @relation(fields: [procedureId], references: [id], onDelete: Cascade)
+
+  @@index([procedureId], map: "procedures_injection_zone_procedure_Id_fkey")
+  @@map("procedures_injection_zone")
+}
+
+model Contraindication {
+  id          String    @id @default(uuid())
+  procedureId Int       @map("procedure_Id")
+  text        String
+  procedure   Procedure @relation(fields: [procedureId], references: [id], onDelete: Cascade)
+
+  @@index([procedureId], map: "procedures_contraindication_procedure_Id_fkey")
+  @@map("procedures_contraindication")
+}
+
+model Rehabilitation {
+  id          String    @id @default(uuid())
+  procedureId Int       @map("procedure_Id")
+  text        String
+  procedure   Procedure @relation(fields: [procedureId], references: [id], onDelete: Cascade)
+
+  @@index([procedureId], map: "procedures_rehabilitation_procedure_Id_fkey")
+  @@map("procedures_rehabilitation")
+}
+
+model Result {
+  id          String    @id @default(uuid())
+  procedureId Int       @map("procedure_Id")
+  text        String
+  procedure   Procedure @relation(fields: [procedureId], references: [id], onDelete: Cascade)
+
+  @@index([procedureId], map: "procedures_result_procedure_Id_fkey")
+  @@map("procedures_result")
+}
+
+model ProcedurePrice {
+  id          String    @id @default(uuid())
+  procedureId Int       @map("procedure_Id")
+  zone        String
+  price       Decimal
+  procedure   Procedure @relation(fields: [procedureId], references: [id], onDelete: Cascade)
+
+  @@index([procedureId], map: "procedures_price_procedure_Id_fkey")
+  @@map("procedures_price")
+}
+
+model Client {
+  id           Int            @id @default(autoincrement())
+  firstName    String?
+  lastName     String?
+  birthday     String?
+  phoneNumber  String?
+  email        String?
+  image        String?
+  createdAt    DateTime?      @default(now())
+  expiresAt    DateTime?
+  anamnesis    String?        @db.VarChar(250)
+  description  String?        @db.VarChar(250)
+  image_3d     Boolean        @default(false)
+  appoinments  Appointment[]
+  statuses     ClientStatus[]
+  comments     Comment[]
+  visitHistory VisitHistory[]
+
+  @@map("clients")
+}
+
+model ClientStatus {
+  id           Int           @id @default(autoincrement())
+  clientId     Int           @map("client_Id")
+  loyaltyLevel LoyaltyLevel?
+  notes        String?
+  createdAt    DateTime      @default(now())
+  updatedAt    DateTime      @updatedAt
+  client       Client        @relation(fields: [clientId], references: [id], onDelete: Cascade)
+
+  @@index([clientId], map: "client_status_client_Id_fkey")
+  @@map("client_status")
+}
+
+model VisitHistory {
+  id             Int      @id @default(autoincrement())
+  clientId       Int      @map("client_Id")
+  procedureName  String
+  doctorName     String?
+  cost           Float
+  wasSuccessful  Boolean  @default(true)
+  clientFeedback String?
+  isComplaint    Boolean  @default(false)
+  createdAt      DateTime @default(now())
+  updatedAt      DateTime @updatedAt
+  client         Client   @relation(fields: [clientId], references: [id], onDelete: Cascade)
+
+  @@index([clientId], map: "visit_history_client_Id_fkey")
+  @@map("visit_history")
+}
+
+/// Таблица «Сеанс / запись»
+model Appointment {
+  id          Int      @id @default(autoincrement())
+  clientId    Int      @map("client_Id")
+  procedureId Int      @map("procedure_Id")
+  image       String?
+  note        String?
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  client    Client         @relation(fields: [clientId], references: [id], onDelete: Cascade)
+  procedure Procedure      @relation(fields: [procedureId], references: [id])
+  reminders Notification[]
+  comments  Comment[]
+
+  @@index([procedureId], map: "appointments_procedure_Id_fkey")
+  @@map("appointments")
+}
+
+/// Отправленные напоминания (email/SMS/WhatsApp)
+model Notification {
+  id            Int                 @id @default(autoincrement())
+  appointmentId Int                 @map("appointment_Id")
+  channel       NotificationChannel
+  sentAt        DateTime?
+  status        NotificationStatus  @default(PENDING)
+  errorText     String?
+  createdAt     DateTime            @default(now())
+  appointment   Appointment         @relation(fields: [appointmentId], references: [id], onDelete: Cascade)
+
+  @@index([appointmentId], map: "appointments_notifications_appointment_Id_fkey")
+  @@map("appointments_notifications")
+}
+
+model Comment {
+  id            Int          @id @default(autoincrement())
+  text          String
+  clientId      Int?         @map("client_Id")
+  appointmentId Int?         @map("appointment_Id")
+  createdAt     DateTime     @default(now())
+  userId        Int?         @map("user_Id")
+  appointment   Appointment? @relation(fields: [appointmentId], references: [id], onDelete: Cascade)
+  client        Client?      @relation(fields: [clientId], references: [id], onDelete: Cascade)
+  author        User?        @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([appointmentId], map: "comments_appointment_Id_fkey")
+  @@index([clientId], map: "comments_client_Id_fkey")
+  @@index([userId], map: "comments_user_Id_fkey")
+  @@map("comments")
+}
+
+model Transaction {
+  id            Int             @id @default(autoincrement())
+  type          TransactionType
+  amount        Float
+  category      ExpenseCategory
+  description   String?         @db.VarChar(250)
+  date          DateTime        @default(now())
+  createdAt     DateTime        @default(now())
+  updatedAt     DateTime        @updatedAt
+  paymentMethod PaymentMethod   @default(CASH)
+
+  @@map("transactions")
+}
+
+enum UserRole {
+  ADMIN
+  MANAGER
+}
+
+enum LoyaltyLevel {
+  BRONZE
+  SILVER
+  GOLD
+  PLATINUM
+}
+
+enum NotificationChannel {
+  EMAIL
+  SMS
+  WHATSAPP
+}
+
+enum NotificationStatus {
+  PENDING
+  SENT
+  ERROR
+}
+
+enum RecurringFreq {
+  DAILY
+  WEEKLY
+  MONTHLY
+  YEARLY
+}
+
+enum TransactionType {
+  INCOME
+  EXPENSE
+}
+
+enum PaymentMethod {
+  CASH
+  CARD
+  BANK_TRANSFER
+}
+
+enum ExpenseCategory {
+  MERZ
+  TOTIS
+  EMET
+  COSMETICS
+  COSMOLOOK
+  PHARMACY
+  OTHER
+}
