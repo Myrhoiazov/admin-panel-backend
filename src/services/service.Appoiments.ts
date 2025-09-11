@@ -22,8 +22,6 @@ export const createAppointment = async (data: CreateAppointmentDto) => {
     return newAppointment;
 };
 
-
-
 export const getAllAppoiments = async () => {
 
     const appoiments = await Appointment.findMany({
@@ -34,6 +32,23 @@ export const getAllAppoiments = async () => {
     });
 
     return appoiments;
+};
+
+export const getAppointmentsByClientId = async (clientId: number) => {
+    const appointments = await Appointment.findMany({
+        where: {
+            clientId: Number(clientId),
+        },
+        include: {
+            client: true,
+            procedure: true,
+        },
+        orderBy: {
+            createdAt: 'desc',
+        },
+    });
+
+    return appointments;
 };
 
 // export const getAppoimentById = async (id: number) => {

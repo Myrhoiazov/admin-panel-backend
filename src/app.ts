@@ -17,6 +17,10 @@ dotenv.config();
 const app = express();
 const server = createServer(app);
 
+console.log(env.MODE);
+
+const isDev = env.MODE === 'development';
+
 app.use(morgan('combined', {
     stream: {
         write: message => logger.info(message.trim())
@@ -25,14 +29,15 @@ app.use(morgan('combined', {
 app.use(bodyParser.json());
 app.use(cookieParser());
 
-app.use(cors({
+const corsOptions = {
     origin: [
         env.CLIENT_URL,
-        'http://admin.dr-rusakova.com.ua'
+        isDev ? 'http://127.0.0.1:3000' : 'http://admin.dr-rusakova.com.ua'
     ],
     credentials: true
-}));
+};
 
+app.use(cors(corsOptions));
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, 'public'), { maxAge: 31557600000 }));
 app.use(compression());
