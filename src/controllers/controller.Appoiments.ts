@@ -7,7 +7,7 @@ import { createAppointment, CreateAppointmentDto, getAllAppoiments, getAppointme
 
 export const getAllAppoimentsontroller = async (req: Request, res: Response) => {
 
-    const appoiments = await getAllAppoiments()
+    const appoiments = await getAllAppoiments(req.query)
     try {
         return res.status(200).json([...appoiments]);
     } catch (error) {

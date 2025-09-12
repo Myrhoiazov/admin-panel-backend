@@ -9,6 +9,12 @@ export interface CreateAppointmentDto {
     image?: string;
 }
 
+export interface GetAppoimentsParams {
+    _sortBy?: 'firstName' | 'createdAt';
+    _order?: 'asc' | 'desc';
+    _q?: string,
+}
+
 export const createAppointment = async (data: CreateAppointmentDto) => {
     const newAppointment = await Appointment.create({
         data: {
@@ -22,12 +28,29 @@ export const createAppointment = async (data: CreateAppointmentDto) => {
     return newAppointment;
 };
 
-export const getAllAppoiments = async () => {
+export const getAllAppoiments = async (params: GetAppoimentsParams) => {
+
+    const { _sortBy = 'createdAt', _order = 'desc', _q } = params;
+
+    const whereClause = {
+        ...(!!_q && {
+            client: {
+                OR: [
+                    { firstName: { contains: _q, } },
+                    { lastName: { contains: _q } }, // если хочешь искать и по фамилии
+                ],
+            },
+        }),
+    };
 
     const appoiments = await Appointment.findMany({
+        where: whereClause,
         include: {
             client: true,
             procedure: true,
+        },
+        orderBy: {
+            [_sortBy]: _order.toLowerCase() === 'asc' ? 'asc' : 'desc',
         },
     });
 

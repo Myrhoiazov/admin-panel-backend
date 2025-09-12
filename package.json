@@ -4,7 +4,7 @@
     "description": "",
     "main": "index.ts",
     "scripts": {
-        "build": "tsc && cp -r src/public ./build",
+        "build": "tsc",
         "start": "nodemon --env mode=development",
         "pgc": "prisma generate",
         "pmd:dev": "prisma migrate dev",
