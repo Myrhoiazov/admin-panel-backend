@@ -74,18 +74,18 @@ export const getAppointmentsByClientId = async (clientId: number) => {
     return appointments;
 };
 
-// export const getAppoimentById = async (id: number) => {
-//     const appoiment = await Appoiment.findUnique({
-//         where: { id },
-//     });
+export const getAppointmentById = async (id: number) => {
+    const appointment = await Appointment.findUnique({
+        where: { id },
+    });
 
-//     if (!appoiment) return null;
+    if (!appointment) return null;
 
 
-//     return {
-//         ...appoiment,
-//     };
-// };
+    return {
+        ...appointment,
+    };
+};
 
 
 
