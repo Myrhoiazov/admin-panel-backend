@@ -17,8 +17,6 @@ dotenv.config();
 const app = express();
 const server = createServer(app);
 
-console.log(env.MODE);
-
 const isDev = env.MODE === 'development';
 
 app.use(morgan('combined', {
@@ -32,7 +30,7 @@ app.use(cookieParser());
 const corsOptions = {
     origin: [
         env.CLIENT_URL,
-        isDev ? 'http://127.0.0.1:3000' : 'http://admin.dr-rusakova.com.ua'
+        isDev ?? 'http://127.0.0.1:3000'
     ],
     credentials: true
 };

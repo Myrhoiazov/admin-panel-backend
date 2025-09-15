@@ -94,6 +94,7 @@ export const refreshToken = async (token: string) => {
 
     const user = await getUserById(Number(userData.id))
 
+
     const newTokens = generateTokens({
         id: String(user.id),
         email: user.email,
