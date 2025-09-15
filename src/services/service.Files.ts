@@ -24,7 +24,7 @@ export const imageUpload = async (file: Express.Multer.File, folderNaam: string)
         img.resize({ w: 450 });
         // await img.write(newPath as `${string}.${string}`);
 
-        const clientFileURL = `${process.env.CLIENT_URL}:${process.env.PORT}/upload/${folderNaam}/${newClientName}`;
+        const clientFileURL = `${process.env.CLIENT_URL}/upload/${folderNaam}/${newClientName}`;
         return clientFileURL;
 
     } catch (error) {
