@@ -28,6 +28,7 @@ export interface GetClientsParams {
 
 
 export const createClient = async (data: TClient) => {
+    console.log("data: ", data);
 
     let status = '';
 

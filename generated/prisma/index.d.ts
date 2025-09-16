@@ -11395,6 +11395,7 @@ export namespace Prisma {
     createdAt: Date | null
     expiresAt: Date | null
     anamnesis: string | null
+    social: string | null
     description: string | null
     image_3d: boolean | null
     document: boolean | null
@@ -11411,6 +11412,7 @@ export namespace Prisma {
     createdAt: Date | null
     expiresAt: Date | null
     anamnesis: string | null
+    social: string | null
     description: string | null
     image_3d: boolean | null
     document: boolean | null
@@ -11427,6 +11429,7 @@ export namespace Prisma {
     createdAt: number
     expiresAt: number
     anamnesis: number
+    social: number
     description: number
     image_3d: number
     document: number
@@ -11453,6 +11456,7 @@ export namespace Prisma {
     createdAt?: true
     expiresAt?: true
     anamnesis?: true
+    social?: true
     description?: true
     image_3d?: true
     document?: true
@@ -11469,6 +11473,7 @@ export namespace Prisma {
     createdAt?: true
     expiresAt?: true
     anamnesis?: true
+    social?: true
     description?: true
     image_3d?: true
     document?: true
@@ -11485,6 +11490,7 @@ export namespace Prisma {
     createdAt?: true
     expiresAt?: true
     anamnesis?: true
+    social?: true
     description?: true
     image_3d?: true
     document?: true
@@ -11588,6 +11594,7 @@ export namespace Prisma {
     createdAt: Date | null
     expiresAt: Date | null
     anamnesis: string | null
+    social: string | null
     description: string | null
     image_3d: boolean
     document: boolean
@@ -11623,6 +11630,7 @@ export namespace Prisma {
     createdAt?: boolean
     expiresAt?: boolean
     anamnesis?: boolean
+    social?: boolean
     description?: boolean
     image_3d?: boolean
     document?: boolean
@@ -11646,12 +11654,13 @@ export namespace Prisma {
     createdAt?: boolean
     expiresAt?: boolean
     anamnesis?: boolean
+    social?: boolean
     description?: boolean
     image_3d?: boolean
     document?: boolean
   }
 
-  export type ClientOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "firstName" | "lastName" | "birthday" | "phoneNumber" | "email" | "image" | "createdAt" | "expiresAt" | "anamnesis" | "description" | "image_3d" | "document", ExtArgs["result"]["client"]>
+  export type ClientOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "firstName" | "lastName" | "birthday" | "phoneNumber" | "email" | "image" | "createdAt" | "expiresAt" | "anamnesis" | "social" | "description" | "image_3d" | "document", ExtArgs["result"]["client"]>
   export type ClientInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     appoinments?: boolean | Client$appoinmentsArgs<ExtArgs>
     statuses?: boolean | Client$statusesArgs<ExtArgs>
@@ -11679,6 +11688,7 @@ export namespace Prisma {
       createdAt: Date | null
       expiresAt: Date | null
       anamnesis: string | null
+      social: string | null
       description: string | null
       image_3d: boolean
       document: boolean
@@ -12065,6 +12075,7 @@ export namespace Prisma {
     readonly createdAt: FieldRef<"Client", 'DateTime'>
     readonly expiresAt: FieldRef<"Client", 'DateTime'>
     readonly anamnesis: FieldRef<"Client", 'String'>
+    readonly social: FieldRef<"Client", 'String'>
     readonly description: FieldRef<"Client", 'String'>
     readonly image_3d: FieldRef<"Client", 'Boolean'>
     readonly document: FieldRef<"Client", 'Boolean'>
@@ -18712,6 +18723,7 @@ export namespace Prisma {
     createdAt: 'createdAt',
     expiresAt: 'expiresAt',
     anamnesis: 'anamnesis',
+    social: 'social',
     description: 'description',
     image_3d: 'image_3d',
     document: 'document'
@@ -18902,6 +18914,7 @@ export namespace Prisma {
     email: 'email',
     image: 'image',
     anamnesis: 'anamnesis',
+    social: 'social',
     description: 'description'
   };
 
@@ -19609,6 +19622,7 @@ export namespace Prisma {
     createdAt?: DateTimeNullableFilter<"Client"> | Date | string | null
     expiresAt?: DateTimeNullableFilter<"Client"> | Date | string | null
     anamnesis?: StringNullableFilter<"Client"> | string | null
+    social?: StringNullableFilter<"Client"> | string | null
     description?: StringNullableFilter<"Client"> | string | null
     image_3d?: BoolFilter<"Client"> | boolean
     document?: BoolFilter<"Client"> | boolean
@@ -19629,6 +19643,7 @@ export namespace Prisma {
     createdAt?: SortOrderInput | SortOrder
     expiresAt?: SortOrderInput | SortOrder
     anamnesis?: SortOrderInput | SortOrder
+    social?: SortOrderInput | SortOrder
     description?: SortOrderInput | SortOrder
     image_3d?: SortOrder
     document?: SortOrder
@@ -19653,6 +19668,7 @@ export namespace Prisma {
     createdAt?: DateTimeNullableFilter<"Client"> | Date | string | null
     expiresAt?: DateTimeNullableFilter<"Client"> | Date | string | null
     anamnesis?: StringNullableFilter<"Client"> | string | null
+    social?: StringNullableFilter<"Client"> | string | null
     description?: StringNullableFilter<"Client"> | string | null
     image_3d?: BoolFilter<"Client"> | boolean
     document?: BoolFilter<"Client"> | boolean
@@ -19673,6 +19689,7 @@ export namespace Prisma {
     createdAt?: SortOrderInput | SortOrder
     expiresAt?: SortOrderInput | SortOrder
     anamnesis?: SortOrderInput | SortOrder
+    social?: SortOrderInput | SortOrder
     description?: SortOrderInput | SortOrder
     image_3d?: SortOrder
     document?: SortOrder
@@ -19697,6 +19714,7 @@ export namespace Prisma {
     createdAt?: DateTimeNullableWithAggregatesFilter<"Client"> | Date | string | null
     expiresAt?: DateTimeNullableWithAggregatesFilter<"Client"> | Date | string | null
     anamnesis?: StringNullableWithAggregatesFilter<"Client"> | string | null
+    social?: StringNullableWithAggregatesFilter<"Client"> | string | null
     description?: StringNullableWithAggregatesFilter<"Client"> | string | null
     image_3d?: BoolWithAggregatesFilter<"Client"> | boolean
     document?: BoolWithAggregatesFilter<"Client"> | boolean
@@ -20671,6 +20689,7 @@ export namespace Prisma {
     createdAt?: Date | string | null
     expiresAt?: Date | string | null
     anamnesis?: string | null
+    social?: string | null
     description?: string | null
     image_3d?: boolean
     document?: boolean
@@ -20691,6 +20710,7 @@ export namespace Prisma {
     createdAt?: Date | string | null
     expiresAt?: Date | string | null
     anamnesis?: string | null
+    social?: string | null
     description?: string | null
     image_3d?: boolean
     document?: boolean
@@ -20710,6 +20730,7 @@ export namespace Prisma {
     createdAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     expiresAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     anamnesis?: NullableStringFieldUpdateOperationsInput | string | null
+    social?: NullableStringFieldUpdateOperationsInput | string | null
     description?: NullableStringFieldUpdateOperationsInput | string | null
     image_3d?: BoolFieldUpdateOperationsInput | boolean
     document?: BoolFieldUpdateOperationsInput | boolean
@@ -20730,6 +20751,7 @@ export namespace Prisma {
     createdAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     expiresAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     anamnesis?: NullableStringFieldUpdateOperationsInput | string | null
+    social?: NullableStringFieldUpdateOperationsInput | string | null
     description?: NullableStringFieldUpdateOperationsInput | string | null
     image_3d?: BoolFieldUpdateOperationsInput | boolean
     document?: BoolFieldUpdateOperationsInput | boolean
@@ -20750,6 +20772,7 @@ export namespace Prisma {
     createdAt?: Date | string | null
     expiresAt?: Date | string | null
     anamnesis?: string | null
+    social?: string | null
     description?: string | null
     image_3d?: boolean
     document?: boolean
@@ -20765,6 +20788,7 @@ export namespace Prisma {
     createdAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     expiresAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     anamnesis?: NullableStringFieldUpdateOperationsInput | string | null
+    social?: NullableStringFieldUpdateOperationsInput | string | null
     description?: NullableStringFieldUpdateOperationsInput | string | null
     image_3d?: BoolFieldUpdateOperationsInput | boolean
     document?: BoolFieldUpdateOperationsInput | boolean
@@ -20781,6 +20805,7 @@ export namespace Prisma {
     createdAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     expiresAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     anamnesis?: NullableStringFieldUpdateOperationsInput | string | null
+    social?: NullableStringFieldUpdateOperationsInput | string | null
     description?: NullableStringFieldUpdateOperationsInput | string | null
     image_3d?: BoolFieldUpdateOperationsInput | boolean
     document?: BoolFieldUpdateOperationsInput | boolean
@@ -21897,6 +21922,7 @@ export namespace Prisma {
     createdAt?: SortOrder
     expiresAt?: SortOrder
     anamnesis?: SortOrder
+    social?: SortOrder
     description?: SortOrder
     image_3d?: SortOrder
     document?: SortOrder
@@ -21917,6 +21943,7 @@ export namespace Prisma {
     createdAt?: SortOrder
     expiresAt?: SortOrder
     anamnesis?: SortOrder
+    social?: SortOrder
     description?: SortOrder
     image_3d?: SortOrder
     document?: SortOrder
@@ -21933,6 +21960,7 @@ export namespace Prisma {
     createdAt?: SortOrder
     expiresAt?: SortOrder
     anamnesis?: SortOrder
+    social?: SortOrder
     description?: SortOrder
     image_3d?: SortOrder
     document?: SortOrder
@@ -24901,6 +24929,7 @@ export namespace Prisma {
     createdAt?: Date | string | null
     expiresAt?: Date | string | null
     anamnesis?: string | null
+    social?: string | null
     description?: string | null
     image_3d?: boolean
     document?: boolean
@@ -24920,6 +24949,7 @@ export namespace Prisma {
     createdAt?: Date | string | null
     expiresAt?: Date | string | null
     anamnesis?: string | null
+    social?: string | null
     description?: string | null
     image_3d?: boolean
     document?: boolean
@@ -24954,6 +24984,7 @@ export namespace Prisma {
     createdAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     expiresAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     anamnesis?: NullableStringFieldUpdateOperationsInput | string | null
+    social?: NullableStringFieldUpdateOperationsInput | string | null
     description?: NullableStringFieldUpdateOperationsInput | string | null
     image_3d?: BoolFieldUpdateOperationsInput | boolean
     document?: BoolFieldUpdateOperationsInput | boolean
@@ -24973,6 +25004,7 @@ export namespace Prisma {
     createdAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     expiresAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     anamnesis?: NullableStringFieldUpdateOperationsInput | string | null
+    social?: NullableStringFieldUpdateOperationsInput | string | null
     description?: NullableStringFieldUpdateOperationsInput | string | null
     image_3d?: BoolFieldUpdateOperationsInput | boolean
     document?: BoolFieldUpdateOperationsInput | boolean
@@ -24991,6 +25023,7 @@ export namespace Prisma {
     createdAt?: Date | string | null
     expiresAt?: Date | string | null
     anamnesis?: string | null
+    social?: string | null
     description?: string | null
     image_3d?: boolean
     document?: boolean
@@ -25010,6 +25043,7 @@ export namespace Prisma {
     createdAt?: Date | string | null
     expiresAt?: Date | string | null
     anamnesis?: string | null
+    social?: string | null
     description?: string | null
     image_3d?: boolean
     document?: boolean
@@ -25044,6 +25078,7 @@ export namespace Prisma {
     createdAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     expiresAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     anamnesis?: NullableStringFieldUpdateOperationsInput | string | null
+    social?: NullableStringFieldUpdateOperationsInput | string | null
     description?: NullableStringFieldUpdateOperationsInput | string | null
     image_3d?: BoolFieldUpdateOperationsInput | boolean
     document?: BoolFieldUpdateOperationsInput | boolean
@@ -25063,6 +25098,7 @@ export namespace Prisma {
     createdAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     expiresAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     anamnesis?: NullableStringFieldUpdateOperationsInput | string | null
+    social?: NullableStringFieldUpdateOperationsInput | string | null
     description?: NullableStringFieldUpdateOperationsInput | string | null
     image_3d?: BoolFieldUpdateOperationsInput | boolean
     document?: BoolFieldUpdateOperationsInput | boolean
@@ -25081,6 +25117,7 @@ export namespace Prisma {
     createdAt?: Date | string | null
     expiresAt?: Date | string | null
     anamnesis?: string | null
+    social?: string | null
     description?: string | null
     image_3d?: boolean
     document?: boolean
@@ -25100,6 +25137,7 @@ export namespace Prisma {
     createdAt?: Date | string | null
     expiresAt?: Date | string | null
     anamnesis?: string | null
+    social?: string | null
     description?: string | null
     image_3d?: boolean
     document?: boolean
@@ -25220,6 +25258,7 @@ export namespace Prisma {
     createdAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     expiresAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     anamnesis?: NullableStringFieldUpdateOperationsInput | string | null
+    social?: NullableStringFieldUpdateOperationsInput | string | null
     description?: NullableStringFieldUpdateOperationsInput | string | null
     image_3d?: BoolFieldUpdateOperationsInput | boolean
     document?: BoolFieldUpdateOperationsInput | boolean
@@ -25239,6 +25278,7 @@ export namespace Prisma {
     createdAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     expiresAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     anamnesis?: NullableStringFieldUpdateOperationsInput | string | null
+    social?: NullableStringFieldUpdateOperationsInput | string | null
     description?: NullableStringFieldUpdateOperationsInput | string | null
     image_3d?: BoolFieldUpdateOperationsInput | boolean
     document?: BoolFieldUpdateOperationsInput | boolean
@@ -25426,6 +25466,7 @@ export namespace Prisma {
     createdAt?: Date | string | null
     expiresAt?: Date | string | null
     anamnesis?: string | null
+    social?: string | null
     description?: string | null
     image_3d?: boolean
     document?: boolean
@@ -25445,6 +25486,7 @@ export namespace Prisma {
     createdAt?: Date | string | null
     expiresAt?: Date | string | null
     anamnesis?: string | null
+    social?: string | null
     description?: string | null
     image_3d?: boolean
     document?: boolean
@@ -25545,6 +25587,7 @@ export namespace Prisma {
     createdAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     expiresAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     anamnesis?: NullableStringFieldUpdateOperationsInput | string | null
+    social?: NullableStringFieldUpdateOperationsInput | string | null
     description?: NullableStringFieldUpdateOperationsInput | string | null
     image_3d?: BoolFieldUpdateOperationsInput | boolean
     document?: BoolFieldUpdateOperationsInput | boolean
@@ -25564,6 +25607,7 @@ export namespace Prisma {
     createdAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     expiresAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     anamnesis?: NullableStringFieldUpdateOperationsInput | string | null
+    social?: NullableStringFieldUpdateOperationsInput | string | null
     description?: NullableStringFieldUpdateOperationsInput | string | null
     image_3d?: BoolFieldUpdateOperationsInput | boolean
     document?: BoolFieldUpdateOperationsInput | boolean

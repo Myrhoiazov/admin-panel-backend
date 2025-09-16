@@ -132,6 +132,7 @@ model Client {
   createdAt    DateTime?      @default(now())
   expiresAt    DateTime?
   anamnesis    String?        @db.VarChar(250)
+  social       String?        @db.VarChar(250)
   description  String?        @db.VarChar(250)
   image_3d     Boolean        @default(false)
   document     Boolean        @default(false)

@@ -203,6 +203,7 @@ exports.Prisma.ClientScalarFieldEnum = {
   createdAt: 'createdAt',
   expiresAt: 'expiresAt',
   anamnesis: 'anamnesis',
+  social: 'social',
   description: 'description',
   image_3d: 'image_3d',
   document: 'document'
@@ -339,6 +340,7 @@ exports.Prisma.ClientOrderByRelevanceFieldEnum = {
   email: 'email',
   image: 'image',
   anamnesis: 'anamnesis',
+  social: 'social',
   description: 'description'
 };
 
