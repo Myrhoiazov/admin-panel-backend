@@ -11397,6 +11397,7 @@ export namespace Prisma {
     anamnesis: string | null
     description: string | null
     image_3d: boolean | null
+    document: boolean | null
   }
 
   export type ClientMaxAggregateOutputType = {
@@ -11412,6 +11413,7 @@ export namespace Prisma {
     anamnesis: string | null
     description: string | null
     image_3d: boolean | null
+    document: boolean | null
   }
 
   export type ClientCountAggregateOutputType = {
@@ -11427,6 +11429,7 @@ export namespace Prisma {
     anamnesis: number
     description: number
     image_3d: number
+    document: number
     _all: number
   }
 
@@ -11452,6 +11455,7 @@ export namespace Prisma {
     anamnesis?: true
     description?: true
     image_3d?: true
+    document?: true
   }
 
   export type ClientMaxAggregateInputType = {
@@ -11467,6 +11471,7 @@ export namespace Prisma {
     anamnesis?: true
     description?: true
     image_3d?: true
+    document?: true
   }
 
   export type ClientCountAggregateInputType = {
@@ -11482,6 +11487,7 @@ export namespace Prisma {
     anamnesis?: true
     description?: true
     image_3d?: true
+    document?: true
     _all?: true
   }
 
@@ -11584,6 +11590,7 @@ export namespace Prisma {
     anamnesis: string | null
     description: string | null
     image_3d: boolean
+    document: boolean
     _count: ClientCountAggregateOutputType | null
     _avg: ClientAvgAggregateOutputType | null
     _sum: ClientSumAggregateOutputType | null
@@ -11618,6 +11625,7 @@ export namespace Prisma {
     anamnesis?: boolean
     description?: boolean
     image_3d?: boolean
+    document?: boolean
     appoinments?: boolean | Client$appoinmentsArgs<ExtArgs>
     statuses?: boolean | Client$statusesArgs<ExtArgs>
     comments?: boolean | Client$commentsArgs<ExtArgs>
@@ -11640,9 +11648,10 @@ export namespace Prisma {
     anamnesis?: boolean
     description?: boolean
     image_3d?: boolean
+    document?: boolean
   }
 
-  export type ClientOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "firstName" | "lastName" | "birthday" | "phoneNumber" | "email" | "image" | "createdAt" | "expiresAt" | "anamnesis" | "description" | "image_3d", ExtArgs["result"]["client"]>
+  export type ClientOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "firstName" | "lastName" | "birthday" | "phoneNumber" | "email" | "image" | "createdAt" | "expiresAt" | "anamnesis" | "description" | "image_3d" | "document", ExtArgs["result"]["client"]>
   export type ClientInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     appoinments?: boolean | Client$appoinmentsArgs<ExtArgs>
     statuses?: boolean | Client$statusesArgs<ExtArgs>
@@ -11672,6 +11681,7 @@ export namespace Prisma {
       anamnesis: string | null
       description: string | null
       image_3d: boolean
+      document: boolean
     }, ExtArgs["result"]["client"]>
     composites: {}
   }
@@ -12057,6 +12067,7 @@ export namespace Prisma {
     readonly anamnesis: FieldRef<"Client", 'String'>
     readonly description: FieldRef<"Client", 'String'>
     readonly image_3d: FieldRef<"Client", 'Boolean'>
+    readonly document: FieldRef<"Client", 'Boolean'>
   }
     
 
@@ -18702,7 +18713,8 @@ export namespace Prisma {
     expiresAt: 'expiresAt',
     anamnesis: 'anamnesis',
     description: 'description',
-    image_3d: 'image_3d'
+    image_3d: 'image_3d',
+    document: 'document'
   };
 
   export type ClientScalarFieldEnum = (typeof ClientScalarFieldEnum)[keyof typeof ClientScalarFieldEnum]
@@ -19599,6 +19611,7 @@ export namespace Prisma {
     anamnesis?: StringNullableFilter<"Client"> | string | null
     description?: StringNullableFilter<"Client"> | string | null
     image_3d?: BoolFilter<"Client"> | boolean
+    document?: BoolFilter<"Client"> | boolean
     appoinments?: AppointmentListRelationFilter
     statuses?: ClientStatusListRelationFilter
     comments?: CommentListRelationFilter
@@ -19618,6 +19631,7 @@ export namespace Prisma {
     anamnesis?: SortOrderInput | SortOrder
     description?: SortOrderInput | SortOrder
     image_3d?: SortOrder
+    document?: SortOrder
     appoinments?: AppointmentOrderByRelationAggregateInput
     statuses?: ClientStatusOrderByRelationAggregateInput
     comments?: CommentOrderByRelationAggregateInput
@@ -19641,6 +19655,7 @@ export namespace Prisma {
     anamnesis?: StringNullableFilter<"Client"> | string | null
     description?: StringNullableFilter<"Client"> | string | null
     image_3d?: BoolFilter<"Client"> | boolean
+    document?: BoolFilter<"Client"> | boolean
     appoinments?: AppointmentListRelationFilter
     statuses?: ClientStatusListRelationFilter
     comments?: CommentListRelationFilter
@@ -19660,6 +19675,7 @@ export namespace Prisma {
     anamnesis?: SortOrderInput | SortOrder
     description?: SortOrderInput | SortOrder
     image_3d?: SortOrder
+    document?: SortOrder
     _count?: ClientCountOrderByAggregateInput
     _avg?: ClientAvgOrderByAggregateInput
     _max?: ClientMaxOrderByAggregateInput
@@ -19683,6 +19699,7 @@ export namespace Prisma {
     anamnesis?: StringNullableWithAggregatesFilter<"Client"> | string | null
     description?: StringNullableWithAggregatesFilter<"Client"> | string | null
     image_3d?: BoolWithAggregatesFilter<"Client"> | boolean
+    document?: BoolWithAggregatesFilter<"Client"> | boolean
   }
 
   export type ClientStatusWhereInput = {
@@ -20656,6 +20673,7 @@ export namespace Prisma {
     anamnesis?: string | null
     description?: string | null
     image_3d?: boolean
+    document?: boolean
     appoinments?: AppointmentCreateNestedManyWithoutClientInput
     statuses?: ClientStatusCreateNestedManyWithoutClientInput
     comments?: CommentCreateNestedManyWithoutClientInput
@@ -20675,6 +20693,7 @@ export namespace Prisma {
     anamnesis?: string | null
     description?: string | null
     image_3d?: boolean
+    document?: boolean
     appoinments?: AppointmentUncheckedCreateNestedManyWithoutClientInput
     statuses?: ClientStatusUncheckedCreateNestedManyWithoutClientInput
     comments?: CommentUncheckedCreateNestedManyWithoutClientInput
@@ -20693,6 +20712,7 @@ export namespace Prisma {
     anamnesis?: NullableStringFieldUpdateOperationsInput | string | null
     description?: NullableStringFieldUpdateOperationsInput | string | null
     image_3d?: BoolFieldUpdateOperationsInput | boolean
+    document?: BoolFieldUpdateOperationsInput | boolean
     appoinments?: AppointmentUpdateManyWithoutClientNestedInput
     statuses?: ClientStatusUpdateManyWithoutClientNestedInput
     comments?: CommentUpdateManyWithoutClientNestedInput
@@ -20712,6 +20732,7 @@ export namespace Prisma {
     anamnesis?: NullableStringFieldUpdateOperationsInput | string | null
     description?: NullableStringFieldUpdateOperationsInput | string | null
     image_3d?: BoolFieldUpdateOperationsInput | boolean
+    document?: BoolFieldUpdateOperationsInput | boolean
     appoinments?: AppointmentUncheckedUpdateManyWithoutClientNestedInput
     statuses?: ClientStatusUncheckedUpdateManyWithoutClientNestedInput
     comments?: CommentUncheckedUpdateManyWithoutClientNestedInput
@@ -20731,6 +20752,7 @@ export namespace Prisma {
     anamnesis?: string | null
     description?: string | null
     image_3d?: boolean
+    document?: boolean
   }
 
   export type ClientUpdateManyMutationInput = {
@@ -20745,6 +20767,7 @@ export namespace Prisma {
     anamnesis?: NullableStringFieldUpdateOperationsInput | string | null
     description?: NullableStringFieldUpdateOperationsInput | string | null
     image_3d?: BoolFieldUpdateOperationsInput | boolean
+    document?: BoolFieldUpdateOperationsInput | boolean
   }
 
   export type ClientUncheckedUpdateManyInput = {
@@ -20760,6 +20783,7 @@ export namespace Prisma {
     anamnesis?: NullableStringFieldUpdateOperationsInput | string | null
     description?: NullableStringFieldUpdateOperationsInput | string | null
     image_3d?: BoolFieldUpdateOperationsInput | boolean
+    document?: BoolFieldUpdateOperationsInput | boolean
   }
 
   export type ClientStatusCreateInput = {
@@ -21875,6 +21899,7 @@ export namespace Prisma {
     anamnesis?: SortOrder
     description?: SortOrder
     image_3d?: SortOrder
+    document?: SortOrder
   }
 
   export type ClientAvgOrderByAggregateInput = {
@@ -21894,6 +21919,7 @@ export namespace Prisma {
     anamnesis?: SortOrder
     description?: SortOrder
     image_3d?: SortOrder
+    document?: SortOrder
   }
 
   export type ClientMinOrderByAggregateInput = {
@@ -21909,6 +21935,7 @@ export namespace Prisma {
     anamnesis?: SortOrder
     description?: SortOrder
     image_3d?: SortOrder
+    document?: SortOrder
   }
 
   export type ClientSumOrderByAggregateInput = {
@@ -24876,6 +24903,7 @@ export namespace Prisma {
     anamnesis?: string | null
     description?: string | null
     image_3d?: boolean
+    document?: boolean
     appoinments?: AppointmentCreateNestedManyWithoutClientInput
     comments?: CommentCreateNestedManyWithoutClientInput
     visitHistory?: VisitHistoryCreateNestedManyWithoutClientInput
@@ -24894,6 +24922,7 @@ export namespace Prisma {
     anamnesis?: string | null
     description?: string | null
     image_3d?: boolean
+    document?: boolean
     appoinments?: AppointmentUncheckedCreateNestedManyWithoutClientInput
     comments?: CommentUncheckedCreateNestedManyWithoutClientInput
     visitHistory?: VisitHistoryUncheckedCreateNestedManyWithoutClientInput
@@ -24927,6 +24956,7 @@ export namespace Prisma {
     anamnesis?: NullableStringFieldUpdateOperationsInput | string | null
     description?: NullableStringFieldUpdateOperationsInput | string | null
     image_3d?: BoolFieldUpdateOperationsInput | boolean
+    document?: BoolFieldUpdateOperationsInput | boolean
     appoinments?: AppointmentUpdateManyWithoutClientNestedInput
     comments?: CommentUpdateManyWithoutClientNestedInput
     visitHistory?: VisitHistoryUpdateManyWithoutClientNestedInput
@@ -24945,6 +24975,7 @@ export namespace Prisma {
     anamnesis?: NullableStringFieldUpdateOperationsInput | string | null
     description?: NullableStringFieldUpdateOperationsInput | string | null
     image_3d?: BoolFieldUpdateOperationsInput | boolean
+    document?: BoolFieldUpdateOperationsInput | boolean
     appoinments?: AppointmentUncheckedUpdateManyWithoutClientNestedInput
     comments?: CommentUncheckedUpdateManyWithoutClientNestedInput
     visitHistory?: VisitHistoryUncheckedUpdateManyWithoutClientNestedInput
@@ -24962,6 +24993,7 @@ export namespace Prisma {
     anamnesis?: string | null
     description?: string | null
     image_3d?: boolean
+    document?: boolean
     appoinments?: AppointmentCreateNestedManyWithoutClientInput
     statuses?: ClientStatusCreateNestedManyWithoutClientInput
     comments?: CommentCreateNestedManyWithoutClientInput
@@ -24980,6 +25012,7 @@ export namespace Prisma {
     anamnesis?: string | null
     description?: string | null
     image_3d?: boolean
+    document?: boolean
     appoinments?: AppointmentUncheckedCreateNestedManyWithoutClientInput
     statuses?: ClientStatusUncheckedCreateNestedManyWithoutClientInput
     comments?: CommentUncheckedCreateNestedManyWithoutClientInput
@@ -25013,6 +25046,7 @@ export namespace Prisma {
     anamnesis?: NullableStringFieldUpdateOperationsInput | string | null
     description?: NullableStringFieldUpdateOperationsInput | string | null
     image_3d?: BoolFieldUpdateOperationsInput | boolean
+    document?: BoolFieldUpdateOperationsInput | boolean
     appoinments?: AppointmentUpdateManyWithoutClientNestedInput
     statuses?: ClientStatusUpdateManyWithoutClientNestedInput
     comments?: CommentUpdateManyWithoutClientNestedInput
@@ -25031,6 +25065,7 @@ export namespace Prisma {
     anamnesis?: NullableStringFieldUpdateOperationsInput | string | null
     description?: NullableStringFieldUpdateOperationsInput | string | null
     image_3d?: BoolFieldUpdateOperationsInput | boolean
+    document?: BoolFieldUpdateOperationsInput | boolean
     appoinments?: AppointmentUncheckedUpdateManyWithoutClientNestedInput
     statuses?: ClientStatusUncheckedUpdateManyWithoutClientNestedInput
     comments?: CommentUncheckedUpdateManyWithoutClientNestedInput
@@ -25048,6 +25083,7 @@ export namespace Prisma {
     anamnesis?: string | null
     description?: string | null
     image_3d?: boolean
+    document?: boolean
     statuses?: ClientStatusCreateNestedManyWithoutClientInput
     comments?: CommentCreateNestedManyWithoutClientInput
     visitHistory?: VisitHistoryCreateNestedManyWithoutClientInput
@@ -25066,6 +25102,7 @@ export namespace Prisma {
     anamnesis?: string | null
     description?: string | null
     image_3d?: boolean
+    document?: boolean
     statuses?: ClientStatusUncheckedCreateNestedManyWithoutClientInput
     comments?: CommentUncheckedCreateNestedManyWithoutClientInput
     visitHistory?: VisitHistoryUncheckedCreateNestedManyWithoutClientInput
@@ -25185,6 +25222,7 @@ export namespace Prisma {
     anamnesis?: NullableStringFieldUpdateOperationsInput | string | null
     description?: NullableStringFieldUpdateOperationsInput | string | null
     image_3d?: BoolFieldUpdateOperationsInput | boolean
+    document?: BoolFieldUpdateOperationsInput | boolean
     statuses?: ClientStatusUpdateManyWithoutClientNestedInput
     comments?: CommentUpdateManyWithoutClientNestedInput
     visitHistory?: VisitHistoryUpdateManyWithoutClientNestedInput
@@ -25203,6 +25241,7 @@ export namespace Prisma {
     anamnesis?: NullableStringFieldUpdateOperationsInput | string | null
     description?: NullableStringFieldUpdateOperationsInput | string | null
     image_3d?: BoolFieldUpdateOperationsInput | boolean
+    document?: BoolFieldUpdateOperationsInput | boolean
     statuses?: ClientStatusUncheckedUpdateManyWithoutClientNestedInput
     comments?: CommentUncheckedUpdateManyWithoutClientNestedInput
     visitHistory?: VisitHistoryUncheckedUpdateManyWithoutClientNestedInput
@@ -25389,6 +25428,7 @@ export namespace Prisma {
     anamnesis?: string | null
     description?: string | null
     image_3d?: boolean
+    document?: boolean
     appoinments?: AppointmentCreateNestedManyWithoutClientInput
     statuses?: ClientStatusCreateNestedManyWithoutClientInput
     visitHistory?: VisitHistoryCreateNestedManyWithoutClientInput
@@ -25407,6 +25447,7 @@ export namespace Prisma {
     anamnesis?: string | null
     description?: string | null
     image_3d?: boolean
+    document?: boolean
     appoinments?: AppointmentUncheckedCreateNestedManyWithoutClientInput
     statuses?: ClientStatusUncheckedCreateNestedManyWithoutClientInput
     visitHistory?: VisitHistoryUncheckedCreateNestedManyWithoutClientInput
@@ -25506,6 +25547,7 @@ export namespace Prisma {
     anamnesis?: NullableStringFieldUpdateOperationsInput | string | null
     description?: NullableStringFieldUpdateOperationsInput | string | null
     image_3d?: BoolFieldUpdateOperationsInput | boolean
+    document?: BoolFieldUpdateOperationsInput | boolean
     appoinments?: AppointmentUpdateManyWithoutClientNestedInput
     statuses?: ClientStatusUpdateManyWithoutClientNestedInput
     visitHistory?: VisitHistoryUpdateManyWithoutClientNestedInput
@@ -25524,6 +25566,7 @@ export namespace Prisma {
     anamnesis?: NullableStringFieldUpdateOperationsInput | string | null
     description?: NullableStringFieldUpdateOperationsInput | string | null
     image_3d?: BoolFieldUpdateOperationsInput | boolean
+    document?: BoolFieldUpdateOperationsInput | boolean
     appoinments?: AppointmentUncheckedUpdateManyWithoutClientNestedInput
     statuses?: ClientStatusUncheckedUpdateManyWithoutClientNestedInput
     visitHistory?: VisitHistoryUncheckedUpdateManyWithoutClientNestedInput

@@ -12,6 +12,11 @@ export interface IClientAttributes {
     phoneNumber?: string;
     email?: string;
     image_3d?: boolean;
+    document?: boolean;
+    anamnesis?: string;
+    description?: string;
+    status?: LoyaltyLevel | null;
+    image?: string;
 }
 
 export interface GetClientsParams {
@@ -33,6 +38,10 @@ export const createClient = async (data: TClient) => {
 
     if (data.image_3d) {
         data.image_3d = Boolean(data.image_3d)
+    }
+
+    if (data.document) {
+        data.document = Boolean(data.document)
     }
 
     const newClient = await Client.create({

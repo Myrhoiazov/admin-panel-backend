@@ -204,7 +204,8 @@ exports.Prisma.ClientScalarFieldEnum = {
   expiresAt: 'expiresAt',
   anamnesis: 'anamnesis',
   description: 'description',
-  image_3d: 'image_3d'
+  image_3d: 'image_3d',
+  document: 'document'
 };
 
 exports.Prisma.ClientStatusScalarFieldEnum = {
