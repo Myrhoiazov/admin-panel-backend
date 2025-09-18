@@ -22,6 +22,7 @@ model User {
   updatedAt DateTime  @updatedAt
   comments  Comment[]
   sessions  Session[]
+  appoinments  Appointment[]
 
   @@map("users")
 }
@@ -179,6 +180,7 @@ model Appointment {
   id          Int               @id @default(autoincrement())
   clientId    Int               @map("client_Id")
   procedureId Int               @map("procedure_Id")
+  doctorId    Int               @default(2) @map("doctor_Id")
   image       String?
   note        String?
   createdAt   DateTime          @default(now())
@@ -186,6 +188,7 @@ model Appointment {
 
   client      Client            @relation(fields: [clientId], references: [id], onDelete: Cascade)
   procedure   Procedure         @relation(fields: [procedureId], references: [id])
+  doctor      User              @relation(fields: [doctorId], references: [id])
   reminders   Notification[]
   comments    Comment[]
 

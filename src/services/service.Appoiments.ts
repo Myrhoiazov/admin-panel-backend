@@ -5,6 +5,7 @@ const Appointment = prisma.appointment;
 export interface CreateAppointmentDto {
     clientId: number;
     procedureId: number;
+    doctorId: number;
     note?: string;
     image?: string;
 }
@@ -20,6 +21,7 @@ export const createAppointment = async (data: CreateAppointmentDto) => {
         data: {
             clientId: Number(data.clientId),
             procedureId: Number(data.procedureId),
+            doctorId: Number(data.doctorId),
             note: data.note,
             image: data.image,
         }
@@ -48,6 +50,7 @@ export const getAllAppoiments = async (params: GetAppoimentsParams) => {
         include: {
             client: true,
             procedure: true,
+            doctor: true,
         },
         orderBy: {
             [_sortBy]: _order.toLowerCase() === 'asc' ? 'asc' : 'desc',

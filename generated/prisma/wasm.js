@@ -235,6 +235,7 @@ exports.Prisma.AppointmentScalarFieldEnum = {
   id: 'id',
   clientId: 'clientId',
   procedureId: 'procedureId',
+  doctorId: 'doctorId',
   image: 'image',
   note: 'note',
   createdAt: 'createdAt',
