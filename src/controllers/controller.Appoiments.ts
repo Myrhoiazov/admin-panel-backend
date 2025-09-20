@@ -2,7 +2,7 @@ import { Request, Response } from 'express';
 import { createClient, deleteClient, getAllClients, getClientById } from '../services/service.Clients';
 import { Appointment } from '../../generated/prisma';
 import { imageUpload } from '../services/service.Files';
-import { createAppointment, CreateAppointmentDto, getAllAppoiments, getAppointmentsByClientId } from '../services/service.Appoiments';
+import { createAppointment, CreateAppointmentDto, deleteAppoimentById, getAllAppoiments, getAppointmentsByClientId } from '../services/service.Appoiments';
 
 
 export const getAllAppoimentsontroller = async (req: Request, res: Response) => {
@@ -72,23 +72,23 @@ export const getAppoimentByIdController = async (req: Request, res: Response) =>
 
 }
 
-export const deleteClientByIdController = async (req: Request, res: Response) => {
-    const clientId = Number(req.params.id);
+export const deleteAppoimentByIdController = async (req: Request, res: Response) => {
+    const appoimentId = Number(req.params.id);
 
-    if (!clientId) {
-        return res.status(400).json({ message: 'Client ID is required' });
+    if (!appoimentId) {
+        return res.status(400).json({ message: 'Appoiment ID is required' });
     }
 
     try {
-        const deletedClient = await deleteClient(clientId);
+        const deletedAppoiment = await deleteAppoimentById?.(appoimentId);
 
-        if (!deletedClient) {
-            return res.status(404).json({ message: 'Client not found or already deleted' });
+        if (!deletedAppoiment) {
+            return res.status(404).json({ message: 'Appoiment not found or already deleted' });
         }
 
-        return res.status(200).json({ message: 'Client successfully deleted', client: deletedClient });
+        return res.status(200).json({ message: 'Appoiment successfully deleted', appoiment: deletedAppoiment });
     } catch (error) {
-        console.error('Error deleting client:', error);
+        console.error('Error deleting appoiment:', error);
         return res.status(500).json({ message: 'Internal server error' });
     }
 };

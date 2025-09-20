@@ -1,0 +1,11 @@
+2025-09-19 20:33:19 [error]: Error: Пользователь не авторизован | Path: /api/v1/auth/refresh | Stack: Error: Пользователь не авторизован
+    at new ApiError (/Users/admin/Desktop/project/fullstack-cms/server/src/helpers/ApiError.ts:12:14)
+    at Function.ApiError.UnauthorizedError (/Users/admin/Desktop/project/fullstack-cms/server/src/helpers/ApiError.ts:21:16)
+    at /Users/admin/Desktop/project/fullstack-cms/server/src/services/service.Token.ts:85:24
+    at step (/Users/admin/Desktop/project/fullstack-cms/server/src/services/service.Token.ts:33:23)
+    at Object.next (/Users/admin/Desktop/project/fullstack-cms/server/src/services/service.Token.ts:14:53)
+    at /Users/admin/Desktop/project/fullstack-cms/server/src/services/service.Token.ts:8:71
+    at new Promise (<anonymous>)
+    at __awaiter (/Users/admin/Desktop/project/fullstack-cms/server/src/services/service.Token.ts:4:12)
+    at refreshToken (/Users/admin/Desktop/project/fullstack-cms/server/src/services/service.Token.ts:82:49)
+    at /Users/admin/Desktop/project/fullstack-cms/server/src/controllers/controller.Auth.ts:106:55

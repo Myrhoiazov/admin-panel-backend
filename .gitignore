@@ -6,3 +6,5 @@ node_modules
 build
 .github
 /src/generated/prisma
+
+*.log

@@ -90,6 +90,16 @@ export const getAppointmentById = async (id: number) => {
     };
 };
 
+export const deleteAppoimentById = async (id: number) => {
+    const appoiment = await Appointment.findUnique({
+        where: { id },
+    });
+
+    if (!appoiment) return null;
+
+    await Appointment.delete({ where: { id } });
+    return appoiment;
+}
 
 
 
