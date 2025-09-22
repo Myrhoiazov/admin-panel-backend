@@ -1,8 +1,10 @@
 import { ExpenseCategory, PaymentMethod, TransactionType, Transaction as TTransaction } from '../../generated/prisma';
 
 import prisma from '../prisma-client'
+import dayjs from 'dayjs';
 
 const Transaction = prisma.transaction
+
 
 export interface ITransactionsAttributes {
     id?: number;
@@ -12,9 +14,26 @@ export interface ITransactionsAttributes {
     description?: string;
 }
 
+export enum Month {
+    ALL = 'all',
+    JANUARY = 'january',
+    FEBRUARY = 'february',
+    MARCH = 'march',
+    APRIL = 'april',
+    MAY = 'may',
+    JUNE = 'june',
+    JULY = 'july',
+    AUGUST = 'august',
+    SEPTEMBER = 'september',
+    OCTOBER = 'october',
+    NOVEMBER = 'november',
+    DECEMBER = 'december',
+}
 export interface GetTransactionsParams {
     _sortBy?: 'category' | 'createdAt';
     _order?: 'asc' | 'desc';
+    _month?: Month;
+    _year?: string | number;
     _q?: string,
     _type?: TransactionType,
     month?: number;
@@ -22,7 +41,7 @@ export interface GetTransactionsParams {
 }
 
 export const getAllTransactions = async (params: GetTransactionsParams) => {
-    let { _sortBy = 'createdAt', _q, _type } = params;
+    let { _sortBy = 'createdAt', _q, _type, _month = Month.ALL, _year = dayjs().year() } = params;
 
     const order = (params._order?.toLowerCase() === 'asc' || params._order?.toLowerCase() === 'desc')
         ? params._order.toLowerCase()
@@ -36,7 +55,7 @@ export const getAllTransactions = async (params: GetTransactionsParams) => {
         ) as ExpenseCategory[];
     }
 
-    const whereClause = {
+    const whereClause: any = {
         ...(matchingCategories?.length && {
             category: {
                 in: matchingCategories,
@@ -47,12 +66,28 @@ export const getAllTransactions = async (params: GetTransactionsParams) => {
         }),
     }
 
+    if (_month !== Month.ALL && _year) {
+        const monthIndex = Object.values(Month).indexOf(_month) - 1;
+        if (monthIndex >= 0) {
+            const startDate = dayjs().year(Number(_year)).month(monthIndex).startOf('month').toDate();
+            const endDate = dayjs(startDate).endOf('month').toDate();
+
+            whereClause.date = {
+                gte: startDate,
+                lte: endDate,
+            };
+        }
+    }
+
+    console.log("whereClause: ", whereClause);
+
     const transactions = await Transaction.findMany({
         where: whereClause,
         orderBy: {
             [_sortBy]: order,
         },
     })
+    // console.log("transactions: ", transactions);
 
     return transactions;
 };
@@ -70,24 +105,25 @@ export const createTransaction = async (data: TTransaction) => {
 };
 
 export const getTransactionsSummary = async (params: GetTransactionsParams) => {
-    const { _q, _type, month, year } = params;
+    const { _type, _month = Month.ALL, _year = dayjs().year(), } = params;
 
     const whereClause: any = {
-        ...(!!_q && {
-            category: {
-                contains: _q,
-            },
-        }),
         ...(!!_type && {
             type: _type.toLowerCase() === 'приход' ? 'INCOME' : 'EXPENSE',
         }),
     };
 
-    if (month && year) {
-        whereClause.date = {
-            gte: new Date(year, month - 1, 1),
-            lte: new Date(year, month, 0, 23, 59, 59),
-        };
+    if (_month !== Month.ALL && _year) {
+        const monthIndex = Object.values(Month).indexOf(_month) - 1;
+        if (monthIndex >= 0) {
+            const startDate = dayjs().year(Number(_year)).month(monthIndex).startOf('month').toDate();
+            const endDate = dayjs(startDate).endOf('month').toDate();
+
+            whereClause.date = {
+                gte: startDate,
+                lte: endDate,
+            };
+        }
     }
 
     const transactions = await Transaction.findMany({ where: whereClause });
