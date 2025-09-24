@@ -9,6 +9,7 @@ const Session = prisma.session
 export interface JwtUserPayload {
     id: string;
     email: string;
+    role: string;
     isActive: boolean;
 }
 
@@ -98,9 +99,9 @@ export const refreshToken = async (token: string) => {
     const newTokens = generateTokens({
         id: String(user.id),
         email: user.email,
+        role: user.role,
         isActive: user.isActive
     });
 
     return { newTokens, user }
-
 }

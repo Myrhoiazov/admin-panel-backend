@@ -8,9 +8,20 @@ const Session = prisma.session
 export const getAllUsers = async () => await User.findMany();
 
 export const getUserById = async (id: number) => {
-    return await User.findUnique({
+    const user = await User.findUnique({
         where: { id },
+        select: {
+            id: true,
+            email: true,
+            firstName: true,
+            lastName: true,
+            isActive: true,
+            role: true,
+        },
     });
+
+    if (!user) return null;
+    return user;
 };
 export const createUser = async (userData: Omit<IUserAttributes, 'id'>) => {
     return await User.create({
@@ -20,11 +31,17 @@ export const createUser = async (userData: Omit<IUserAttributes, 'id'>) => {
         },
     });
 };
-export const updateUser = async (id: number, userData: Pick<IUserAttributes, 'email' | 'firstName'>) => {
+
+export const updateUser = async (id: number, userData: Pick<IUserAttributes, 'email' | 'firstName' | 'lastName' | 'role'>) => {
+
     const updatedUser = await User.update({
         where: { id },
-        data: userData,
+        data: {
+            ...userData,
+            role: userData?.role as UserRole || UserRole.MANAGER,
+        },
     });
+    
     return updatedUser;
 };
 export const deleteUserById = async (id: number) => {

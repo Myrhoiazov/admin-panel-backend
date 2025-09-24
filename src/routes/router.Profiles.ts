@@ -6,5 +6,6 @@ const router = express.Router();
 
 router.get('/', asyncHandler(isToken), asyncHandler(getProfile));
 router.post('/', asyncHandler(isToken), asyncHandler(updateProfileController));
+router.put('/:id', asyncHandler(isToken), asyncHandler(updateProfileController));
 
 export default router;

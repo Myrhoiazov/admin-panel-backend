@@ -54,6 +54,7 @@ export const login = async (req: Request<{}, {}, loginType>, res: Response, next
             refreshToken } = generateTokens({
                 id: String(user.id),
                 email: user.email,
+                role: user.role,
                 isActive: user.isActive
             });
 
@@ -68,6 +69,7 @@ export const login = async (req: Request<{}, {}, loginType>, res: Response, next
             id: user.id,
             firstName: user.firstName,
             lastName: user.lastName,
+            role: user.role,
             token: accessToken
         }
 

@@ -7,6 +7,7 @@ type ProfileResponse = Omit<IUserAttributes, 'password' | 'salt'> & { token: str
 
 export const getProfile = async (req: Request, res: Response) => {
     const currentUser = get(req, "user", null);
+    console.log("currentUser: ", currentUser);
 
     if (!currentUser) {
         return res.status(401).json({ message: "Unauthorized" });
@@ -31,14 +32,14 @@ export const getProfile = async (req: Request, res: Response) => {
 
 export const updateProfileController = async (req: Request, res: Response) => {
     const userId = Number(req.params.id);
-    const { firstName, email } = req.body;
+    const { firstName, lastName, email, role } = req.body;
 
     if (!userId || !firstName || !email) {
         return res.status(400).json({ message: 'User ID, name, and email are required' });
     }
 
     try {
-        const updatedUser = await updateUser(userId, { firstName, email });
+        const updatedUser = await updateUser(userId, { firstName, email, role, lastName });
 
         if (!updatedUser) {
             return res.status(404).json({ message: 'User not found' });
