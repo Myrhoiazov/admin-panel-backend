@@ -18,9 +18,6 @@ const app = express();
 const server = createServer(app);
 
 const isDev = env.MODE === 'development';
-console.log("isDev: ", isDev);
-console.log("env.CLIENT_URL: ", env.CLIENT_URL);
-
 
 app.use(morgan('combined', {
     stream: {

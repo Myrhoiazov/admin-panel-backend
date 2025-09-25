@@ -1,5 +1,8 @@
-import { Request, Response } from 'express';
-import { deleteUserById, getAllUsers, getUserById, updateUser } from '../services/service.Users';
+import { NextFunction, Request, Response } from 'express';
+import { createUser, deleteUserById, getAllUsers, getUserByEmail, getUserById, updateUser } from '../services/service.Users';
+import ApiError from '../helpers/ApiError';
+
+import { authentication, generateSalt } from '../helpers';
 
 /**
  * Controller to fetch all users.
@@ -80,4 +83,30 @@ export const getUserByIdController = async (req: Request, res: Response) => {
         return res.status(500).json({ message: 'Internal server error' });
     }
 
+}
+
+export const createUserController = async (req: Request, res: Response) => {
+    const { firstName, lastName, email, password } = req.body;
+
+
+
+    if (!firstName || !email || !password) {
+        throw ApiError.BadRequest('All fields are required');
+    }
+
+    try {
+        const existingUser = await getUserByEmail(email);
+        if (existingUser) {
+            throw ApiError.BadRequest('User already exists');
+        }
+
+        const salt = generateSalt();
+        const hashedPassword = authentication(salt, password);
+        const newUser = await createUser({ firstName, lastName, salt, email, password: hashedPassword });
+
+        return res.status(201).json(newUser);
+    } catch (error) {
+        console.error('Registration error:', error);
+        // next(error)
+    }
 }

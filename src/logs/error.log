@@ -20,3 +20,25 @@
     at __awaiter (/Users/admin/Desktop/project/fullstack-cms/server/src/services/service.Token.ts:4:12)
     at refreshToken (/Users/admin/Desktop/project/fullstack-cms/server/src/services/service.Token.ts:82:49)
     at /Users/admin/Desktop/project/fullstack-cms/server/src/controllers/controller.Auth.ts:106:55
+2025-09-24 20:10:00 [error]: Error: All fields are required | Path: /api/v1/auth/login | Stack: Error: All fields are required
+    at new ApiError (/Users/admin/Desktop/project/fullstack-cms/server/src/helpers/ApiError.ts:12:14)
+    at Function.ApiError.BadRequest (/Users/admin/Desktop/project/fullstack-cms/server/src/helpers/ApiError.ts:25:16)
+    at /Users/admin/Desktop/project/fullstack-cms/server/src/controllers/controller.Auth.ts:38:24
+    at step (/Users/admin/Desktop/project/fullstack-cms/server/src/controllers/controller.Auth.ts:33:23)
+    at Object.next (/Users/admin/Desktop/project/fullstack-cms/server/src/controllers/controller.Auth.ts:14:53)
+    at /Users/admin/Desktop/project/fullstack-cms/server/src/controllers/controller.Auth.ts:8:71
+    at new Promise (<anonymous>)
+    at __awaiter (/Users/admin/Desktop/project/fullstack-cms/server/src/controllers/controller.Auth.ts:4:12)
+    at login (/Users/admin/Desktop/project/fullstack-cms/server/src/controllers/controller.Auth.ts:34:95)
+    at /Users/admin/Desktop/project/fullstack-cms/server/src/middlewares/middleware.Auth.ts:29:21
+2025-09-24 20:10:10 [error]: Error: Пользователь не авторизован | Path: /api/v1/auth/refresh | Stack: Error: Пользователь не авторизован
+    at new ApiError (/Users/admin/Desktop/project/fullstack-cms/server/src/helpers/ApiError.ts:12:14)
+    at Function.ApiError.UnauthorizedError (/Users/admin/Desktop/project/fullstack-cms/server/src/helpers/ApiError.ts:21:16)
+    at /Users/admin/Desktop/project/fullstack-cms/server/src/services/service.Token.ts:86:24
+    at step (/Users/admin/Desktop/project/fullstack-cms/server/src/services/service.Token.ts:33:23)
+    at Object.next (/Users/admin/Desktop/project/fullstack-cms/server/src/services/service.Token.ts:14:53)
+    at /Users/admin/Desktop/project/fullstack-cms/server/src/services/service.Token.ts:8:71
+    at new Promise (<anonymous>)
+    at __awaiter (/Users/admin/Desktop/project/fullstack-cms/server/src/services/service.Token.ts:4:12)
+    at refreshToken (/Users/admin/Desktop/project/fullstack-cms/server/src/services/service.Token.ts:83:49)
+    at /Users/admin/Desktop/project/fullstack-cms/server/src/controllers/controller.Auth.ts:108:55

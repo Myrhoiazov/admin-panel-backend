@@ -5,7 +5,16 @@ import { UserRole } from '../../generated/prisma';
 const User = prisma.user
 const Session = prisma.session
 
-export const getAllUsers = async () => await User.findMany();
+export const getAllUsers = async () => await User.findMany({
+    select: {
+        id: true,
+        email: true,
+        firstName: true,
+        lastName: true,
+        isActive: true,
+        role: true,
+    },
+});
 
 export const getUserById = async (id: number) => {
     const user = await User.findUnique({
@@ -41,7 +50,7 @@ export const updateUser = async (id: number, userData: Pick<IUserAttributes, 'em
             role: userData?.role as UserRole || UserRole.MANAGER,
         },
     });
-    
+
     return updatedUser;
 };
 export const deleteUserById = async (id: number) => {

@@ -7,7 +7,6 @@ type ProfileResponse = Omit<IUserAttributes, 'password' | 'salt'> & { token: str
 
 export const getProfile = async (req: Request, res: Response) => {
     const currentUser = get(req, "user", null);
-    console.log("currentUser: ", currentUser);
 
     if (!currentUser) {
         return res.status(401).json({ message: "Unauthorized" });
