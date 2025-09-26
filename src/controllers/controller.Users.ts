@@ -25,7 +25,7 @@ export const gettAllUsersController = async (req: Request, res: Response) => {
  * @param res - Express response object
  * @returns JSON response with status or error message
  */
-export const deleteUserController = async (req: Request, res: Response) => {
+export const deleteUserByIdController = async (req: Request, res: Response) => {
     const userId = Number(req.params.id);
     if (!userId) {
         return res.status(400).json({ message: 'User ID is required' });

@@ -28,8 +28,6 @@ export interface GetClientsParams {
 
 
 export const createClient = async (data: TClient) => {
-    console.log("data: ", data);
-
     let status = '';
 
     if ('status' in data) {
@@ -51,7 +49,7 @@ export const createClient = async (data: TClient) => {
         }
     });
 
-    await createClientStatus(status as LoyaltyLevel, newClient)
+    await createClientStatus(status.toUpperCase() as LoyaltyLevel, newClient)
 
     return newClient;
 };
