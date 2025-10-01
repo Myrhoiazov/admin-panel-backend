@@ -86,7 +86,7 @@ export const getUserByIdController = async (req: Request, res: Response) => {
 }
 
 export const createUserController = async (req: Request, res: Response) => {
-    const { firstName, lastName, email, password } = req.body;
+    const { firstName, lastName, email, password, role } = req.body;
 
 
 
@@ -102,7 +102,7 @@ export const createUserController = async (req: Request, res: Response) => {
 
         const salt = generateSalt();
         const hashedPassword = authentication(salt, password);
-        const newUser = await createUser({ firstName, lastName, salt, email, password: hashedPassword });
+        const newUser = await createUser({ firstName, role, lastName, salt, email, password: hashedPassword });
 
         return res.status(201).json(newUser);
     } catch (error) {

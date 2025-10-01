@@ -245,6 +245,7 @@ model Transaction {
 enum UserRole {
   ADMIN
   MANAGER
+  DOCTOR
 }
 
 enum LoyaltyLevel {

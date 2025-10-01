@@ -100,7 +100,8 @@ export type Transaction = $Result.DefaultSelection<Prisma.$TransactionPayload>
 export namespace $Enums {
   export const UserRole: {
   ADMIN: 'ADMIN',
-  MANAGER: 'MANAGER'
+  MANAGER: 'MANAGER',
+  DOCTOR: 'DOCTOR'
 };
 
 export type UserRole = (typeof UserRole)[keyof typeof UserRole]

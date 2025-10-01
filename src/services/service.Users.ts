@@ -36,7 +36,7 @@ export const createUser = async (userData: Omit<IUserAttributes, 'id'>) => {
     return await User.create({
         data: {
             ...userData,
-            role: userData?.role as UserRole || UserRole.MANAGER,
+            role: userData.role as UserRole || UserRole.MANAGER,
         },
     });
 };
@@ -47,7 +47,7 @@ export const updateUser = async (id: number, userData: Pick<IUserAttributes, 'em
         where: { id },
         data: {
             ...userData,
-            role: userData?.role as UserRole || UserRole.MANAGER,
+            role: userData.role as UserRole || UserRole.MANAGER,
         },
     });
 

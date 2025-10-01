@@ -373,7 +373,8 @@ exports.Prisma.TransactionOrderByRelevanceFieldEnum = {
 };
 exports.UserRole = exports.$Enums.UserRole = {
   ADMIN: 'ADMIN',
-  MANAGER: 'MANAGER'
+  MANAGER: 'MANAGER',
+  DOCTOR: 'DOCTOR'
 };
 
 exports.LoyaltyLevel = exports.$Enums.LoyaltyLevel = {
