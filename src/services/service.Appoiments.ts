@@ -7,7 +7,7 @@ export interface CreateAppointmentDto {
     procedureId: number;
     doctorId: number;
     note?: string;
-    image?: string;
+    images?: string[];
 }
 
 export interface GetAppoimentsParams {
@@ -23,7 +23,9 @@ export const createAppointment = async (data: CreateAppointmentDto) => {
             procedureId: Number(data.procedureId),
             doctorId: Number(data.doctorId),
             note: data.note,
-            image: data.image,
+            images: {
+                create: data.images.map((url) => ({ url })),
+            },
         }
     });
 
@@ -51,6 +53,7 @@ export const getAllAppoiments = async (params: GetAppoimentsParams) => {
             client: true,
             procedure: true,
             doctor: true,
+            images: true,
         },
         orderBy: {
             [_sortBy]: _order.toLowerCase() === 'asc' ? 'asc' : 'desc',
@@ -68,6 +71,8 @@ export const getAppointmentsByClientId = async (clientId: number) => {
         include: {
             client: true,
             procedure: true,
+            doctor: true,
+            images: true,
         },
         orderBy: {
             createdAt: 'desc',
@@ -80,6 +85,12 @@ export const getAppointmentsByClientId = async (clientId: number) => {
 export const getAppointmentById = async (id: number) => {
     const appointment = await Appointment.findUnique({
         where: { id },
+        include: {
+            client: true,
+            procedure: true,
+            doctor: true,
+            images: true,
+        },
     });
 
     if (!appointment) return null;

@@ -236,7 +236,6 @@ exports.Prisma.AppointmentScalarFieldEnum = {
   clientId: 'clientId',
   procedureId: 'procedureId',
   doctorId: 'doctorId',
-  image: 'image',
   note: 'note',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt'
@@ -271,6 +270,12 @@ exports.Prisma.TransactionScalarFieldEnum = {
   createdAt: 'createdAt',
   updatedAt: 'updatedAt',
   paymentMethod: 'paymentMethod'
+};
+
+exports.Prisma.AppointmentImageScalarFieldEnum = {
+  id: 'id',
+  url: 'url',
+  appointmentId: 'appointmentId'
 };
 
 exports.Prisma.SortOrder = {
@@ -356,7 +361,6 @@ exports.Prisma.VisitHistoryOrderByRelevanceFieldEnum = {
 };
 
 exports.Prisma.AppointmentOrderByRelevanceFieldEnum = {
-  image: 'image',
   note: 'note'
 };
 
@@ -370,6 +374,10 @@ exports.Prisma.CommentOrderByRelevanceFieldEnum = {
 
 exports.Prisma.TransactionOrderByRelevanceFieldEnum = {
   description: 'description'
+};
+
+exports.Prisma.AppointmentImageOrderByRelevanceFieldEnum = {
+  url: 'url'
 };
 exports.UserRole = exports.$Enums.UserRole = {
   ADMIN: 'ADMIN',
@@ -433,7 +441,8 @@ exports.Prisma.ModelName = {
   Appointment: 'Appointment',
   Notification: 'Notification',
   Comment: 'Comment',
-  Transaction: 'Transaction'
+  Transaction: 'Transaction',
+  AppointmentImage: 'AppointmentImage'
 };
 
 /**

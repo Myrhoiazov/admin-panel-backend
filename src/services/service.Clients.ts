@@ -109,7 +109,7 @@ export const getClientById = async (id: number) => {
                 select: {
                     id: true,
                     note: true,
-                    image: true,
+                    images: true,
                     createdAt: true,
                     procedure: {
                         select: {

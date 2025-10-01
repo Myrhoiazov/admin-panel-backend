@@ -181,7 +181,6 @@ model Appointment {
   clientId    Int               @map("client_Id")
   procedureId Int               @map("procedure_Id")
   doctorId    Int               @default(2) @map("doctor_Id")
-  image       String?
   note        String?
   createdAt   DateTime          @default(now())
   updatedAt   DateTime          @updatedAt
@@ -191,6 +190,7 @@ model Appointment {
   doctor      User              @relation(fields: [doctorId], references: [id])
   reminders   Notification[]
   comments    Comment[]
+  images      AppointmentImage[]
 
   @@index([procedureId], map: "appointments_procedure_Id_fkey")
   @@map("appointments")
@@ -240,6 +240,16 @@ model Transaction {
   paymentMethod PaymentMethod   @default(CASH)
 
   @@map("transactions")
+}
+
+model AppointmentImage {
+  id            Int          @id @default(autoincrement())
+  url           String
+  appointmentId Int
+  appointment   Appointment  @relation(fields: [appointmentId], references: [id], onDelete: Cascade)
+
+  @@map("appointmentImage")
+
 }
 
 enum UserRole {
@@ -294,3 +304,5 @@ enum ExpenseCategory {
   PHARMACY
   OTHER
 }
+
+

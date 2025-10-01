@@ -21,6 +21,6 @@ const upload = multer({ storage: storage });
 router.get("/", asyncHandler(isToken), asyncHandler(getAllAppoimentsontroller));
 router.get("/client/:clientId", asyncHandler(isToken), asyncHandler(getAppoimentsByClientController));
 router.delete("/:id", asyncHandler(isToken), asyncHandler(deleteAppoimentByIdController));
-router.post("/", asyncHandler(isToken), upload.single('image'), asyncHandler(createAppoimentController));
+router.post("/", asyncHandler(isToken), upload.array('images', 8), asyncHandler(createAppoimentController));
 
 export default router;

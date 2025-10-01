@@ -93,6 +93,11 @@ export type Comment = $Result.DefaultSelection<Prisma.$CommentPayload>
  * 
  */
 export type Transaction = $Result.DefaultSelection<Prisma.$TransactionPayload>
+/**
+ * Model AppointmentImage
+ * 
+ */
+export type AppointmentImage = $Result.DefaultSelection<Prisma.$AppointmentImagePayload>
 
 /**
  * Enums
@@ -492,6 +497,16 @@ export class PrismaClient<
     * ```
     */
   get transaction(): Prisma.TransactionDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.appointmentImage`: Exposes CRUD operations for the **AppointmentImage** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more AppointmentImages
+    * const appointmentImages = await prisma.appointmentImage.findMany()
+    * ```
+    */
+  get appointmentImage(): Prisma.AppointmentImageDelegate<ExtArgs, ClientOptions>;
 }
 
 export namespace Prisma {
@@ -947,7 +962,8 @@ export namespace Prisma {
     Appointment: 'Appointment',
     Notification: 'Notification',
     Comment: 'Comment',
-    Transaction: 'Transaction'
+    Transaction: 'Transaction',
+    AppointmentImage: 'AppointmentImage'
   };
 
   export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -966,7 +982,7 @@ export namespace Prisma {
       omit: GlobalOmitOptions
     }
     meta: {
-      modelProps: "user" | "session" | "procedure" | "preparetions" | "injectionZone" | "contraindication" | "rehabilitation" | "result" | "procedurePrice" | "client" | "clientStatus" | "visitHistory" | "appointment" | "notification" | "comment" | "transaction"
+      modelProps: "user" | "session" | "procedure" | "preparetions" | "injectionZone" | "contraindication" | "rehabilitation" | "result" | "procedurePrice" | "client" | "clientStatus" | "visitHistory" | "appointment" | "notification" | "comment" | "transaction" | "appointmentImage"
       txIsolationLevel: Prisma.TransactionIsolationLevel
     }
     model: {
@@ -2026,6 +2042,72 @@ export namespace Prisma {
           }
         }
       }
+      AppointmentImage: {
+        payload: Prisma.$AppointmentImagePayload<ExtArgs>
+        fields: Prisma.AppointmentImageFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.AppointmentImageFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AppointmentImagePayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.AppointmentImageFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AppointmentImagePayload>
+          }
+          findFirst: {
+            args: Prisma.AppointmentImageFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AppointmentImagePayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.AppointmentImageFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AppointmentImagePayload>
+          }
+          findMany: {
+            args: Prisma.AppointmentImageFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AppointmentImagePayload>[]
+          }
+          create: {
+            args: Prisma.AppointmentImageCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AppointmentImagePayload>
+          }
+          createMany: {
+            args: Prisma.AppointmentImageCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          delete: {
+            args: Prisma.AppointmentImageDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AppointmentImagePayload>
+          }
+          update: {
+            args: Prisma.AppointmentImageUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AppointmentImagePayload>
+          }
+          deleteMany: {
+            args: Prisma.AppointmentImageDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.AppointmentImageUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          upsert: {
+            args: Prisma.AppointmentImageUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AppointmentImagePayload>
+          }
+          aggregate: {
+            args: Prisma.AppointmentImageAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateAppointmentImage>
+          }
+          groupBy: {
+            args: Prisma.AppointmentImageGroupByArgs<ExtArgs>
+            result: $Utils.Optional<AppointmentImageGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.AppointmentImageCountArgs<ExtArgs>
+            result: $Utils.Optional<AppointmentImageCountAggregateOutputType> | number
+          }
+        }
+      }
     }
   } & {
     other: {
@@ -2126,6 +2208,7 @@ export namespace Prisma {
     notification?: NotificationOmit
     comment?: CommentOmit
     transaction?: TransactionOmit
+    appointmentImage?: AppointmentImageOmit
   }
 
   /* Types for Logging */
@@ -2414,11 +2497,13 @@ export namespace Prisma {
   export type AppointmentCountOutputType = {
     reminders: number
     comments: number
+    images: number
   }
 
   export type AppointmentCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     reminders?: boolean | AppointmentCountOutputTypeCountRemindersArgs
     comments?: boolean | AppointmentCountOutputTypeCountCommentsArgs
+    images?: boolean | AppointmentCountOutputTypeCountImagesArgs
   }
 
   // Custom InputTypes
@@ -2444,6 +2529,13 @@ export namespace Prisma {
    */
   export type AppointmentCountOutputTypeCountCommentsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: CommentWhereInput
+  }
+
+  /**
+   * AppointmentCountOutputType without action
+   */
+  export type AppointmentCountOutputTypeCountImagesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: AppointmentImageWhereInput
   }
 
 
@@ -14609,7 +14701,6 @@ export namespace Prisma {
     clientId: number | null
     procedureId: number | null
     doctorId: number | null
-    image: string | null
     note: string | null
     createdAt: Date | null
     updatedAt: Date | null
@@ -14620,7 +14711,6 @@ export namespace Prisma {
     clientId: number | null
     procedureId: number | null
     doctorId: number | null
-    image: string | null
     note: string | null
     createdAt: Date | null
     updatedAt: Date | null
@@ -14631,7 +14721,6 @@ export namespace Prisma {
     clientId: number
     procedureId: number
     doctorId: number
-    image: number
     note: number
     createdAt: number
     updatedAt: number
@@ -14658,7 +14747,6 @@ export namespace Prisma {
     clientId?: true
     procedureId?: true
     doctorId?: true
-    image?: true
     note?: true
     createdAt?: true
     updatedAt?: true
@@ -14669,7 +14757,6 @@ export namespace Prisma {
     clientId?: true
     procedureId?: true
     doctorId?: true
-    image?: true
     note?: true
     createdAt?: true
     updatedAt?: true
@@ -14680,7 +14767,6 @@ export namespace Prisma {
     clientId?: true
     procedureId?: true
     doctorId?: true
-    image?: true
     note?: true
     createdAt?: true
     updatedAt?: true
@@ -14778,7 +14864,6 @@ export namespace Prisma {
     clientId: number
     procedureId: number
     doctorId: number
-    image: string | null
     note: string | null
     createdAt: Date
     updatedAt: Date
@@ -14808,7 +14893,6 @@ export namespace Prisma {
     clientId?: boolean
     procedureId?: boolean
     doctorId?: boolean
-    image?: boolean
     note?: boolean
     createdAt?: boolean
     updatedAt?: boolean
@@ -14817,6 +14901,7 @@ export namespace Prisma {
     doctor?: boolean | UserDefaultArgs<ExtArgs>
     reminders?: boolean | Appointment$remindersArgs<ExtArgs>
     comments?: boolean | Appointment$commentsArgs<ExtArgs>
+    images?: boolean | Appointment$imagesArgs<ExtArgs>
     _count?: boolean | AppointmentCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["appointment"]>
 
@@ -14827,19 +14912,19 @@ export namespace Prisma {
     clientId?: boolean
     procedureId?: boolean
     doctorId?: boolean
-    image?: boolean
     note?: boolean
     createdAt?: boolean
     updatedAt?: boolean
   }
 
-  export type AppointmentOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "clientId" | "procedureId" | "doctorId" | "image" | "note" | "createdAt" | "updatedAt", ExtArgs["result"]["appointment"]>
+  export type AppointmentOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "clientId" | "procedureId" | "doctorId" | "note" | "createdAt" | "updatedAt", ExtArgs["result"]["appointment"]>
   export type AppointmentInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     client?: boolean | ClientDefaultArgs<ExtArgs>
     procedure?: boolean | ProcedureDefaultArgs<ExtArgs>
     doctor?: boolean | UserDefaultArgs<ExtArgs>
     reminders?: boolean | Appointment$remindersArgs<ExtArgs>
     comments?: boolean | Appointment$commentsArgs<ExtArgs>
+    images?: boolean | Appointment$imagesArgs<ExtArgs>
     _count?: boolean | AppointmentCountOutputTypeDefaultArgs<ExtArgs>
   }
 
@@ -14851,13 +14936,13 @@ export namespace Prisma {
       doctor: Prisma.$UserPayload<ExtArgs>
       reminders: Prisma.$NotificationPayload<ExtArgs>[]
       comments: Prisma.$CommentPayload<ExtArgs>[]
+      images: Prisma.$AppointmentImagePayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
       id: number
       clientId: number
       procedureId: number
       doctorId: number
-      image: string | null
       note: string | null
       createdAt: Date
       updatedAt: Date
@@ -15206,6 +15291,7 @@ export namespace Prisma {
     doctor<T extends UserDefaultArgs<ExtArgs> = {}>(args?: Subset<T, UserDefaultArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
     reminders<T extends Appointment$remindersArgs<ExtArgs> = {}>(args?: Subset<T, Appointment$remindersArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$NotificationPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     comments<T extends Appointment$commentsArgs<ExtArgs> = {}>(args?: Subset<T, Appointment$commentsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$CommentPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    images<T extends Appointment$imagesArgs<ExtArgs> = {}>(args?: Subset<T, Appointment$imagesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$AppointmentImagePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -15239,7 +15325,6 @@ export namespace Prisma {
     readonly clientId: FieldRef<"Appointment", 'Int'>
     readonly procedureId: FieldRef<"Appointment", 'Int'>
     readonly doctorId: FieldRef<"Appointment", 'Int'>
-    readonly image: FieldRef<"Appointment", 'String'>
     readonly note: FieldRef<"Appointment", 'String'>
     readonly createdAt: FieldRef<"Appointment", 'DateTime'>
     readonly updatedAt: FieldRef<"Appointment", 'DateTime'>
@@ -15631,6 +15716,30 @@ export namespace Prisma {
     take?: number
     skip?: number
     distinct?: CommentScalarFieldEnum | CommentScalarFieldEnum[]
+  }
+
+  /**
+   * Appointment.images
+   */
+  export type Appointment$imagesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AppointmentImage
+     */
+    select?: AppointmentImageSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the AppointmentImage
+     */
+    omit?: AppointmentImageOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AppointmentImageInclude<ExtArgs> | null
+    where?: AppointmentImageWhereInput
+    orderBy?: AppointmentImageOrderByWithRelationInput | AppointmentImageOrderByWithRelationInput[]
+    cursor?: AppointmentImageWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: AppointmentImageScalarFieldEnum | AppointmentImageScalarFieldEnum[]
   }
 
   /**
@@ -18657,6 +18766,951 @@ export namespace Prisma {
 
 
   /**
+   * Model AppointmentImage
+   */
+
+  export type AggregateAppointmentImage = {
+    _count: AppointmentImageCountAggregateOutputType | null
+    _avg: AppointmentImageAvgAggregateOutputType | null
+    _sum: AppointmentImageSumAggregateOutputType | null
+    _min: AppointmentImageMinAggregateOutputType | null
+    _max: AppointmentImageMaxAggregateOutputType | null
+  }
+
+  export type AppointmentImageAvgAggregateOutputType = {
+    id: number | null
+    appointmentId: number | null
+  }
+
+  export type AppointmentImageSumAggregateOutputType = {
+    id: number | null
+    appointmentId: number | null
+  }
+
+  export type AppointmentImageMinAggregateOutputType = {
+    id: number | null
+    url: string | null
+    appointmentId: number | null
+  }
+
+  export type AppointmentImageMaxAggregateOutputType = {
+    id: number | null
+    url: string | null
+    appointmentId: number | null
+  }
+
+  export type AppointmentImageCountAggregateOutputType = {
+    id: number
+    url: number
+    appointmentId: number
+    _all: number
+  }
+
+
+  export type AppointmentImageAvgAggregateInputType = {
+    id?: true
+    appointmentId?: true
+  }
+
+  export type AppointmentImageSumAggregateInputType = {
+    id?: true
+    appointmentId?: true
+  }
+
+  export type AppointmentImageMinAggregateInputType = {
+    id?: true
+    url?: true
+    appointmentId?: true
+  }
+
+  export type AppointmentImageMaxAggregateInputType = {
+    id?: true
+    url?: true
+    appointmentId?: true
+  }
+
+  export type AppointmentImageCountAggregateInputType = {
+    id?: true
+    url?: true
+    appointmentId?: true
+    _all?: true
+  }
+
+  export type AppointmentImageAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which AppointmentImage to aggregate.
+     */
+    where?: AppointmentImageWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of AppointmentImages to fetch.
+     */
+    orderBy?: AppointmentImageOrderByWithRelationInput | AppointmentImageOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: AppointmentImageWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` AppointmentImages from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` AppointmentImages.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned AppointmentImages
+    **/
+    _count?: true | AppointmentImageCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: AppointmentImageAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: AppointmentImageSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: AppointmentImageMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: AppointmentImageMaxAggregateInputType
+  }
+
+  export type GetAppointmentImageAggregateType<T extends AppointmentImageAggregateArgs> = {
+        [P in keyof T & keyof AggregateAppointmentImage]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateAppointmentImage[P]>
+      : GetScalarType<T[P], AggregateAppointmentImage[P]>
+  }
+
+
+
+
+  export type AppointmentImageGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: AppointmentImageWhereInput
+    orderBy?: AppointmentImageOrderByWithAggregationInput | AppointmentImageOrderByWithAggregationInput[]
+    by: AppointmentImageScalarFieldEnum[] | AppointmentImageScalarFieldEnum
+    having?: AppointmentImageScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: AppointmentImageCountAggregateInputType | true
+    _avg?: AppointmentImageAvgAggregateInputType
+    _sum?: AppointmentImageSumAggregateInputType
+    _min?: AppointmentImageMinAggregateInputType
+    _max?: AppointmentImageMaxAggregateInputType
+  }
+
+  export type AppointmentImageGroupByOutputType = {
+    id: number
+    url: string
+    appointmentId: number
+    _count: AppointmentImageCountAggregateOutputType | null
+    _avg: AppointmentImageAvgAggregateOutputType | null
+    _sum: AppointmentImageSumAggregateOutputType | null
+    _min: AppointmentImageMinAggregateOutputType | null
+    _max: AppointmentImageMaxAggregateOutputType | null
+  }
+
+  type GetAppointmentImageGroupByPayload<T extends AppointmentImageGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<AppointmentImageGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof AppointmentImageGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], AppointmentImageGroupByOutputType[P]>
+            : GetScalarType<T[P], AppointmentImageGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type AppointmentImageSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    url?: boolean
+    appointmentId?: boolean
+    appointment?: boolean | AppointmentDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["appointmentImage"]>
+
+
+
+  export type AppointmentImageSelectScalar = {
+    id?: boolean
+    url?: boolean
+    appointmentId?: boolean
+  }
+
+  export type AppointmentImageOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "url" | "appointmentId", ExtArgs["result"]["appointmentImage"]>
+  export type AppointmentImageInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    appointment?: boolean | AppointmentDefaultArgs<ExtArgs>
+  }
+
+  export type $AppointmentImagePayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "AppointmentImage"
+    objects: {
+      appointment: Prisma.$AppointmentPayload<ExtArgs>
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: number
+      url: string
+      appointmentId: number
+    }, ExtArgs["result"]["appointmentImage"]>
+    composites: {}
+  }
+
+  type AppointmentImageGetPayload<S extends boolean | null | undefined | AppointmentImageDefaultArgs> = $Result.GetResult<Prisma.$AppointmentImagePayload, S>
+
+  type AppointmentImageCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<AppointmentImageFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: AppointmentImageCountAggregateInputType | true
+    }
+
+  export interface AppointmentImageDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['AppointmentImage'], meta: { name: 'AppointmentImage' } }
+    /**
+     * Find zero or one AppointmentImage that matches the filter.
+     * @param {AppointmentImageFindUniqueArgs} args - Arguments to find a AppointmentImage
+     * @example
+     * // Get one AppointmentImage
+     * const appointmentImage = await prisma.appointmentImage.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends AppointmentImageFindUniqueArgs>(args: SelectSubset<T, AppointmentImageFindUniqueArgs<ExtArgs>>): Prisma__AppointmentImageClient<$Result.GetResult<Prisma.$AppointmentImagePayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one AppointmentImage that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {AppointmentImageFindUniqueOrThrowArgs} args - Arguments to find a AppointmentImage
+     * @example
+     * // Get one AppointmentImage
+     * const appointmentImage = await prisma.appointmentImage.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends AppointmentImageFindUniqueOrThrowArgs>(args: SelectSubset<T, AppointmentImageFindUniqueOrThrowArgs<ExtArgs>>): Prisma__AppointmentImageClient<$Result.GetResult<Prisma.$AppointmentImagePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first AppointmentImage that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {AppointmentImageFindFirstArgs} args - Arguments to find a AppointmentImage
+     * @example
+     * // Get one AppointmentImage
+     * const appointmentImage = await prisma.appointmentImage.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends AppointmentImageFindFirstArgs>(args?: SelectSubset<T, AppointmentImageFindFirstArgs<ExtArgs>>): Prisma__AppointmentImageClient<$Result.GetResult<Prisma.$AppointmentImagePayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first AppointmentImage that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {AppointmentImageFindFirstOrThrowArgs} args - Arguments to find a AppointmentImage
+     * @example
+     * // Get one AppointmentImage
+     * const appointmentImage = await prisma.appointmentImage.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends AppointmentImageFindFirstOrThrowArgs>(args?: SelectSubset<T, AppointmentImageFindFirstOrThrowArgs<ExtArgs>>): Prisma__AppointmentImageClient<$Result.GetResult<Prisma.$AppointmentImagePayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more AppointmentImages that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {AppointmentImageFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all AppointmentImages
+     * const appointmentImages = await prisma.appointmentImage.findMany()
+     * 
+     * // Get first 10 AppointmentImages
+     * const appointmentImages = await prisma.appointmentImage.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const appointmentImageWithIdOnly = await prisma.appointmentImage.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends AppointmentImageFindManyArgs>(args?: SelectSubset<T, AppointmentImageFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$AppointmentImagePayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a AppointmentImage.
+     * @param {AppointmentImageCreateArgs} args - Arguments to create a AppointmentImage.
+     * @example
+     * // Create one AppointmentImage
+     * const AppointmentImage = await prisma.appointmentImage.create({
+     *   data: {
+     *     // ... data to create a AppointmentImage
+     *   }
+     * })
+     * 
+     */
+    create<T extends AppointmentImageCreateArgs>(args: SelectSubset<T, AppointmentImageCreateArgs<ExtArgs>>): Prisma__AppointmentImageClient<$Result.GetResult<Prisma.$AppointmentImagePayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many AppointmentImages.
+     * @param {AppointmentImageCreateManyArgs} args - Arguments to create many AppointmentImages.
+     * @example
+     * // Create many AppointmentImages
+     * const appointmentImage = await prisma.appointmentImage.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends AppointmentImageCreateManyArgs>(args?: SelectSubset<T, AppointmentImageCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Delete a AppointmentImage.
+     * @param {AppointmentImageDeleteArgs} args - Arguments to delete one AppointmentImage.
+     * @example
+     * // Delete one AppointmentImage
+     * const AppointmentImage = await prisma.appointmentImage.delete({
+     *   where: {
+     *     // ... filter to delete one AppointmentImage
+     *   }
+     * })
+     * 
+     */
+    delete<T extends AppointmentImageDeleteArgs>(args: SelectSubset<T, AppointmentImageDeleteArgs<ExtArgs>>): Prisma__AppointmentImageClient<$Result.GetResult<Prisma.$AppointmentImagePayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one AppointmentImage.
+     * @param {AppointmentImageUpdateArgs} args - Arguments to update one AppointmentImage.
+     * @example
+     * // Update one AppointmentImage
+     * const appointmentImage = await prisma.appointmentImage.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends AppointmentImageUpdateArgs>(args: SelectSubset<T, AppointmentImageUpdateArgs<ExtArgs>>): Prisma__AppointmentImageClient<$Result.GetResult<Prisma.$AppointmentImagePayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more AppointmentImages.
+     * @param {AppointmentImageDeleteManyArgs} args - Arguments to filter AppointmentImages to delete.
+     * @example
+     * // Delete a few AppointmentImages
+     * const { count } = await prisma.appointmentImage.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends AppointmentImageDeleteManyArgs>(args?: SelectSubset<T, AppointmentImageDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more AppointmentImages.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {AppointmentImageUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many AppointmentImages
+     * const appointmentImage = await prisma.appointmentImage.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends AppointmentImageUpdateManyArgs>(args: SelectSubset<T, AppointmentImageUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create or update one AppointmentImage.
+     * @param {AppointmentImageUpsertArgs} args - Arguments to update or create a AppointmentImage.
+     * @example
+     * // Update or create a AppointmentImage
+     * const appointmentImage = await prisma.appointmentImage.upsert({
+     *   create: {
+     *     // ... data to create a AppointmentImage
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the AppointmentImage we want to update
+     *   }
+     * })
+     */
+    upsert<T extends AppointmentImageUpsertArgs>(args: SelectSubset<T, AppointmentImageUpsertArgs<ExtArgs>>): Prisma__AppointmentImageClient<$Result.GetResult<Prisma.$AppointmentImagePayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of AppointmentImages.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {AppointmentImageCountArgs} args - Arguments to filter AppointmentImages to count.
+     * @example
+     * // Count the number of AppointmentImages
+     * const count = await prisma.appointmentImage.count({
+     *   where: {
+     *     // ... the filter for the AppointmentImages we want to count
+     *   }
+     * })
+    **/
+    count<T extends AppointmentImageCountArgs>(
+      args?: Subset<T, AppointmentImageCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], AppointmentImageCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a AppointmentImage.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {AppointmentImageAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends AppointmentImageAggregateArgs>(args: Subset<T, AppointmentImageAggregateArgs>): Prisma.PrismaPromise<GetAppointmentImageAggregateType<T>>
+
+    /**
+     * Group by AppointmentImage.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {AppointmentImageGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends AppointmentImageGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: AppointmentImageGroupByArgs['orderBy'] }
+        : { orderBy?: AppointmentImageGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, AppointmentImageGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetAppointmentImageGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the AppointmentImage model
+   */
+  readonly fields: AppointmentImageFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for AppointmentImage.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__AppointmentImageClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    appointment<T extends AppointmentDefaultArgs<ExtArgs> = {}>(args?: Subset<T, AppointmentDefaultArgs<ExtArgs>>): Prisma__AppointmentClient<$Result.GetResult<Prisma.$AppointmentPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the AppointmentImage model
+   */
+  interface AppointmentImageFieldRefs {
+    readonly id: FieldRef<"AppointmentImage", 'Int'>
+    readonly url: FieldRef<"AppointmentImage", 'String'>
+    readonly appointmentId: FieldRef<"AppointmentImage", 'Int'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * AppointmentImage findUnique
+   */
+  export type AppointmentImageFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AppointmentImage
+     */
+    select?: AppointmentImageSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the AppointmentImage
+     */
+    omit?: AppointmentImageOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AppointmentImageInclude<ExtArgs> | null
+    /**
+     * Filter, which AppointmentImage to fetch.
+     */
+    where: AppointmentImageWhereUniqueInput
+  }
+
+  /**
+   * AppointmentImage findUniqueOrThrow
+   */
+  export type AppointmentImageFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AppointmentImage
+     */
+    select?: AppointmentImageSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the AppointmentImage
+     */
+    omit?: AppointmentImageOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AppointmentImageInclude<ExtArgs> | null
+    /**
+     * Filter, which AppointmentImage to fetch.
+     */
+    where: AppointmentImageWhereUniqueInput
+  }
+
+  /**
+   * AppointmentImage findFirst
+   */
+  export type AppointmentImageFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AppointmentImage
+     */
+    select?: AppointmentImageSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the AppointmentImage
+     */
+    omit?: AppointmentImageOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AppointmentImageInclude<ExtArgs> | null
+    /**
+     * Filter, which AppointmentImage to fetch.
+     */
+    where?: AppointmentImageWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of AppointmentImages to fetch.
+     */
+    orderBy?: AppointmentImageOrderByWithRelationInput | AppointmentImageOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for AppointmentImages.
+     */
+    cursor?: AppointmentImageWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` AppointmentImages from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` AppointmentImages.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of AppointmentImages.
+     */
+    distinct?: AppointmentImageScalarFieldEnum | AppointmentImageScalarFieldEnum[]
+  }
+
+  /**
+   * AppointmentImage findFirstOrThrow
+   */
+  export type AppointmentImageFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AppointmentImage
+     */
+    select?: AppointmentImageSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the AppointmentImage
+     */
+    omit?: AppointmentImageOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AppointmentImageInclude<ExtArgs> | null
+    /**
+     * Filter, which AppointmentImage to fetch.
+     */
+    where?: AppointmentImageWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of AppointmentImages to fetch.
+     */
+    orderBy?: AppointmentImageOrderByWithRelationInput | AppointmentImageOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for AppointmentImages.
+     */
+    cursor?: AppointmentImageWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` AppointmentImages from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` AppointmentImages.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of AppointmentImages.
+     */
+    distinct?: AppointmentImageScalarFieldEnum | AppointmentImageScalarFieldEnum[]
+  }
+
+  /**
+   * AppointmentImage findMany
+   */
+  export type AppointmentImageFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AppointmentImage
+     */
+    select?: AppointmentImageSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the AppointmentImage
+     */
+    omit?: AppointmentImageOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AppointmentImageInclude<ExtArgs> | null
+    /**
+     * Filter, which AppointmentImages to fetch.
+     */
+    where?: AppointmentImageWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of AppointmentImages to fetch.
+     */
+    orderBy?: AppointmentImageOrderByWithRelationInput | AppointmentImageOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing AppointmentImages.
+     */
+    cursor?: AppointmentImageWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` AppointmentImages from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` AppointmentImages.
+     */
+    skip?: number
+    distinct?: AppointmentImageScalarFieldEnum | AppointmentImageScalarFieldEnum[]
+  }
+
+  /**
+   * AppointmentImage create
+   */
+  export type AppointmentImageCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AppointmentImage
+     */
+    select?: AppointmentImageSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the AppointmentImage
+     */
+    omit?: AppointmentImageOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AppointmentImageInclude<ExtArgs> | null
+    /**
+     * The data needed to create a AppointmentImage.
+     */
+    data: XOR<AppointmentImageCreateInput, AppointmentImageUncheckedCreateInput>
+  }
+
+  /**
+   * AppointmentImage createMany
+   */
+  export type AppointmentImageCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many AppointmentImages.
+     */
+    data: AppointmentImageCreateManyInput | AppointmentImageCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * AppointmentImage update
+   */
+  export type AppointmentImageUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AppointmentImage
+     */
+    select?: AppointmentImageSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the AppointmentImage
+     */
+    omit?: AppointmentImageOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AppointmentImageInclude<ExtArgs> | null
+    /**
+     * The data needed to update a AppointmentImage.
+     */
+    data: XOR<AppointmentImageUpdateInput, AppointmentImageUncheckedUpdateInput>
+    /**
+     * Choose, which AppointmentImage to update.
+     */
+    where: AppointmentImageWhereUniqueInput
+  }
+
+  /**
+   * AppointmentImage updateMany
+   */
+  export type AppointmentImageUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update AppointmentImages.
+     */
+    data: XOR<AppointmentImageUpdateManyMutationInput, AppointmentImageUncheckedUpdateManyInput>
+    /**
+     * Filter which AppointmentImages to update
+     */
+    where?: AppointmentImageWhereInput
+    /**
+     * Limit how many AppointmentImages to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * AppointmentImage upsert
+   */
+  export type AppointmentImageUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AppointmentImage
+     */
+    select?: AppointmentImageSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the AppointmentImage
+     */
+    omit?: AppointmentImageOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AppointmentImageInclude<ExtArgs> | null
+    /**
+     * The filter to search for the AppointmentImage to update in case it exists.
+     */
+    where: AppointmentImageWhereUniqueInput
+    /**
+     * In case the AppointmentImage found by the `where` argument doesn't exist, create a new AppointmentImage with this data.
+     */
+    create: XOR<AppointmentImageCreateInput, AppointmentImageUncheckedCreateInput>
+    /**
+     * In case the AppointmentImage was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<AppointmentImageUpdateInput, AppointmentImageUncheckedUpdateInput>
+  }
+
+  /**
+   * AppointmentImage delete
+   */
+  export type AppointmentImageDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AppointmentImage
+     */
+    select?: AppointmentImageSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the AppointmentImage
+     */
+    omit?: AppointmentImageOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AppointmentImageInclude<ExtArgs> | null
+    /**
+     * Filter which AppointmentImage to delete.
+     */
+    where: AppointmentImageWhereUniqueInput
+  }
+
+  /**
+   * AppointmentImage deleteMany
+   */
+  export type AppointmentImageDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which AppointmentImages to delete
+     */
+    where?: AppointmentImageWhereInput
+    /**
+     * Limit how many AppointmentImages to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * AppointmentImage without action
+   */
+  export type AppointmentImageDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AppointmentImage
+     */
+    select?: AppointmentImageSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the AppointmentImage
+     */
+    omit?: AppointmentImageOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AppointmentImageInclude<ExtArgs> | null
+  }
+
+
+  /**
    * Enums
    */
 
@@ -18822,7 +19876,6 @@ export namespace Prisma {
     clientId: 'clientId',
     procedureId: 'procedureId',
     doctorId: 'doctorId',
-    image: 'image',
     note: 'note',
     createdAt: 'createdAt',
     updatedAt: 'updatedAt'
@@ -18869,6 +19922,15 @@ export namespace Prisma {
   };
 
   export type TransactionScalarFieldEnum = (typeof TransactionScalarFieldEnum)[keyof typeof TransactionScalarFieldEnum]
+
+
+  export const AppointmentImageScalarFieldEnum: {
+    id: 'id',
+    url: 'url',
+    appointmentId: 'appointmentId'
+  };
+
+  export type AppointmentImageScalarFieldEnum = (typeof AppointmentImageScalarFieldEnum)[keyof typeof AppointmentImageScalarFieldEnum]
 
 
   export const SortOrder: {
@@ -18996,7 +20058,6 @@ export namespace Prisma {
 
 
   export const AppointmentOrderByRelevanceFieldEnum: {
-    image: 'image',
     note: 'note'
   };
 
@@ -19022,6 +20083,13 @@ export namespace Prisma {
   };
 
   export type TransactionOrderByRelevanceFieldEnum = (typeof TransactionOrderByRelevanceFieldEnum)[keyof typeof TransactionOrderByRelevanceFieldEnum]
+
+
+  export const AppointmentImageOrderByRelevanceFieldEnum: {
+    url: 'url'
+  };
+
+  export type AppointmentImageOrderByRelevanceFieldEnum = (typeof AppointmentImageOrderByRelevanceFieldEnum)[keyof typeof AppointmentImageOrderByRelevanceFieldEnum]
 
 
   /**
@@ -19935,7 +21003,6 @@ export namespace Prisma {
     clientId?: IntFilter<"Appointment"> | number
     procedureId?: IntFilter<"Appointment"> | number
     doctorId?: IntFilter<"Appointment"> | number
-    image?: StringNullableFilter<"Appointment"> | string | null
     note?: StringNullableFilter<"Appointment"> | string | null
     createdAt?: DateTimeFilter<"Appointment"> | Date | string
     updatedAt?: DateTimeFilter<"Appointment"> | Date | string
@@ -19944,6 +21011,7 @@ export namespace Prisma {
     doctor?: XOR<UserScalarRelationFilter, UserWhereInput>
     reminders?: NotificationListRelationFilter
     comments?: CommentListRelationFilter
+    images?: AppointmentImageListRelationFilter
   }
 
   export type AppointmentOrderByWithRelationInput = {
@@ -19951,7 +21019,6 @@ export namespace Prisma {
     clientId?: SortOrder
     procedureId?: SortOrder
     doctorId?: SortOrder
-    image?: SortOrderInput | SortOrder
     note?: SortOrderInput | SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
@@ -19960,6 +21027,7 @@ export namespace Prisma {
     doctor?: UserOrderByWithRelationInput
     reminders?: NotificationOrderByRelationAggregateInput
     comments?: CommentOrderByRelationAggregateInput
+    images?: AppointmentImageOrderByRelationAggregateInput
     _relevance?: AppointmentOrderByRelevanceInput
   }
 
@@ -19971,7 +21039,6 @@ export namespace Prisma {
     clientId?: IntFilter<"Appointment"> | number
     procedureId?: IntFilter<"Appointment"> | number
     doctorId?: IntFilter<"Appointment"> | number
-    image?: StringNullableFilter<"Appointment"> | string | null
     note?: StringNullableFilter<"Appointment"> | string | null
     createdAt?: DateTimeFilter<"Appointment"> | Date | string
     updatedAt?: DateTimeFilter<"Appointment"> | Date | string
@@ -19980,6 +21047,7 @@ export namespace Prisma {
     doctor?: XOR<UserScalarRelationFilter, UserWhereInput>
     reminders?: NotificationListRelationFilter
     comments?: CommentListRelationFilter
+    images?: AppointmentImageListRelationFilter
   }, "id">
 
   export type AppointmentOrderByWithAggregationInput = {
@@ -19987,7 +21055,6 @@ export namespace Prisma {
     clientId?: SortOrder
     procedureId?: SortOrder
     doctorId?: SortOrder
-    image?: SortOrderInput | SortOrder
     note?: SortOrderInput | SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
@@ -20006,7 +21073,6 @@ export namespace Prisma {
     clientId?: IntWithAggregatesFilter<"Appointment"> | number
     procedureId?: IntWithAggregatesFilter<"Appointment"> | number
     doctorId?: IntWithAggregatesFilter<"Appointment"> | number
-    image?: StringNullableWithAggregatesFilter<"Appointment"> | string | null
     note?: StringNullableWithAggregatesFilter<"Appointment"> | string | null
     createdAt?: DateTimeWithAggregatesFilter<"Appointment"> | Date | string
     updatedAt?: DateTimeWithAggregatesFilter<"Appointment"> | Date | string
@@ -20222,6 +21288,54 @@ export namespace Prisma {
     createdAt?: DateTimeWithAggregatesFilter<"Transaction"> | Date | string
     updatedAt?: DateTimeWithAggregatesFilter<"Transaction"> | Date | string
     paymentMethod?: EnumPaymentMethodWithAggregatesFilter<"Transaction"> | $Enums.PaymentMethod
+  }
+
+  export type AppointmentImageWhereInput = {
+    AND?: AppointmentImageWhereInput | AppointmentImageWhereInput[]
+    OR?: AppointmentImageWhereInput[]
+    NOT?: AppointmentImageWhereInput | AppointmentImageWhereInput[]
+    id?: IntFilter<"AppointmentImage"> | number
+    url?: StringFilter<"AppointmentImage"> | string
+    appointmentId?: IntFilter<"AppointmentImage"> | number
+    appointment?: XOR<AppointmentScalarRelationFilter, AppointmentWhereInput>
+  }
+
+  export type AppointmentImageOrderByWithRelationInput = {
+    id?: SortOrder
+    url?: SortOrder
+    appointmentId?: SortOrder
+    appointment?: AppointmentOrderByWithRelationInput
+    _relevance?: AppointmentImageOrderByRelevanceInput
+  }
+
+  export type AppointmentImageWhereUniqueInput = Prisma.AtLeast<{
+    id?: number
+    AND?: AppointmentImageWhereInput | AppointmentImageWhereInput[]
+    OR?: AppointmentImageWhereInput[]
+    NOT?: AppointmentImageWhereInput | AppointmentImageWhereInput[]
+    url?: StringFilter<"AppointmentImage"> | string
+    appointmentId?: IntFilter<"AppointmentImage"> | number
+    appointment?: XOR<AppointmentScalarRelationFilter, AppointmentWhereInput>
+  }, "id">
+
+  export type AppointmentImageOrderByWithAggregationInput = {
+    id?: SortOrder
+    url?: SortOrder
+    appointmentId?: SortOrder
+    _count?: AppointmentImageCountOrderByAggregateInput
+    _avg?: AppointmentImageAvgOrderByAggregateInput
+    _max?: AppointmentImageMaxOrderByAggregateInput
+    _min?: AppointmentImageMinOrderByAggregateInput
+    _sum?: AppointmentImageSumOrderByAggregateInput
+  }
+
+  export type AppointmentImageScalarWhereWithAggregatesInput = {
+    AND?: AppointmentImageScalarWhereWithAggregatesInput | AppointmentImageScalarWhereWithAggregatesInput[]
+    OR?: AppointmentImageScalarWhereWithAggregatesInput[]
+    NOT?: AppointmentImageScalarWhereWithAggregatesInput | AppointmentImageScalarWhereWithAggregatesInput[]
+    id?: IntWithAggregatesFilter<"AppointmentImage"> | number
+    url?: StringWithAggregatesFilter<"AppointmentImage"> | string
+    appointmentId?: IntWithAggregatesFilter<"AppointmentImage"> | number
   }
 
   export type UserCreateInput = {
@@ -21031,7 +22145,6 @@ export namespace Prisma {
   }
 
   export type AppointmentCreateInput = {
-    image?: string | null
     note?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -21040,6 +22153,7 @@ export namespace Prisma {
     doctor?: UserCreateNestedOneWithoutAppoinmentsInput
     reminders?: NotificationCreateNestedManyWithoutAppointmentInput
     comments?: CommentCreateNestedManyWithoutAppointmentInput
+    images?: AppointmentImageCreateNestedManyWithoutAppointmentInput
   }
 
   export type AppointmentUncheckedCreateInput = {
@@ -21047,16 +22161,15 @@ export namespace Prisma {
     clientId: number
     procedureId: number
     doctorId?: number
-    image?: string | null
     note?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     reminders?: NotificationUncheckedCreateNestedManyWithoutAppointmentInput
     comments?: CommentUncheckedCreateNestedManyWithoutAppointmentInput
+    images?: AppointmentImageUncheckedCreateNestedManyWithoutAppointmentInput
   }
 
   export type AppointmentUpdateInput = {
-    image?: NullableStringFieldUpdateOperationsInput | string | null
     note?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -21065,6 +22178,7 @@ export namespace Prisma {
     doctor?: UserUpdateOneRequiredWithoutAppoinmentsNestedInput
     reminders?: NotificationUpdateManyWithoutAppointmentNestedInput
     comments?: CommentUpdateManyWithoutAppointmentNestedInput
+    images?: AppointmentImageUpdateManyWithoutAppointmentNestedInput
   }
 
   export type AppointmentUncheckedUpdateInput = {
@@ -21072,12 +22186,12 @@ export namespace Prisma {
     clientId?: IntFieldUpdateOperationsInput | number
     procedureId?: IntFieldUpdateOperationsInput | number
     doctorId?: IntFieldUpdateOperationsInput | number
-    image?: NullableStringFieldUpdateOperationsInput | string | null
     note?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     reminders?: NotificationUncheckedUpdateManyWithoutAppointmentNestedInput
     comments?: CommentUncheckedUpdateManyWithoutAppointmentNestedInput
+    images?: AppointmentImageUncheckedUpdateManyWithoutAppointmentNestedInput
   }
 
   export type AppointmentCreateManyInput = {
@@ -21085,14 +22199,12 @@ export namespace Prisma {
     clientId: number
     procedureId: number
     doctorId?: number
-    image?: string | null
     note?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
   }
 
   export type AppointmentUpdateManyMutationInput = {
-    image?: NullableStringFieldUpdateOperationsInput | string | null
     note?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -21103,7 +22215,6 @@ export namespace Prisma {
     clientId?: IntFieldUpdateOperationsInput | number
     procedureId?: IntFieldUpdateOperationsInput | number
     doctorId?: IntFieldUpdateOperationsInput | number
-    image?: NullableStringFieldUpdateOperationsInput | string | null
     note?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -21311,6 +22422,44 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     paymentMethod?: EnumPaymentMethodFieldUpdateOperationsInput | $Enums.PaymentMethod
+  }
+
+  export type AppointmentImageCreateInput = {
+    url: string
+    appointment: AppointmentCreateNestedOneWithoutImagesInput
+  }
+
+  export type AppointmentImageUncheckedCreateInput = {
+    id?: number
+    url: string
+    appointmentId: number
+  }
+
+  export type AppointmentImageUpdateInput = {
+    url?: StringFieldUpdateOperationsInput | string
+    appointment?: AppointmentUpdateOneRequiredWithoutImagesNestedInput
+  }
+
+  export type AppointmentImageUncheckedUpdateInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    url?: StringFieldUpdateOperationsInput | string
+    appointmentId?: IntFieldUpdateOperationsInput | number
+  }
+
+  export type AppointmentImageCreateManyInput = {
+    id?: number
+    url: string
+    appointmentId: number
+  }
+
+  export type AppointmentImageUpdateManyMutationInput = {
+    url?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type AppointmentImageUncheckedUpdateManyInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    url?: StringFieldUpdateOperationsInput | string
+    appointmentId?: IntFieldUpdateOperationsInput | number
   }
 
   export type IntFilter<$PrismaModel = never> = {
@@ -22204,7 +23353,17 @@ export namespace Prisma {
     none?: NotificationWhereInput
   }
 
+  export type AppointmentImageListRelationFilter = {
+    every?: AppointmentImageWhereInput
+    some?: AppointmentImageWhereInput
+    none?: AppointmentImageWhereInput
+  }
+
   export type NotificationOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type AppointmentImageOrderByRelationAggregateInput = {
     _count?: SortOrder
   }
 
@@ -22219,7 +23378,6 @@ export namespace Prisma {
     clientId?: SortOrder
     procedureId?: SortOrder
     doctorId?: SortOrder
-    image?: SortOrder
     note?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
@@ -22237,7 +23395,6 @@ export namespace Prisma {
     clientId?: SortOrder
     procedureId?: SortOrder
     doctorId?: SortOrder
-    image?: SortOrder
     note?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
@@ -22248,7 +23405,6 @@ export namespace Prisma {
     clientId?: SortOrder
     procedureId?: SortOrder
     doctorId?: SortOrder
-    image?: SortOrder
     note?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
@@ -22536,6 +23692,40 @@ export namespace Prisma {
     _count?: NestedIntFilter<$PrismaModel>
     _min?: NestedEnumPaymentMethodFilter<$PrismaModel>
     _max?: NestedEnumPaymentMethodFilter<$PrismaModel>
+  }
+
+  export type AppointmentImageOrderByRelevanceInput = {
+    fields: AppointmentImageOrderByRelevanceFieldEnum | AppointmentImageOrderByRelevanceFieldEnum[]
+    sort: SortOrder
+    search: string
+  }
+
+  export type AppointmentImageCountOrderByAggregateInput = {
+    id?: SortOrder
+    url?: SortOrder
+    appointmentId?: SortOrder
+  }
+
+  export type AppointmentImageAvgOrderByAggregateInput = {
+    id?: SortOrder
+    appointmentId?: SortOrder
+  }
+
+  export type AppointmentImageMaxOrderByAggregateInput = {
+    id?: SortOrder
+    url?: SortOrder
+    appointmentId?: SortOrder
+  }
+
+  export type AppointmentImageMinOrderByAggregateInput = {
+    id?: SortOrder
+    url?: SortOrder
+    appointmentId?: SortOrder
+  }
+
+  export type AppointmentImageSumOrderByAggregateInput = {
+    id?: SortOrder
+    appointmentId?: SortOrder
   }
 
   export type CommentCreateNestedManyWithoutAuthorInput = {
@@ -23336,6 +24526,13 @@ export namespace Prisma {
     connect?: CommentWhereUniqueInput | CommentWhereUniqueInput[]
   }
 
+  export type AppointmentImageCreateNestedManyWithoutAppointmentInput = {
+    create?: XOR<AppointmentImageCreateWithoutAppointmentInput, AppointmentImageUncheckedCreateWithoutAppointmentInput> | AppointmentImageCreateWithoutAppointmentInput[] | AppointmentImageUncheckedCreateWithoutAppointmentInput[]
+    connectOrCreate?: AppointmentImageCreateOrConnectWithoutAppointmentInput | AppointmentImageCreateOrConnectWithoutAppointmentInput[]
+    createMany?: AppointmentImageCreateManyAppointmentInputEnvelope
+    connect?: AppointmentImageWhereUniqueInput | AppointmentImageWhereUniqueInput[]
+  }
+
   export type NotificationUncheckedCreateNestedManyWithoutAppointmentInput = {
     create?: XOR<NotificationCreateWithoutAppointmentInput, NotificationUncheckedCreateWithoutAppointmentInput> | NotificationCreateWithoutAppointmentInput[] | NotificationUncheckedCreateWithoutAppointmentInput[]
     connectOrCreate?: NotificationCreateOrConnectWithoutAppointmentInput | NotificationCreateOrConnectWithoutAppointmentInput[]
@@ -23348,6 +24545,13 @@ export namespace Prisma {
     connectOrCreate?: CommentCreateOrConnectWithoutAppointmentInput | CommentCreateOrConnectWithoutAppointmentInput[]
     createMany?: CommentCreateManyAppointmentInputEnvelope
     connect?: CommentWhereUniqueInput | CommentWhereUniqueInput[]
+  }
+
+  export type AppointmentImageUncheckedCreateNestedManyWithoutAppointmentInput = {
+    create?: XOR<AppointmentImageCreateWithoutAppointmentInput, AppointmentImageUncheckedCreateWithoutAppointmentInput> | AppointmentImageCreateWithoutAppointmentInput[] | AppointmentImageUncheckedCreateWithoutAppointmentInput[]
+    connectOrCreate?: AppointmentImageCreateOrConnectWithoutAppointmentInput | AppointmentImageCreateOrConnectWithoutAppointmentInput[]
+    createMany?: AppointmentImageCreateManyAppointmentInputEnvelope
+    connect?: AppointmentImageWhereUniqueInput | AppointmentImageWhereUniqueInput[]
   }
 
   export type ClientUpdateOneRequiredWithoutAppoinmentsNestedInput = {
@@ -23402,6 +24606,20 @@ export namespace Prisma {
     deleteMany?: CommentScalarWhereInput | CommentScalarWhereInput[]
   }
 
+  export type AppointmentImageUpdateManyWithoutAppointmentNestedInput = {
+    create?: XOR<AppointmentImageCreateWithoutAppointmentInput, AppointmentImageUncheckedCreateWithoutAppointmentInput> | AppointmentImageCreateWithoutAppointmentInput[] | AppointmentImageUncheckedCreateWithoutAppointmentInput[]
+    connectOrCreate?: AppointmentImageCreateOrConnectWithoutAppointmentInput | AppointmentImageCreateOrConnectWithoutAppointmentInput[]
+    upsert?: AppointmentImageUpsertWithWhereUniqueWithoutAppointmentInput | AppointmentImageUpsertWithWhereUniqueWithoutAppointmentInput[]
+    createMany?: AppointmentImageCreateManyAppointmentInputEnvelope
+    set?: AppointmentImageWhereUniqueInput | AppointmentImageWhereUniqueInput[]
+    disconnect?: AppointmentImageWhereUniqueInput | AppointmentImageWhereUniqueInput[]
+    delete?: AppointmentImageWhereUniqueInput | AppointmentImageWhereUniqueInput[]
+    connect?: AppointmentImageWhereUniqueInput | AppointmentImageWhereUniqueInput[]
+    update?: AppointmentImageUpdateWithWhereUniqueWithoutAppointmentInput | AppointmentImageUpdateWithWhereUniqueWithoutAppointmentInput[]
+    updateMany?: AppointmentImageUpdateManyWithWhereWithoutAppointmentInput | AppointmentImageUpdateManyWithWhereWithoutAppointmentInput[]
+    deleteMany?: AppointmentImageScalarWhereInput | AppointmentImageScalarWhereInput[]
+  }
+
   export type NotificationUncheckedUpdateManyWithoutAppointmentNestedInput = {
     create?: XOR<NotificationCreateWithoutAppointmentInput, NotificationUncheckedCreateWithoutAppointmentInput> | NotificationCreateWithoutAppointmentInput[] | NotificationUncheckedCreateWithoutAppointmentInput[]
     connectOrCreate?: NotificationCreateOrConnectWithoutAppointmentInput | NotificationCreateOrConnectWithoutAppointmentInput[]
@@ -23428,6 +24646,20 @@ export namespace Prisma {
     update?: CommentUpdateWithWhereUniqueWithoutAppointmentInput | CommentUpdateWithWhereUniqueWithoutAppointmentInput[]
     updateMany?: CommentUpdateManyWithWhereWithoutAppointmentInput | CommentUpdateManyWithWhereWithoutAppointmentInput[]
     deleteMany?: CommentScalarWhereInput | CommentScalarWhereInput[]
+  }
+
+  export type AppointmentImageUncheckedUpdateManyWithoutAppointmentNestedInput = {
+    create?: XOR<AppointmentImageCreateWithoutAppointmentInput, AppointmentImageUncheckedCreateWithoutAppointmentInput> | AppointmentImageCreateWithoutAppointmentInput[] | AppointmentImageUncheckedCreateWithoutAppointmentInput[]
+    connectOrCreate?: AppointmentImageCreateOrConnectWithoutAppointmentInput | AppointmentImageCreateOrConnectWithoutAppointmentInput[]
+    upsert?: AppointmentImageUpsertWithWhereUniqueWithoutAppointmentInput | AppointmentImageUpsertWithWhereUniqueWithoutAppointmentInput[]
+    createMany?: AppointmentImageCreateManyAppointmentInputEnvelope
+    set?: AppointmentImageWhereUniqueInput | AppointmentImageWhereUniqueInput[]
+    disconnect?: AppointmentImageWhereUniqueInput | AppointmentImageWhereUniqueInput[]
+    delete?: AppointmentImageWhereUniqueInput | AppointmentImageWhereUniqueInput[]
+    connect?: AppointmentImageWhereUniqueInput | AppointmentImageWhereUniqueInput[]
+    update?: AppointmentImageUpdateWithWhereUniqueWithoutAppointmentInput | AppointmentImageUpdateWithWhereUniqueWithoutAppointmentInput[]
+    updateMany?: AppointmentImageUpdateManyWithWhereWithoutAppointmentInput | AppointmentImageUpdateManyWithWhereWithoutAppointmentInput[]
+    deleteMany?: AppointmentImageScalarWhereInput | AppointmentImageScalarWhereInput[]
   }
 
   export type AppointmentCreateNestedOneWithoutRemindersInput = {
@@ -23518,6 +24750,20 @@ export namespace Prisma {
 
   export type EnumPaymentMethodFieldUpdateOperationsInput = {
     set?: $Enums.PaymentMethod
+  }
+
+  export type AppointmentCreateNestedOneWithoutImagesInput = {
+    create?: XOR<AppointmentCreateWithoutImagesInput, AppointmentUncheckedCreateWithoutImagesInput>
+    connectOrCreate?: AppointmentCreateOrConnectWithoutImagesInput
+    connect?: AppointmentWhereUniqueInput
+  }
+
+  export type AppointmentUpdateOneRequiredWithoutImagesNestedInput = {
+    create?: XOR<AppointmentCreateWithoutImagesInput, AppointmentUncheckedCreateWithoutImagesInput>
+    connectOrCreate?: AppointmentCreateOrConnectWithoutImagesInput
+    upsert?: AppointmentUpsertWithoutImagesInput
+    connect?: AppointmentWhereUniqueInput
+    update?: XOR<XOR<AppointmentUpdateToOneWithWhereWithoutImagesInput, AppointmentUpdateWithoutImagesInput>, AppointmentUncheckedUpdateWithoutImagesInput>
   }
 
   export type NestedIntFilter<$PrismaModel = never> = {
@@ -23944,7 +25190,6 @@ export namespace Prisma {
   }
 
   export type AppointmentCreateWithoutDoctorInput = {
-    image?: string | null
     note?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -23952,18 +25197,19 @@ export namespace Prisma {
     procedure: ProcedureCreateNestedOneWithoutAppoimentInput
     reminders?: NotificationCreateNestedManyWithoutAppointmentInput
     comments?: CommentCreateNestedManyWithoutAppointmentInput
+    images?: AppointmentImageCreateNestedManyWithoutAppointmentInput
   }
 
   export type AppointmentUncheckedCreateWithoutDoctorInput = {
     id?: number
     clientId: number
     procedureId: number
-    image?: string | null
     note?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     reminders?: NotificationUncheckedCreateNestedManyWithoutAppointmentInput
     comments?: CommentUncheckedCreateNestedManyWithoutAppointmentInput
+    images?: AppointmentImageUncheckedCreateNestedManyWithoutAppointmentInput
   }
 
   export type AppointmentCreateOrConnectWithoutDoctorInput = {
@@ -24059,7 +25305,6 @@ export namespace Prisma {
     clientId?: IntFilter<"Appointment"> | number
     procedureId?: IntFilter<"Appointment"> | number
     doctorId?: IntFilter<"Appointment"> | number
-    image?: StringNullableFilter<"Appointment"> | string | null
     note?: StringNullableFilter<"Appointment"> | string | null
     createdAt?: DateTimeFilter<"Appointment"> | Date | string
     updatedAt?: DateTimeFilter<"Appointment"> | Date | string
@@ -24144,7 +25389,6 @@ export namespace Prisma {
   }
 
   export type AppointmentCreateWithoutProcedureInput = {
-    image?: string | null
     note?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -24152,18 +25396,19 @@ export namespace Prisma {
     doctor?: UserCreateNestedOneWithoutAppoinmentsInput
     reminders?: NotificationCreateNestedManyWithoutAppointmentInput
     comments?: CommentCreateNestedManyWithoutAppointmentInput
+    images?: AppointmentImageCreateNestedManyWithoutAppointmentInput
   }
 
   export type AppointmentUncheckedCreateWithoutProcedureInput = {
     id?: number
     clientId: number
     doctorId?: number
-    image?: string | null
     note?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     reminders?: NotificationUncheckedCreateNestedManyWithoutAppointmentInput
     comments?: CommentUncheckedCreateNestedManyWithoutAppointmentInput
+    images?: AppointmentImageUncheckedCreateNestedManyWithoutAppointmentInput
   }
 
   export type AppointmentCreateOrConnectWithoutProcedureInput = {
@@ -24910,7 +26155,6 @@ export namespace Prisma {
   }
 
   export type AppointmentCreateWithoutClientInput = {
-    image?: string | null
     note?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -24918,18 +26162,19 @@ export namespace Prisma {
     doctor?: UserCreateNestedOneWithoutAppoinmentsInput
     reminders?: NotificationCreateNestedManyWithoutAppointmentInput
     comments?: CommentCreateNestedManyWithoutAppointmentInput
+    images?: AppointmentImageCreateNestedManyWithoutAppointmentInput
   }
 
   export type AppointmentUncheckedCreateWithoutClientInput = {
     id?: number
     procedureId: number
     doctorId?: number
-    image?: string | null
     note?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     reminders?: NotificationUncheckedCreateNestedManyWithoutAppointmentInput
     comments?: CommentUncheckedCreateNestedManyWithoutAppointmentInput
+    images?: AppointmentImageUncheckedCreateNestedManyWithoutAppointmentInput
   }
 
   export type AppointmentCreateOrConnectWithoutClientInput = {
@@ -25471,6 +26716,25 @@ export namespace Prisma {
     skipDuplicates?: boolean
   }
 
+  export type AppointmentImageCreateWithoutAppointmentInput = {
+    url: string
+  }
+
+  export type AppointmentImageUncheckedCreateWithoutAppointmentInput = {
+    id?: number
+    url: string
+  }
+
+  export type AppointmentImageCreateOrConnectWithoutAppointmentInput = {
+    where: AppointmentImageWhereUniqueInput
+    create: XOR<AppointmentImageCreateWithoutAppointmentInput, AppointmentImageUncheckedCreateWithoutAppointmentInput>
+  }
+
+  export type AppointmentImageCreateManyAppointmentInputEnvelope = {
+    data: AppointmentImageCreateManyAppointmentInput | AppointmentImageCreateManyAppointmentInput[]
+    skipDuplicates?: boolean
+  }
+
   export type ClientUpsertWithoutAppoinmentsInput = {
     update: XOR<ClientUpdateWithoutAppoinmentsInput, ClientUncheckedUpdateWithoutAppoinmentsInput>
     create: XOR<ClientCreateWithoutAppoinmentsInput, ClientUncheckedCreateWithoutAppoinmentsInput>
@@ -25648,8 +26912,32 @@ export namespace Prisma {
     data: XOR<CommentUpdateManyMutationInput, CommentUncheckedUpdateManyWithoutAppointmentInput>
   }
 
+  export type AppointmentImageUpsertWithWhereUniqueWithoutAppointmentInput = {
+    where: AppointmentImageWhereUniqueInput
+    update: XOR<AppointmentImageUpdateWithoutAppointmentInput, AppointmentImageUncheckedUpdateWithoutAppointmentInput>
+    create: XOR<AppointmentImageCreateWithoutAppointmentInput, AppointmentImageUncheckedCreateWithoutAppointmentInput>
+  }
+
+  export type AppointmentImageUpdateWithWhereUniqueWithoutAppointmentInput = {
+    where: AppointmentImageWhereUniqueInput
+    data: XOR<AppointmentImageUpdateWithoutAppointmentInput, AppointmentImageUncheckedUpdateWithoutAppointmentInput>
+  }
+
+  export type AppointmentImageUpdateManyWithWhereWithoutAppointmentInput = {
+    where: AppointmentImageScalarWhereInput
+    data: XOR<AppointmentImageUpdateManyMutationInput, AppointmentImageUncheckedUpdateManyWithoutAppointmentInput>
+  }
+
+  export type AppointmentImageScalarWhereInput = {
+    AND?: AppointmentImageScalarWhereInput | AppointmentImageScalarWhereInput[]
+    OR?: AppointmentImageScalarWhereInput[]
+    NOT?: AppointmentImageScalarWhereInput | AppointmentImageScalarWhereInput[]
+    id?: IntFilter<"AppointmentImage"> | number
+    url?: StringFilter<"AppointmentImage"> | string
+    appointmentId?: IntFilter<"AppointmentImage"> | number
+  }
+
   export type AppointmentCreateWithoutRemindersInput = {
-    image?: string | null
     note?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -25657,6 +26945,7 @@ export namespace Prisma {
     procedure: ProcedureCreateNestedOneWithoutAppoimentInput
     doctor?: UserCreateNestedOneWithoutAppoinmentsInput
     comments?: CommentCreateNestedManyWithoutAppointmentInput
+    images?: AppointmentImageCreateNestedManyWithoutAppointmentInput
   }
 
   export type AppointmentUncheckedCreateWithoutRemindersInput = {
@@ -25664,11 +26953,11 @@ export namespace Prisma {
     clientId: number
     procedureId: number
     doctorId?: number
-    image?: string | null
     note?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     comments?: CommentUncheckedCreateNestedManyWithoutAppointmentInput
+    images?: AppointmentImageUncheckedCreateNestedManyWithoutAppointmentInput
   }
 
   export type AppointmentCreateOrConnectWithoutRemindersInput = {
@@ -25688,7 +26977,6 @@ export namespace Prisma {
   }
 
   export type AppointmentUpdateWithoutRemindersInput = {
-    image?: NullableStringFieldUpdateOperationsInput | string | null
     note?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -25696,6 +26984,7 @@ export namespace Prisma {
     procedure?: ProcedureUpdateOneRequiredWithoutAppoimentNestedInput
     doctor?: UserUpdateOneRequiredWithoutAppoinmentsNestedInput
     comments?: CommentUpdateManyWithoutAppointmentNestedInput
+    images?: AppointmentImageUpdateManyWithoutAppointmentNestedInput
   }
 
   export type AppointmentUncheckedUpdateWithoutRemindersInput = {
@@ -25703,15 +26992,14 @@ export namespace Prisma {
     clientId?: IntFieldUpdateOperationsInput | number
     procedureId?: IntFieldUpdateOperationsInput | number
     doctorId?: IntFieldUpdateOperationsInput | number
-    image?: NullableStringFieldUpdateOperationsInput | string | null
     note?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     comments?: CommentUncheckedUpdateManyWithoutAppointmentNestedInput
+    images?: AppointmentImageUncheckedUpdateManyWithoutAppointmentNestedInput
   }
 
   export type AppointmentCreateWithoutCommentsInput = {
-    image?: string | null
     note?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -25719,6 +27007,7 @@ export namespace Prisma {
     procedure: ProcedureCreateNestedOneWithoutAppoimentInput
     doctor?: UserCreateNestedOneWithoutAppoinmentsInput
     reminders?: NotificationCreateNestedManyWithoutAppointmentInput
+    images?: AppointmentImageCreateNestedManyWithoutAppointmentInput
   }
 
   export type AppointmentUncheckedCreateWithoutCommentsInput = {
@@ -25726,11 +27015,11 @@ export namespace Prisma {
     clientId: number
     procedureId: number
     doctorId?: number
-    image?: string | null
     note?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     reminders?: NotificationUncheckedCreateNestedManyWithoutAppointmentInput
+    images?: AppointmentImageUncheckedCreateNestedManyWithoutAppointmentInput
   }
 
   export type AppointmentCreateOrConnectWithoutCommentsInput = {
@@ -25830,7 +27119,6 @@ export namespace Prisma {
   }
 
   export type AppointmentUpdateWithoutCommentsInput = {
-    image?: NullableStringFieldUpdateOperationsInput | string | null
     note?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -25838,6 +27126,7 @@ export namespace Prisma {
     procedure?: ProcedureUpdateOneRequiredWithoutAppoimentNestedInput
     doctor?: UserUpdateOneRequiredWithoutAppoinmentsNestedInput
     reminders?: NotificationUpdateManyWithoutAppointmentNestedInput
+    images?: AppointmentImageUpdateManyWithoutAppointmentNestedInput
   }
 
   export type AppointmentUncheckedUpdateWithoutCommentsInput = {
@@ -25845,11 +27134,11 @@ export namespace Prisma {
     clientId?: IntFieldUpdateOperationsInput | number
     procedureId?: IntFieldUpdateOperationsInput | number
     doctorId?: IntFieldUpdateOperationsInput | number
-    image?: NullableStringFieldUpdateOperationsInput | string | null
     note?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     reminders?: NotificationUncheckedUpdateManyWithoutAppointmentNestedInput
+    images?: AppointmentImageUncheckedUpdateManyWithoutAppointmentNestedInput
   }
 
   export type ClientUpsertWithoutCommentsInput = {
@@ -25944,6 +27233,68 @@ export namespace Prisma {
     appoinments?: AppointmentUncheckedUpdateManyWithoutDoctorNestedInput
   }
 
+  export type AppointmentCreateWithoutImagesInput = {
+    note?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    client: ClientCreateNestedOneWithoutAppoinmentsInput
+    procedure: ProcedureCreateNestedOneWithoutAppoimentInput
+    doctor?: UserCreateNestedOneWithoutAppoinmentsInput
+    reminders?: NotificationCreateNestedManyWithoutAppointmentInput
+    comments?: CommentCreateNestedManyWithoutAppointmentInput
+  }
+
+  export type AppointmentUncheckedCreateWithoutImagesInput = {
+    id?: number
+    clientId: number
+    procedureId: number
+    doctorId?: number
+    note?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    reminders?: NotificationUncheckedCreateNestedManyWithoutAppointmentInput
+    comments?: CommentUncheckedCreateNestedManyWithoutAppointmentInput
+  }
+
+  export type AppointmentCreateOrConnectWithoutImagesInput = {
+    where: AppointmentWhereUniqueInput
+    create: XOR<AppointmentCreateWithoutImagesInput, AppointmentUncheckedCreateWithoutImagesInput>
+  }
+
+  export type AppointmentUpsertWithoutImagesInput = {
+    update: XOR<AppointmentUpdateWithoutImagesInput, AppointmentUncheckedUpdateWithoutImagesInput>
+    create: XOR<AppointmentCreateWithoutImagesInput, AppointmentUncheckedCreateWithoutImagesInput>
+    where?: AppointmentWhereInput
+  }
+
+  export type AppointmentUpdateToOneWithWhereWithoutImagesInput = {
+    where?: AppointmentWhereInput
+    data: XOR<AppointmentUpdateWithoutImagesInput, AppointmentUncheckedUpdateWithoutImagesInput>
+  }
+
+  export type AppointmentUpdateWithoutImagesInput = {
+    note?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    client?: ClientUpdateOneRequiredWithoutAppoinmentsNestedInput
+    procedure?: ProcedureUpdateOneRequiredWithoutAppoimentNestedInput
+    doctor?: UserUpdateOneRequiredWithoutAppoinmentsNestedInput
+    reminders?: NotificationUpdateManyWithoutAppointmentNestedInput
+    comments?: CommentUpdateManyWithoutAppointmentNestedInput
+  }
+
+  export type AppointmentUncheckedUpdateWithoutImagesInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    clientId?: IntFieldUpdateOperationsInput | number
+    procedureId?: IntFieldUpdateOperationsInput | number
+    doctorId?: IntFieldUpdateOperationsInput | number
+    note?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    reminders?: NotificationUncheckedUpdateManyWithoutAppointmentNestedInput
+    comments?: CommentUncheckedUpdateManyWithoutAppointmentNestedInput
+  }
+
   export type CommentCreateManyAuthorInput = {
     id?: number
     text: string
@@ -25967,7 +27318,6 @@ export namespace Prisma {
     id?: number
     clientId: number
     procedureId: number
-    image?: string | null
     note?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -26029,7 +27379,6 @@ export namespace Prisma {
   }
 
   export type AppointmentUpdateWithoutDoctorInput = {
-    image?: NullableStringFieldUpdateOperationsInput | string | null
     note?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -26037,25 +27386,25 @@ export namespace Prisma {
     procedure?: ProcedureUpdateOneRequiredWithoutAppoimentNestedInput
     reminders?: NotificationUpdateManyWithoutAppointmentNestedInput
     comments?: CommentUpdateManyWithoutAppointmentNestedInput
+    images?: AppointmentImageUpdateManyWithoutAppointmentNestedInput
   }
 
   export type AppointmentUncheckedUpdateWithoutDoctorInput = {
     id?: IntFieldUpdateOperationsInput | number
     clientId?: IntFieldUpdateOperationsInput | number
     procedureId?: IntFieldUpdateOperationsInput | number
-    image?: NullableStringFieldUpdateOperationsInput | string | null
     note?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     reminders?: NotificationUncheckedUpdateManyWithoutAppointmentNestedInput
     comments?: CommentUncheckedUpdateManyWithoutAppointmentNestedInput
+    images?: AppointmentImageUncheckedUpdateManyWithoutAppointmentNestedInput
   }
 
   export type AppointmentUncheckedUpdateManyWithoutDoctorInput = {
     id?: IntFieldUpdateOperationsInput | number
     clientId?: IntFieldUpdateOperationsInput | number
     procedureId?: IntFieldUpdateOperationsInput | number
-    image?: NullableStringFieldUpdateOperationsInput | string | null
     note?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -26065,7 +27414,6 @@ export namespace Prisma {
     id?: number
     clientId: number
     doctorId?: number
-    image?: string | null
     note?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -26103,7 +27451,6 @@ export namespace Prisma {
   }
 
   export type AppointmentUpdateWithoutProcedureInput = {
-    image?: NullableStringFieldUpdateOperationsInput | string | null
     note?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -26111,25 +27458,25 @@ export namespace Prisma {
     doctor?: UserUpdateOneRequiredWithoutAppoinmentsNestedInput
     reminders?: NotificationUpdateManyWithoutAppointmentNestedInput
     comments?: CommentUpdateManyWithoutAppointmentNestedInput
+    images?: AppointmentImageUpdateManyWithoutAppointmentNestedInput
   }
 
   export type AppointmentUncheckedUpdateWithoutProcedureInput = {
     id?: IntFieldUpdateOperationsInput | number
     clientId?: IntFieldUpdateOperationsInput | number
     doctorId?: IntFieldUpdateOperationsInput | number
-    image?: NullableStringFieldUpdateOperationsInput | string | null
     note?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     reminders?: NotificationUncheckedUpdateManyWithoutAppointmentNestedInput
     comments?: CommentUncheckedUpdateManyWithoutAppointmentNestedInput
+    images?: AppointmentImageUncheckedUpdateManyWithoutAppointmentNestedInput
   }
 
   export type AppointmentUncheckedUpdateManyWithoutProcedureInput = {
     id?: IntFieldUpdateOperationsInput | number
     clientId?: IntFieldUpdateOperationsInput | number
     doctorId?: IntFieldUpdateOperationsInput | number
-    image?: NullableStringFieldUpdateOperationsInput | string | null
     note?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -26232,7 +27579,6 @@ export namespace Prisma {
     id?: number
     procedureId: number
     doctorId?: number
-    image?: string | null
     note?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -26267,7 +27613,6 @@ export namespace Prisma {
   }
 
   export type AppointmentUpdateWithoutClientInput = {
-    image?: NullableStringFieldUpdateOperationsInput | string | null
     note?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -26275,25 +27620,25 @@ export namespace Prisma {
     doctor?: UserUpdateOneRequiredWithoutAppoinmentsNestedInput
     reminders?: NotificationUpdateManyWithoutAppointmentNestedInput
     comments?: CommentUpdateManyWithoutAppointmentNestedInput
+    images?: AppointmentImageUpdateManyWithoutAppointmentNestedInput
   }
 
   export type AppointmentUncheckedUpdateWithoutClientInput = {
     id?: IntFieldUpdateOperationsInput | number
     procedureId?: IntFieldUpdateOperationsInput | number
     doctorId?: IntFieldUpdateOperationsInput | number
-    image?: NullableStringFieldUpdateOperationsInput | string | null
     note?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     reminders?: NotificationUncheckedUpdateManyWithoutAppointmentNestedInput
     comments?: CommentUncheckedUpdateManyWithoutAppointmentNestedInput
+    images?: AppointmentImageUncheckedUpdateManyWithoutAppointmentNestedInput
   }
 
   export type AppointmentUncheckedUpdateManyWithoutClientInput = {
     id?: IntFieldUpdateOperationsInput | number
     procedureId?: IntFieldUpdateOperationsInput | number
     doctorId?: IntFieldUpdateOperationsInput | number
-    image?: NullableStringFieldUpdateOperationsInput | string | null
     note?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -26397,6 +27742,11 @@ export namespace Prisma {
     userId?: number | null
   }
 
+  export type AppointmentImageCreateManyAppointmentInput = {
+    id?: number
+    url: string
+  }
+
   export type NotificationUpdateWithoutAppointmentInput = {
     channel?: EnumNotificationChannelFieldUpdateOperationsInput | $Enums.NotificationChannel
     sentAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -26444,6 +27794,20 @@ export namespace Prisma {
     clientId?: NullableIntFieldUpdateOperationsInput | number | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     userId?: NullableIntFieldUpdateOperationsInput | number | null
+  }
+
+  export type AppointmentImageUpdateWithoutAppointmentInput = {
+    url?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type AppointmentImageUncheckedUpdateWithoutAppointmentInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    url?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type AppointmentImageUncheckedUpdateManyWithoutAppointmentInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    url?: StringFieldUpdateOperationsInput | string
   }
 
 

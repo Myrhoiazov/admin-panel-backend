@@ -19,12 +19,23 @@ export const getAllAppoimentsontroller = async (req: Request, res: Response) => 
 export const createAppoimentController = async (req: Request<{}, {}, CreateAppointmentDto>, res: Response) => {
 
     const appoimentData = req.body;
+    let uploadedImages: string[] = [];
     let filePath = null
 
-    if (req.file) {
-        filePath = await imageUpload(req.file, 'appoiments')
-        appoimentData.image = filePath
+    // if (req.file) {
+    //     filePath = await imageUpload(req.file, 'appoiments')
+    //     appoimentData.image = filePath
+    // }
+    if (req.files && Array.isArray(req.files)) {
+        uploadedImages = await Promise.all(
+            (req.files as Express.Multer.File[]).map((file) =>
+                imageUpload(file, "appoiments")
+            )
+        );
     }
+
+    // сохраняем массив картинок
+    appoimentData.images = uploadedImages;
 
     try {
         const appointment = await createAppointment(appoimentData)
