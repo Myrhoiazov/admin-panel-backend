@@ -2,7 +2,7 @@ import express from "express";
 import multer from 'multer';
 import path from 'path';
 import { asyncHandler, isToken } from "../middlewares/middleware.Auth";
-import { createAppoimentController, deleteAppoimentByIdController, getAllAppoimentsontroller, getAppoimentsByClientController } from "../controllers/controller.Appoiments";
+import { createAppoimentController, deleteAppoimentByIdController, getAllAppoimentsontroller, getAppoimentByIdController, getAppoimentsByClientController } from "../controllers/controller.Appoiments";
 
 const publicPath = path.resolve(__dirname, '../../', 'public/upload');
 
@@ -19,6 +19,7 @@ const router = express.Router();
 const upload = multer({ storage: storage });
 
 router.get("/", asyncHandler(isToken), asyncHandler(getAllAppoimentsontroller));
+router.get("/:id", asyncHandler(isToken), asyncHandler(getAppoimentByIdController));
 router.get("/client/:clientId", asyncHandler(isToken), asyncHandler(getAppoimentsByClientController));
 router.delete("/:id", asyncHandler(isToken), asyncHandler(deleteAppoimentByIdController));
 router.post("/", asyncHandler(isToken), upload.array('images', 8), asyncHandler(createAppoimentController));

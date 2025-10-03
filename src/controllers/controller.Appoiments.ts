@@ -2,7 +2,7 @@ import { Request, Response } from 'express';
 import { createClient, deleteClient, getAllClients, getClientById } from '../services/service.Clients';
 import { Appointment } from '../../generated/prisma';
 import { imageUpload } from '../services/service.Files';
-import { createAppointment, CreateAppointmentDto, deleteAppoimentById, getAllAppoiments, getAppointmentsByClientId } from '../services/service.Appoiments';
+import { createAppointment, CreateAppointmentDto, deleteAppoimentById, getAllAppoiments, getAppointmentById, getAppointmentsByClientId } from '../services/service.Appoiments';
 
 
 export const getAllAppoimentsontroller = async (req: Request, res: Response) => {
@@ -64,22 +64,22 @@ export const getAppoimentsByClientController = async (req: Request, res: Respons
 };
 
 export const getAppoimentByIdController = async (req: Request, res: Response) => {
-    const appoimentId = Number(req.params.id);
+    const id = Number(req.params.id);
 
-    // if (!appoimentId) {
-    //     return res.status(400).json({ message: 'Appoiment ID is required' });
-    // }
+    if (!id) {
+        return res.status(400).json({ message: 'Appoiment ID is required' });
+    }
 
-    // try {
-    //     const appoiment = await getAppoimentById(appoimentId);
-    //     if (!appoiment) {
-    //         return res.status(404).json({ message: 'Appoiment not found' });
-    //     }
-    //     return res.status(200).json(appoiment);
-    // } catch (error) {
-    //     console.error('Error deleting Appoiment:', error);
-    //     return res.status(500).json({ message: 'Internal server error' });
-    // }
+    try {
+        const appoiment = await getAppointmentById(id);
+        if (!appoiment) {
+            return res.status(404).json({ message: 'Appoiment not found' });
+        }
+        return res.status(200).json(appoiment);
+    } catch (error) {
+        console.error('Error deleting Appoiment:', error);
+        return res.status(500).json({ message: 'Internal server error' });
+    }
 
 }
 

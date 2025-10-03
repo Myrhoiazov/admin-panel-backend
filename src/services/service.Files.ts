@@ -3,6 +3,8 @@ import { v4 as uuidv4 } from 'uuid';
 import * as path from 'path';
 import { Jimp } from 'jimp';
 
+const url = process.env.MODE === 'development' ? 'http://localhost:8080' : process.env.CLIENT_URL;
+
 
 export const imageUpload = async (file: Express.Multer.File, folderNaam: string) => {
 
@@ -24,7 +26,7 @@ export const imageUpload = async (file: Express.Multer.File, folderNaam: string)
         img.resize({ w: 450 });
         // await img.write(newPath as `${string}.${string}`);
 
-        const clientFileURL = `${process.env.CLIENT_URL}/upload/${folderNaam}/${newClientName}`;
+        const clientFileURL = `${url}/upload/${folderNaam}/${newClientName}`;
         return clientFileURL;
 
     } catch (error) {
