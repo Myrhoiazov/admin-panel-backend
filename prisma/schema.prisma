@@ -181,7 +181,7 @@ model Appointment {
   clientId    Int               @map("client_Id")
   procedureId Int               @map("procedure_Id")
   doctorId    Int               @default(2) @map("doctor_Id")
-  note        String?
+  note        String?           @db.Text
   createdAt   DateTime          @default(now())
   updatedAt   DateTime          @updatedAt
 
