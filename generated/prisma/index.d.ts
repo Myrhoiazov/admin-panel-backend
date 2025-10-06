@@ -5989,7 +5989,7 @@ export namespace Prisma {
   export type PreparetionsGroupByOutputType = {
     id: string
     procedureId: number
-    text: string
+    text: string | null
     _count: PreparetionsCountAggregateOutputType | null
     _avg: PreparetionsAvgAggregateOutputType | null
     _sum: PreparetionsSumAggregateOutputType | null
@@ -6039,7 +6039,7 @@ export namespace Prisma {
     scalars: $Extensions.GetPayloadResult<{
       id: string
       procedureId: number
-      text: string
+      text: string | null
     }, ExtArgs["result"]["preparetions"]>
     composites: {}
   }
@@ -6930,7 +6930,7 @@ export namespace Prisma {
   export type InjectionZoneGroupByOutputType = {
     id: string
     procedureId: number
-    text: string
+    text: string | null
     _count: InjectionZoneCountAggregateOutputType | null
     _avg: InjectionZoneAvgAggregateOutputType | null
     _sum: InjectionZoneSumAggregateOutputType | null
@@ -6980,7 +6980,7 @@ export namespace Prisma {
     scalars: $Extensions.GetPayloadResult<{
       id: string
       procedureId: number
-      text: string
+      text: string | null
     }, ExtArgs["result"]["injectionZone"]>
     composites: {}
   }
@@ -7871,7 +7871,7 @@ export namespace Prisma {
   export type ContraindicationGroupByOutputType = {
     id: string
     procedureId: number
-    text: string
+    text: string | null
     _count: ContraindicationCountAggregateOutputType | null
     _avg: ContraindicationAvgAggregateOutputType | null
     _sum: ContraindicationSumAggregateOutputType | null
@@ -7921,7 +7921,7 @@ export namespace Prisma {
     scalars: $Extensions.GetPayloadResult<{
       id: string
       procedureId: number
-      text: string
+      text: string | null
     }, ExtArgs["result"]["contraindication"]>
     composites: {}
   }
@@ -8812,7 +8812,7 @@ export namespace Prisma {
   export type RehabilitationGroupByOutputType = {
     id: string
     procedureId: number
-    text: string
+    text: string | null
     _count: RehabilitationCountAggregateOutputType | null
     _avg: RehabilitationAvgAggregateOutputType | null
     _sum: RehabilitationSumAggregateOutputType | null
@@ -8862,7 +8862,7 @@ export namespace Prisma {
     scalars: $Extensions.GetPayloadResult<{
       id: string
       procedureId: number
-      text: string
+      text: string | null
     }, ExtArgs["result"]["rehabilitation"]>
     composites: {}
   }
@@ -9753,7 +9753,7 @@ export namespace Prisma {
   export type ResultGroupByOutputType = {
     id: string
     procedureId: number
-    text: string
+    text: string | null
     _count: ResultCountAggregateOutputType | null
     _avg: ResultAvgAggregateOutputType | null
     _sum: ResultSumAggregateOutputType | null
@@ -9803,7 +9803,7 @@ export namespace Prisma {
     scalars: $Extensions.GetPayloadResult<{
       id: string
       procedureId: number
-      text: string
+      text: string | null
     }, ExtArgs["result"]["result"]>
     composites: {}
   }
@@ -10704,7 +10704,7 @@ export namespace Prisma {
   export type ProcedurePriceGroupByOutputType = {
     id: string
     procedureId: number
-    zone: string
+    zone: string | null
     price: Decimal
     _count: ProcedurePriceCountAggregateOutputType | null
     _avg: ProcedurePriceAvgAggregateOutputType | null
@@ -10757,7 +10757,7 @@ export namespace Prisma {
     scalars: $Extensions.GetPayloadResult<{
       id: string
       procedureId: number
-      zone: string
+      zone: string | null
       price: Prisma.Decimal
     }, ExtArgs["result"]["procedurePrice"]>
     composites: {}
@@ -16935,7 +16935,7 @@ export namespace Prisma {
 
   export type CommentGroupByOutputType = {
     id: number
-    text: string
+    text: string | null
     clientId: number | null
     appointmentId: number | null
     createdAt: Date
@@ -17000,7 +17000,7 @@ export namespace Prisma {
     }
     scalars: $Extensions.GetPayloadResult<{
       id: number
-      text: string
+      text: string | null
       clientId: number | null
       appointmentId: number | null
       createdAt: Date
@@ -17601,7 +17601,7 @@ export namespace Prisma {
     /**
      * The data needed to create a Comment.
      */
-    data: XOR<CommentCreateInput, CommentUncheckedCreateInput>
+    data?: XOR<CommentCreateInput, CommentUncheckedCreateInput>
   }
 
   /**
@@ -20450,14 +20450,14 @@ export namespace Prisma {
     NOT?: PreparetionsWhereInput | PreparetionsWhereInput[]
     id?: StringFilter<"Preparetions"> | string
     procedureId?: IntFilter<"Preparetions"> | number
-    text?: StringFilter<"Preparetions"> | string
+    text?: StringNullableFilter<"Preparetions"> | string | null
     procedure?: XOR<ProcedureScalarRelationFilter, ProcedureWhereInput>
   }
 
   export type PreparetionsOrderByWithRelationInput = {
     id?: SortOrder
     procedureId?: SortOrder
-    text?: SortOrder
+    text?: SortOrderInput | SortOrder
     procedure?: ProcedureOrderByWithRelationInput
     _relevance?: PreparetionsOrderByRelevanceInput
   }
@@ -20468,14 +20468,14 @@ export namespace Prisma {
     OR?: PreparetionsWhereInput[]
     NOT?: PreparetionsWhereInput | PreparetionsWhereInput[]
     procedureId?: IntFilter<"Preparetions"> | number
-    text?: StringFilter<"Preparetions"> | string
+    text?: StringNullableFilter<"Preparetions"> | string | null
     procedure?: XOR<ProcedureScalarRelationFilter, ProcedureWhereInput>
   }, "id">
 
   export type PreparetionsOrderByWithAggregationInput = {
     id?: SortOrder
     procedureId?: SortOrder
-    text?: SortOrder
+    text?: SortOrderInput | SortOrder
     _count?: PreparetionsCountOrderByAggregateInput
     _avg?: PreparetionsAvgOrderByAggregateInput
     _max?: PreparetionsMaxOrderByAggregateInput
@@ -20489,7 +20489,7 @@ export namespace Prisma {
     NOT?: PreparetionsScalarWhereWithAggregatesInput | PreparetionsScalarWhereWithAggregatesInput[]
     id?: StringWithAggregatesFilter<"Preparetions"> | string
     procedureId?: IntWithAggregatesFilter<"Preparetions"> | number
-    text?: StringWithAggregatesFilter<"Preparetions"> | string
+    text?: StringNullableWithAggregatesFilter<"Preparetions"> | string | null
   }
 
   export type InjectionZoneWhereInput = {
@@ -20498,14 +20498,14 @@ export namespace Prisma {
     NOT?: InjectionZoneWhereInput | InjectionZoneWhereInput[]
     id?: StringFilter<"InjectionZone"> | string
     procedureId?: IntFilter<"InjectionZone"> | number
-    text?: StringFilter<"InjectionZone"> | string
+    text?: StringNullableFilter<"InjectionZone"> | string | null
     procedure?: XOR<ProcedureScalarRelationFilter, ProcedureWhereInput>
   }
 
   export type InjectionZoneOrderByWithRelationInput = {
     id?: SortOrder
     procedureId?: SortOrder
-    text?: SortOrder
+    text?: SortOrderInput | SortOrder
     procedure?: ProcedureOrderByWithRelationInput
     _relevance?: InjectionZoneOrderByRelevanceInput
   }
@@ -20516,14 +20516,14 @@ export namespace Prisma {
     OR?: InjectionZoneWhereInput[]
     NOT?: InjectionZoneWhereInput | InjectionZoneWhereInput[]
     procedureId?: IntFilter<"InjectionZone"> | number
-    text?: StringFilter<"InjectionZone"> | string
+    text?: StringNullableFilter<"InjectionZone"> | string | null
     procedure?: XOR<ProcedureScalarRelationFilter, ProcedureWhereInput>
   }, "id">
 
   export type InjectionZoneOrderByWithAggregationInput = {
     id?: SortOrder
     procedureId?: SortOrder
-    text?: SortOrder
+    text?: SortOrderInput | SortOrder
     _count?: InjectionZoneCountOrderByAggregateInput
     _avg?: InjectionZoneAvgOrderByAggregateInput
     _max?: InjectionZoneMaxOrderByAggregateInput
@@ -20537,7 +20537,7 @@ export namespace Prisma {
     NOT?: InjectionZoneScalarWhereWithAggregatesInput | InjectionZoneScalarWhereWithAggregatesInput[]
     id?: StringWithAggregatesFilter<"InjectionZone"> | string
     procedureId?: IntWithAggregatesFilter<"InjectionZone"> | number
-    text?: StringWithAggregatesFilter<"InjectionZone"> | string
+    text?: StringNullableWithAggregatesFilter<"InjectionZone"> | string | null
   }
 
   export type ContraindicationWhereInput = {
@@ -20546,14 +20546,14 @@ export namespace Prisma {
     NOT?: ContraindicationWhereInput | ContraindicationWhereInput[]
     id?: StringFilter<"Contraindication"> | string
     procedureId?: IntFilter<"Contraindication"> | number
-    text?: StringFilter<"Contraindication"> | string
+    text?: StringNullableFilter<"Contraindication"> | string | null
     procedure?: XOR<ProcedureScalarRelationFilter, ProcedureWhereInput>
   }
 
   export type ContraindicationOrderByWithRelationInput = {
     id?: SortOrder
     procedureId?: SortOrder
-    text?: SortOrder
+    text?: SortOrderInput | SortOrder
     procedure?: ProcedureOrderByWithRelationInput
     _relevance?: ContraindicationOrderByRelevanceInput
   }
@@ -20564,14 +20564,14 @@ export namespace Prisma {
     OR?: ContraindicationWhereInput[]
     NOT?: ContraindicationWhereInput | ContraindicationWhereInput[]
     procedureId?: IntFilter<"Contraindication"> | number
-    text?: StringFilter<"Contraindication"> | string
+    text?: StringNullableFilter<"Contraindication"> | string | null
     procedure?: XOR<ProcedureScalarRelationFilter, ProcedureWhereInput>
   }, "id">
 
   export type ContraindicationOrderByWithAggregationInput = {
     id?: SortOrder
     procedureId?: SortOrder
-    text?: SortOrder
+    text?: SortOrderInput | SortOrder
     _count?: ContraindicationCountOrderByAggregateInput
     _avg?: ContraindicationAvgOrderByAggregateInput
     _max?: ContraindicationMaxOrderByAggregateInput
@@ -20585,7 +20585,7 @@ export namespace Prisma {
     NOT?: ContraindicationScalarWhereWithAggregatesInput | ContraindicationScalarWhereWithAggregatesInput[]
     id?: StringWithAggregatesFilter<"Contraindication"> | string
     procedureId?: IntWithAggregatesFilter<"Contraindication"> | number
-    text?: StringWithAggregatesFilter<"Contraindication"> | string
+    text?: StringNullableWithAggregatesFilter<"Contraindication"> | string | null
   }
 
   export type RehabilitationWhereInput = {
@@ -20594,14 +20594,14 @@ export namespace Prisma {
     NOT?: RehabilitationWhereInput | RehabilitationWhereInput[]
     id?: StringFilter<"Rehabilitation"> | string
     procedureId?: IntFilter<"Rehabilitation"> | number
-    text?: StringFilter<"Rehabilitation"> | string
+    text?: StringNullableFilter<"Rehabilitation"> | string | null
     procedure?: XOR<ProcedureScalarRelationFilter, ProcedureWhereInput>
   }
 
   export type RehabilitationOrderByWithRelationInput = {
     id?: SortOrder
     procedureId?: SortOrder
-    text?: SortOrder
+    text?: SortOrderInput | SortOrder
     procedure?: ProcedureOrderByWithRelationInput
     _relevance?: RehabilitationOrderByRelevanceInput
   }
@@ -20612,14 +20612,14 @@ export namespace Prisma {
     OR?: RehabilitationWhereInput[]
     NOT?: RehabilitationWhereInput | RehabilitationWhereInput[]
     procedureId?: IntFilter<"Rehabilitation"> | number
-    text?: StringFilter<"Rehabilitation"> | string
+    text?: StringNullableFilter<"Rehabilitation"> | string | null
     procedure?: XOR<ProcedureScalarRelationFilter, ProcedureWhereInput>
   }, "id">
 
   export type RehabilitationOrderByWithAggregationInput = {
     id?: SortOrder
     procedureId?: SortOrder
-    text?: SortOrder
+    text?: SortOrderInput | SortOrder
     _count?: RehabilitationCountOrderByAggregateInput
     _avg?: RehabilitationAvgOrderByAggregateInput
     _max?: RehabilitationMaxOrderByAggregateInput
@@ -20633,7 +20633,7 @@ export namespace Prisma {
     NOT?: RehabilitationScalarWhereWithAggregatesInput | RehabilitationScalarWhereWithAggregatesInput[]
     id?: StringWithAggregatesFilter<"Rehabilitation"> | string
     procedureId?: IntWithAggregatesFilter<"Rehabilitation"> | number
-    text?: StringWithAggregatesFilter<"Rehabilitation"> | string
+    text?: StringNullableWithAggregatesFilter<"Rehabilitation"> | string | null
   }
 
   export type ResultWhereInput = {
@@ -20642,14 +20642,14 @@ export namespace Prisma {
     NOT?: ResultWhereInput | ResultWhereInput[]
     id?: StringFilter<"Result"> | string
     procedureId?: IntFilter<"Result"> | number
-    text?: StringFilter<"Result"> | string
+    text?: StringNullableFilter<"Result"> | string | null
     procedure?: XOR<ProcedureScalarRelationFilter, ProcedureWhereInput>
   }
 
   export type ResultOrderByWithRelationInput = {
     id?: SortOrder
     procedureId?: SortOrder
-    text?: SortOrder
+    text?: SortOrderInput | SortOrder
     procedure?: ProcedureOrderByWithRelationInput
     _relevance?: ResultOrderByRelevanceInput
   }
@@ -20660,14 +20660,14 @@ export namespace Prisma {
     OR?: ResultWhereInput[]
     NOT?: ResultWhereInput | ResultWhereInput[]
     procedureId?: IntFilter<"Result"> | number
-    text?: StringFilter<"Result"> | string
+    text?: StringNullableFilter<"Result"> | string | null
     procedure?: XOR<ProcedureScalarRelationFilter, ProcedureWhereInput>
   }, "id">
 
   export type ResultOrderByWithAggregationInput = {
     id?: SortOrder
     procedureId?: SortOrder
-    text?: SortOrder
+    text?: SortOrderInput | SortOrder
     _count?: ResultCountOrderByAggregateInput
     _avg?: ResultAvgOrderByAggregateInput
     _max?: ResultMaxOrderByAggregateInput
@@ -20681,7 +20681,7 @@ export namespace Prisma {
     NOT?: ResultScalarWhereWithAggregatesInput | ResultScalarWhereWithAggregatesInput[]
     id?: StringWithAggregatesFilter<"Result"> | string
     procedureId?: IntWithAggregatesFilter<"Result"> | number
-    text?: StringWithAggregatesFilter<"Result"> | string
+    text?: StringNullableWithAggregatesFilter<"Result"> | string | null
   }
 
   export type ProcedurePriceWhereInput = {
@@ -20690,7 +20690,7 @@ export namespace Prisma {
     NOT?: ProcedurePriceWhereInput | ProcedurePriceWhereInput[]
     id?: StringFilter<"ProcedurePrice"> | string
     procedureId?: IntFilter<"ProcedurePrice"> | number
-    zone?: StringFilter<"ProcedurePrice"> | string
+    zone?: StringNullableFilter<"ProcedurePrice"> | string | null
     price?: DecimalFilter<"ProcedurePrice"> | Decimal | DecimalJsLike | number | string
     procedure?: XOR<ProcedureScalarRelationFilter, ProcedureWhereInput>
   }
@@ -20698,7 +20698,7 @@ export namespace Prisma {
   export type ProcedurePriceOrderByWithRelationInput = {
     id?: SortOrder
     procedureId?: SortOrder
-    zone?: SortOrder
+    zone?: SortOrderInput | SortOrder
     price?: SortOrder
     procedure?: ProcedureOrderByWithRelationInput
     _relevance?: ProcedurePriceOrderByRelevanceInput
@@ -20710,7 +20710,7 @@ export namespace Prisma {
     OR?: ProcedurePriceWhereInput[]
     NOT?: ProcedurePriceWhereInput | ProcedurePriceWhereInput[]
     procedureId?: IntFilter<"ProcedurePrice"> | number
-    zone?: StringFilter<"ProcedurePrice"> | string
+    zone?: StringNullableFilter<"ProcedurePrice"> | string | null
     price?: DecimalFilter<"ProcedurePrice"> | Decimal | DecimalJsLike | number | string
     procedure?: XOR<ProcedureScalarRelationFilter, ProcedureWhereInput>
   }, "id">
@@ -20718,7 +20718,7 @@ export namespace Prisma {
   export type ProcedurePriceOrderByWithAggregationInput = {
     id?: SortOrder
     procedureId?: SortOrder
-    zone?: SortOrder
+    zone?: SortOrderInput | SortOrder
     price?: SortOrder
     _count?: ProcedurePriceCountOrderByAggregateInput
     _avg?: ProcedurePriceAvgOrderByAggregateInput
@@ -20733,7 +20733,7 @@ export namespace Prisma {
     NOT?: ProcedurePriceScalarWhereWithAggregatesInput | ProcedurePriceScalarWhereWithAggregatesInput[]
     id?: StringWithAggregatesFilter<"ProcedurePrice"> | string
     procedureId?: IntWithAggregatesFilter<"ProcedurePrice"> | number
-    zone?: StringWithAggregatesFilter<"ProcedurePrice"> | string
+    zone?: StringNullableWithAggregatesFilter<"ProcedurePrice"> | string | null
     price?: DecimalWithAggregatesFilter<"ProcedurePrice"> | Decimal | DecimalJsLike | number | string
   }
 
@@ -21151,7 +21151,7 @@ export namespace Prisma {
     OR?: CommentWhereInput[]
     NOT?: CommentWhereInput | CommentWhereInput[]
     id?: IntFilter<"Comment"> | number
-    text?: StringFilter<"Comment"> | string
+    text?: StringNullableFilter<"Comment"> | string | null
     clientId?: IntNullableFilter<"Comment"> | number | null
     appointmentId?: IntNullableFilter<"Comment"> | number | null
     createdAt?: DateTimeFilter<"Comment"> | Date | string
@@ -21163,7 +21163,7 @@ export namespace Prisma {
 
   export type CommentOrderByWithRelationInput = {
     id?: SortOrder
-    text?: SortOrder
+    text?: SortOrderInput | SortOrder
     clientId?: SortOrderInput | SortOrder
     appointmentId?: SortOrderInput | SortOrder
     createdAt?: SortOrder
@@ -21179,7 +21179,7 @@ export namespace Prisma {
     AND?: CommentWhereInput | CommentWhereInput[]
     OR?: CommentWhereInput[]
     NOT?: CommentWhereInput | CommentWhereInput[]
-    text?: StringFilter<"Comment"> | string
+    text?: StringNullableFilter<"Comment"> | string | null
     clientId?: IntNullableFilter<"Comment"> | number | null
     appointmentId?: IntNullableFilter<"Comment"> | number | null
     createdAt?: DateTimeFilter<"Comment"> | Date | string
@@ -21191,7 +21191,7 @@ export namespace Prisma {
 
   export type CommentOrderByWithAggregationInput = {
     id?: SortOrder
-    text?: SortOrder
+    text?: SortOrderInput | SortOrder
     clientId?: SortOrderInput | SortOrder
     appointmentId?: SortOrderInput | SortOrder
     createdAt?: SortOrder
@@ -21208,7 +21208,7 @@ export namespace Prisma {
     OR?: CommentScalarWhereWithAggregatesInput[]
     NOT?: CommentScalarWhereWithAggregatesInput | CommentScalarWhereWithAggregatesInput[]
     id?: IntWithAggregatesFilter<"Comment"> | number
-    text?: StringWithAggregatesFilter<"Comment"> | string
+    text?: StringNullableWithAggregatesFilter<"Comment"> | string | null
     clientId?: IntNullableWithAggregatesFilter<"Comment"> | number | null
     appointmentId?: IntNullableWithAggregatesFilter<"Comment"> | number | null
     createdAt?: DateTimeWithAggregatesFilter<"Comment"> | Date | string
@@ -21615,212 +21615,212 @@ export namespace Prisma {
 
   export type PreparetionsCreateInput = {
     id?: string
-    text: string
+    text?: string | null
     procedure: ProcedureCreateNestedOneWithoutPreparationsInput
   }
 
   export type PreparetionsUncheckedCreateInput = {
     id?: string
     procedureId: number
-    text: string
+    text?: string | null
   }
 
   export type PreparetionsUpdateInput = {
     id?: StringFieldUpdateOperationsInput | string
-    text?: StringFieldUpdateOperationsInput | string
+    text?: NullableStringFieldUpdateOperationsInput | string | null
     procedure?: ProcedureUpdateOneRequiredWithoutPreparationsNestedInput
   }
 
   export type PreparetionsUncheckedUpdateInput = {
     id?: StringFieldUpdateOperationsInput | string
     procedureId?: IntFieldUpdateOperationsInput | number
-    text?: StringFieldUpdateOperationsInput | string
+    text?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type PreparetionsCreateManyInput = {
     id?: string
     procedureId: number
-    text: string
+    text?: string | null
   }
 
   export type PreparetionsUpdateManyMutationInput = {
     id?: StringFieldUpdateOperationsInput | string
-    text?: StringFieldUpdateOperationsInput | string
+    text?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type PreparetionsUncheckedUpdateManyInput = {
     id?: StringFieldUpdateOperationsInput | string
     procedureId?: IntFieldUpdateOperationsInput | number
-    text?: StringFieldUpdateOperationsInput | string
+    text?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type InjectionZoneCreateInput = {
     id?: string
-    text: string
+    text?: string | null
     procedure: ProcedureCreateNestedOneWithoutInjectionZonesInput
   }
 
   export type InjectionZoneUncheckedCreateInput = {
     id?: string
     procedureId: number
-    text: string
+    text?: string | null
   }
 
   export type InjectionZoneUpdateInput = {
     id?: StringFieldUpdateOperationsInput | string
-    text?: StringFieldUpdateOperationsInput | string
+    text?: NullableStringFieldUpdateOperationsInput | string | null
     procedure?: ProcedureUpdateOneRequiredWithoutInjectionZonesNestedInput
   }
 
   export type InjectionZoneUncheckedUpdateInput = {
     id?: StringFieldUpdateOperationsInput | string
     procedureId?: IntFieldUpdateOperationsInput | number
-    text?: StringFieldUpdateOperationsInput | string
+    text?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type InjectionZoneCreateManyInput = {
     id?: string
     procedureId: number
-    text: string
+    text?: string | null
   }
 
   export type InjectionZoneUpdateManyMutationInput = {
     id?: StringFieldUpdateOperationsInput | string
-    text?: StringFieldUpdateOperationsInput | string
+    text?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type InjectionZoneUncheckedUpdateManyInput = {
     id?: StringFieldUpdateOperationsInput | string
     procedureId?: IntFieldUpdateOperationsInput | number
-    text?: StringFieldUpdateOperationsInput | string
+    text?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type ContraindicationCreateInput = {
     id?: string
-    text: string
+    text?: string | null
     procedure: ProcedureCreateNestedOneWithoutContraindicationsInput
   }
 
   export type ContraindicationUncheckedCreateInput = {
     id?: string
     procedureId: number
-    text: string
+    text?: string | null
   }
 
   export type ContraindicationUpdateInput = {
     id?: StringFieldUpdateOperationsInput | string
-    text?: StringFieldUpdateOperationsInput | string
+    text?: NullableStringFieldUpdateOperationsInput | string | null
     procedure?: ProcedureUpdateOneRequiredWithoutContraindicationsNestedInput
   }
 
   export type ContraindicationUncheckedUpdateInput = {
     id?: StringFieldUpdateOperationsInput | string
     procedureId?: IntFieldUpdateOperationsInput | number
-    text?: StringFieldUpdateOperationsInput | string
+    text?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type ContraindicationCreateManyInput = {
     id?: string
     procedureId: number
-    text: string
+    text?: string | null
   }
 
   export type ContraindicationUpdateManyMutationInput = {
     id?: StringFieldUpdateOperationsInput | string
-    text?: StringFieldUpdateOperationsInput | string
+    text?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type ContraindicationUncheckedUpdateManyInput = {
     id?: StringFieldUpdateOperationsInput | string
     procedureId?: IntFieldUpdateOperationsInput | number
-    text?: StringFieldUpdateOperationsInput | string
+    text?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type RehabilitationCreateInput = {
     id?: string
-    text: string
+    text?: string | null
     procedure: ProcedureCreateNestedOneWithoutRehabilitationsInput
   }
 
   export type RehabilitationUncheckedCreateInput = {
     id?: string
     procedureId: number
-    text: string
+    text?: string | null
   }
 
   export type RehabilitationUpdateInput = {
     id?: StringFieldUpdateOperationsInput | string
-    text?: StringFieldUpdateOperationsInput | string
+    text?: NullableStringFieldUpdateOperationsInput | string | null
     procedure?: ProcedureUpdateOneRequiredWithoutRehabilitationsNestedInput
   }
 
   export type RehabilitationUncheckedUpdateInput = {
     id?: StringFieldUpdateOperationsInput | string
     procedureId?: IntFieldUpdateOperationsInput | number
-    text?: StringFieldUpdateOperationsInput | string
+    text?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type RehabilitationCreateManyInput = {
     id?: string
     procedureId: number
-    text: string
+    text?: string | null
   }
 
   export type RehabilitationUpdateManyMutationInput = {
     id?: StringFieldUpdateOperationsInput | string
-    text?: StringFieldUpdateOperationsInput | string
+    text?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type RehabilitationUncheckedUpdateManyInput = {
     id?: StringFieldUpdateOperationsInput | string
     procedureId?: IntFieldUpdateOperationsInput | number
-    text?: StringFieldUpdateOperationsInput | string
+    text?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type ResultCreateInput = {
     id?: string
-    text: string
+    text?: string | null
     procedure: ProcedureCreateNestedOneWithoutResultsInput
   }
 
   export type ResultUncheckedCreateInput = {
     id?: string
     procedureId: number
-    text: string
+    text?: string | null
   }
 
   export type ResultUpdateInput = {
     id?: StringFieldUpdateOperationsInput | string
-    text?: StringFieldUpdateOperationsInput | string
+    text?: NullableStringFieldUpdateOperationsInput | string | null
     procedure?: ProcedureUpdateOneRequiredWithoutResultsNestedInput
   }
 
   export type ResultUncheckedUpdateInput = {
     id?: StringFieldUpdateOperationsInput | string
     procedureId?: IntFieldUpdateOperationsInput | number
-    text?: StringFieldUpdateOperationsInput | string
+    text?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type ResultCreateManyInput = {
     id?: string
     procedureId: number
-    text: string
+    text?: string | null
   }
 
   export type ResultUpdateManyMutationInput = {
     id?: StringFieldUpdateOperationsInput | string
-    text?: StringFieldUpdateOperationsInput | string
+    text?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type ResultUncheckedUpdateManyInput = {
     id?: StringFieldUpdateOperationsInput | string
     procedureId?: IntFieldUpdateOperationsInput | number
-    text?: StringFieldUpdateOperationsInput | string
+    text?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type ProcedurePriceCreateInput = {
     id?: string
-    zone: string
+    zone?: string | null
     price: Decimal | DecimalJsLike | number | string
     procedure: ProcedureCreateNestedOneWithoutPricesInput
   }
@@ -21828,13 +21828,13 @@ export namespace Prisma {
   export type ProcedurePriceUncheckedCreateInput = {
     id?: string
     procedureId: number
-    zone: string
+    zone?: string | null
     price: Decimal | DecimalJsLike | number | string
   }
 
   export type ProcedurePriceUpdateInput = {
     id?: StringFieldUpdateOperationsInput | string
-    zone?: StringFieldUpdateOperationsInput | string
+    zone?: NullableStringFieldUpdateOperationsInput | string | null
     price?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     procedure?: ProcedureUpdateOneRequiredWithoutPricesNestedInput
   }
@@ -21842,27 +21842,27 @@ export namespace Prisma {
   export type ProcedurePriceUncheckedUpdateInput = {
     id?: StringFieldUpdateOperationsInput | string
     procedureId?: IntFieldUpdateOperationsInput | number
-    zone?: StringFieldUpdateOperationsInput | string
+    zone?: NullableStringFieldUpdateOperationsInput | string | null
     price?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
   }
 
   export type ProcedurePriceCreateManyInput = {
     id?: string
     procedureId: number
-    zone: string
+    zone?: string | null
     price: Decimal | DecimalJsLike | number | string
   }
 
   export type ProcedurePriceUpdateManyMutationInput = {
     id?: StringFieldUpdateOperationsInput | string
-    zone?: StringFieldUpdateOperationsInput | string
+    zone?: NullableStringFieldUpdateOperationsInput | string | null
     price?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
   }
 
   export type ProcedurePriceUncheckedUpdateManyInput = {
     id?: StringFieldUpdateOperationsInput | string
     procedureId?: IntFieldUpdateOperationsInput | number
-    zone?: StringFieldUpdateOperationsInput | string
+    zone?: NullableStringFieldUpdateOperationsInput | string | null
     price?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
   }
 
@@ -22287,7 +22287,7 @@ export namespace Prisma {
   }
 
   export type CommentCreateInput = {
-    text: string
+    text?: string | null
     createdAt?: Date | string
     appointment?: AppointmentCreateNestedOneWithoutCommentsInput
     client?: ClientCreateNestedOneWithoutCommentsInput
@@ -22296,7 +22296,7 @@ export namespace Prisma {
 
   export type CommentUncheckedCreateInput = {
     id?: number
-    text: string
+    text?: string | null
     clientId?: number | null
     appointmentId?: number | null
     createdAt?: Date | string
@@ -22304,7 +22304,7 @@ export namespace Prisma {
   }
 
   export type CommentUpdateInput = {
-    text?: StringFieldUpdateOperationsInput | string
+    text?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     appointment?: AppointmentUpdateOneWithoutCommentsNestedInput
     client?: ClientUpdateOneWithoutCommentsNestedInput
@@ -22313,7 +22313,7 @@ export namespace Prisma {
 
   export type CommentUncheckedUpdateInput = {
     id?: IntFieldUpdateOperationsInput | number
-    text?: StringFieldUpdateOperationsInput | string
+    text?: NullableStringFieldUpdateOperationsInput | string | null
     clientId?: NullableIntFieldUpdateOperationsInput | number | null
     appointmentId?: NullableIntFieldUpdateOperationsInput | number | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -22322,7 +22322,7 @@ export namespace Prisma {
 
   export type CommentCreateManyInput = {
     id?: number
-    text: string
+    text?: string | null
     clientId?: number | null
     appointmentId?: number | null
     createdAt?: Date | string
@@ -22330,13 +22330,13 @@ export namespace Prisma {
   }
 
   export type CommentUpdateManyMutationInput = {
-    text?: StringFieldUpdateOperationsInput | string
+    text?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type CommentUncheckedUpdateManyInput = {
     id?: IntFieldUpdateOperationsInput | number
-    text?: StringFieldUpdateOperationsInput | string
+    text?: NullableStringFieldUpdateOperationsInput | string | null
     clientId?: NullableIntFieldUpdateOperationsInput | number | null
     appointmentId?: NullableIntFieldUpdateOperationsInput | number | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -25134,7 +25134,7 @@ export namespace Prisma {
   }
 
   export type CommentCreateWithoutAuthorInput = {
-    text: string
+    text?: string | null
     createdAt?: Date | string
     appointment?: AppointmentCreateNestedOneWithoutCommentsInput
     client?: ClientCreateNestedOneWithoutCommentsInput
@@ -25142,7 +25142,7 @@ export namespace Prisma {
 
   export type CommentUncheckedCreateWithoutAuthorInput = {
     id?: number
-    text: string
+    text?: string | null
     clientId?: number | null
     appointmentId?: number | null
     createdAt?: Date | string
@@ -25243,7 +25243,7 @@ export namespace Prisma {
     OR?: CommentScalarWhereInput[]
     NOT?: CommentScalarWhereInput | CommentScalarWhereInput[]
     id?: IntFilter<"Comment"> | number
-    text?: StringFilter<"Comment"> | string
+    text?: StringNullableFilter<"Comment"> | string | null
     clientId?: IntNullableFilter<"Comment"> | number | null
     appointmentId?: IntNullableFilter<"Comment"> | number | null
     createdAt?: DateTimeFilter<"Comment"> | Date | string
@@ -25423,12 +25423,12 @@ export namespace Prisma {
 
   export type ContraindicationCreateWithoutProcedureInput = {
     id?: string
-    text: string
+    text?: string | null
   }
 
   export type ContraindicationUncheckedCreateWithoutProcedureInput = {
     id?: string
-    text: string
+    text?: string | null
   }
 
   export type ContraindicationCreateOrConnectWithoutProcedureInput = {
@@ -25443,12 +25443,12 @@ export namespace Prisma {
 
   export type InjectionZoneCreateWithoutProcedureInput = {
     id?: string
-    text: string
+    text?: string | null
   }
 
   export type InjectionZoneUncheckedCreateWithoutProcedureInput = {
     id?: string
-    text: string
+    text?: string | null
   }
 
   export type InjectionZoneCreateOrConnectWithoutProcedureInput = {
@@ -25463,12 +25463,12 @@ export namespace Prisma {
 
   export type PreparetionsCreateWithoutProcedureInput = {
     id?: string
-    text: string
+    text?: string | null
   }
 
   export type PreparetionsUncheckedCreateWithoutProcedureInput = {
     id?: string
-    text: string
+    text?: string | null
   }
 
   export type PreparetionsCreateOrConnectWithoutProcedureInput = {
@@ -25483,13 +25483,13 @@ export namespace Prisma {
 
   export type ProcedurePriceCreateWithoutProcedureInput = {
     id?: string
-    zone: string
+    zone?: string | null
     price: Decimal | DecimalJsLike | number | string
   }
 
   export type ProcedurePriceUncheckedCreateWithoutProcedureInput = {
     id?: string
-    zone: string
+    zone?: string | null
     price: Decimal | DecimalJsLike | number | string
   }
 
@@ -25505,12 +25505,12 @@ export namespace Prisma {
 
   export type RehabilitationCreateWithoutProcedureInput = {
     id?: string
-    text: string
+    text?: string | null
   }
 
   export type RehabilitationUncheckedCreateWithoutProcedureInput = {
     id?: string
-    text: string
+    text?: string | null
   }
 
   export type RehabilitationCreateOrConnectWithoutProcedureInput = {
@@ -25525,12 +25525,12 @@ export namespace Prisma {
 
   export type ResultCreateWithoutProcedureInput = {
     id?: string
-    text: string
+    text?: string | null
   }
 
   export type ResultUncheckedCreateWithoutProcedureInput = {
     id?: string
-    text: string
+    text?: string | null
   }
 
   export type ResultCreateOrConnectWithoutProcedureInput = {
@@ -25581,7 +25581,7 @@ export namespace Prisma {
     NOT?: ContraindicationScalarWhereInput | ContraindicationScalarWhereInput[]
     id?: StringFilter<"Contraindication"> | string
     procedureId?: IntFilter<"Contraindication"> | number
-    text?: StringFilter<"Contraindication"> | string
+    text?: StringNullableFilter<"Contraindication"> | string | null
   }
 
   export type InjectionZoneUpsertWithWhereUniqueWithoutProcedureInput = {
@@ -25606,7 +25606,7 @@ export namespace Prisma {
     NOT?: InjectionZoneScalarWhereInput | InjectionZoneScalarWhereInput[]
     id?: StringFilter<"InjectionZone"> | string
     procedureId?: IntFilter<"InjectionZone"> | number
-    text?: StringFilter<"InjectionZone"> | string
+    text?: StringNullableFilter<"InjectionZone"> | string | null
   }
 
   export type PreparetionsUpsertWithWhereUniqueWithoutProcedureInput = {
@@ -25631,7 +25631,7 @@ export namespace Prisma {
     NOT?: PreparetionsScalarWhereInput | PreparetionsScalarWhereInput[]
     id?: StringFilter<"Preparetions"> | string
     procedureId?: IntFilter<"Preparetions"> | number
-    text?: StringFilter<"Preparetions"> | string
+    text?: StringNullableFilter<"Preparetions"> | string | null
   }
 
   export type ProcedurePriceUpsertWithWhereUniqueWithoutProcedureInput = {
@@ -25656,7 +25656,7 @@ export namespace Prisma {
     NOT?: ProcedurePriceScalarWhereInput | ProcedurePriceScalarWhereInput[]
     id?: StringFilter<"ProcedurePrice"> | string
     procedureId?: IntFilter<"ProcedurePrice"> | number
-    zone?: StringFilter<"ProcedurePrice"> | string
+    zone?: StringNullableFilter<"ProcedurePrice"> | string | null
     price?: DecimalFilter<"ProcedurePrice"> | Decimal | DecimalJsLike | number | string
   }
 
@@ -25682,7 +25682,7 @@ export namespace Prisma {
     NOT?: RehabilitationScalarWhereInput | RehabilitationScalarWhereInput[]
     id?: StringFilter<"Rehabilitation"> | string
     procedureId?: IntFilter<"Rehabilitation"> | number
-    text?: StringFilter<"Rehabilitation"> | string
+    text?: StringNullableFilter<"Rehabilitation"> | string | null
   }
 
   export type ResultUpsertWithWhereUniqueWithoutProcedureInput = {
@@ -25707,7 +25707,7 @@ export namespace Prisma {
     NOT?: ResultScalarWhereInput | ResultScalarWhereInput[]
     id?: StringFilter<"Result"> | string
     procedureId?: IntFilter<"Result"> | number
-    text?: StringFilter<"Result"> | string
+    text?: StringNullableFilter<"Result"> | string | null
   }
 
   export type ProcedureCreateWithoutPreparationsInput = {
@@ -26213,7 +26213,7 @@ export namespace Prisma {
   }
 
   export type CommentCreateWithoutClientInput = {
-    text: string
+    text?: string | null
     createdAt?: Date | string
     appointment?: AppointmentCreateNestedOneWithoutCommentsInput
     author?: UserCreateNestedOneWithoutCommentsInput
@@ -26221,7 +26221,7 @@ export namespace Prisma {
 
   export type CommentUncheckedCreateWithoutClientInput = {
     id?: number
-    text: string
+    text?: string | null
     appointmentId?: number | null
     createdAt?: Date | string
     userId?: number | null
@@ -26692,7 +26692,7 @@ export namespace Prisma {
   }
 
   export type CommentCreateWithoutAppointmentInput = {
-    text: string
+    text?: string | null
     createdAt?: Date | string
     client?: ClientCreateNestedOneWithoutCommentsInput
     author?: UserCreateNestedOneWithoutCommentsInput
@@ -26700,7 +26700,7 @@ export namespace Prisma {
 
   export type CommentUncheckedCreateWithoutAppointmentInput = {
     id?: number
-    text: string
+    text?: string | null
     clientId?: number | null
     createdAt?: Date | string
     userId?: number | null
@@ -27297,7 +27297,7 @@ export namespace Prisma {
 
   export type CommentCreateManyAuthorInput = {
     id?: number
-    text: string
+    text?: string | null
     clientId?: number | null
     appointmentId?: number | null
     createdAt?: Date | string
@@ -27324,7 +27324,7 @@ export namespace Prisma {
   }
 
   export type CommentUpdateWithoutAuthorInput = {
-    text?: StringFieldUpdateOperationsInput | string
+    text?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     appointment?: AppointmentUpdateOneWithoutCommentsNestedInput
     client?: ClientUpdateOneWithoutCommentsNestedInput
@@ -27332,7 +27332,7 @@ export namespace Prisma {
 
   export type CommentUncheckedUpdateWithoutAuthorInput = {
     id?: IntFieldUpdateOperationsInput | number
-    text?: StringFieldUpdateOperationsInput | string
+    text?: NullableStringFieldUpdateOperationsInput | string | null
     clientId?: NullableIntFieldUpdateOperationsInput | number | null
     appointmentId?: NullableIntFieldUpdateOperationsInput | number | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -27340,7 +27340,7 @@ export namespace Prisma {
 
   export type CommentUncheckedUpdateManyWithoutAuthorInput = {
     id?: IntFieldUpdateOperationsInput | number
-    text?: StringFieldUpdateOperationsInput | string
+    text?: NullableStringFieldUpdateOperationsInput | string | null
     clientId?: NullableIntFieldUpdateOperationsInput | number | null
     appointmentId?: NullableIntFieldUpdateOperationsInput | number | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -27421,33 +27421,33 @@ export namespace Prisma {
 
   export type ContraindicationCreateManyProcedureInput = {
     id?: string
-    text: string
+    text?: string | null
   }
 
   export type InjectionZoneCreateManyProcedureInput = {
     id?: string
-    text: string
+    text?: string | null
   }
 
   export type PreparetionsCreateManyProcedureInput = {
     id?: string
-    text: string
+    text?: string | null
   }
 
   export type ProcedurePriceCreateManyProcedureInput = {
     id?: string
-    zone: string
+    zone?: string | null
     price: Decimal | DecimalJsLike | number | string
   }
 
   export type RehabilitationCreateManyProcedureInput = {
     id?: string
-    text: string
+    text?: string | null
   }
 
   export type ResultCreateManyProcedureInput = {
     id?: string
-    text: string
+    text?: string | null
   }
 
   export type AppointmentUpdateWithoutProcedureInput = {
@@ -27484,95 +27484,95 @@ export namespace Prisma {
 
   export type ContraindicationUpdateWithoutProcedureInput = {
     id?: StringFieldUpdateOperationsInput | string
-    text?: StringFieldUpdateOperationsInput | string
+    text?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type ContraindicationUncheckedUpdateWithoutProcedureInput = {
     id?: StringFieldUpdateOperationsInput | string
-    text?: StringFieldUpdateOperationsInput | string
+    text?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type ContraindicationUncheckedUpdateManyWithoutProcedureInput = {
     id?: StringFieldUpdateOperationsInput | string
-    text?: StringFieldUpdateOperationsInput | string
+    text?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type InjectionZoneUpdateWithoutProcedureInput = {
     id?: StringFieldUpdateOperationsInput | string
-    text?: StringFieldUpdateOperationsInput | string
+    text?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type InjectionZoneUncheckedUpdateWithoutProcedureInput = {
     id?: StringFieldUpdateOperationsInput | string
-    text?: StringFieldUpdateOperationsInput | string
+    text?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type InjectionZoneUncheckedUpdateManyWithoutProcedureInput = {
     id?: StringFieldUpdateOperationsInput | string
-    text?: StringFieldUpdateOperationsInput | string
+    text?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type PreparetionsUpdateWithoutProcedureInput = {
     id?: StringFieldUpdateOperationsInput | string
-    text?: StringFieldUpdateOperationsInput | string
+    text?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type PreparetionsUncheckedUpdateWithoutProcedureInput = {
     id?: StringFieldUpdateOperationsInput | string
-    text?: StringFieldUpdateOperationsInput | string
+    text?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type PreparetionsUncheckedUpdateManyWithoutProcedureInput = {
     id?: StringFieldUpdateOperationsInput | string
-    text?: StringFieldUpdateOperationsInput | string
+    text?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type ProcedurePriceUpdateWithoutProcedureInput = {
     id?: StringFieldUpdateOperationsInput | string
-    zone?: StringFieldUpdateOperationsInput | string
+    zone?: NullableStringFieldUpdateOperationsInput | string | null
     price?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
   }
 
   export type ProcedurePriceUncheckedUpdateWithoutProcedureInput = {
     id?: StringFieldUpdateOperationsInput | string
-    zone?: StringFieldUpdateOperationsInput | string
+    zone?: NullableStringFieldUpdateOperationsInput | string | null
     price?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
   }
 
   export type ProcedurePriceUncheckedUpdateManyWithoutProcedureInput = {
     id?: StringFieldUpdateOperationsInput | string
-    zone?: StringFieldUpdateOperationsInput | string
+    zone?: NullableStringFieldUpdateOperationsInput | string | null
     price?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
   }
 
   export type RehabilitationUpdateWithoutProcedureInput = {
     id?: StringFieldUpdateOperationsInput | string
-    text?: StringFieldUpdateOperationsInput | string
+    text?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type RehabilitationUncheckedUpdateWithoutProcedureInput = {
     id?: StringFieldUpdateOperationsInput | string
-    text?: StringFieldUpdateOperationsInput | string
+    text?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type RehabilitationUncheckedUpdateManyWithoutProcedureInput = {
     id?: StringFieldUpdateOperationsInput | string
-    text?: StringFieldUpdateOperationsInput | string
+    text?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type ResultUpdateWithoutProcedureInput = {
     id?: StringFieldUpdateOperationsInput | string
-    text?: StringFieldUpdateOperationsInput | string
+    text?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type ResultUncheckedUpdateWithoutProcedureInput = {
     id?: StringFieldUpdateOperationsInput | string
-    text?: StringFieldUpdateOperationsInput | string
+    text?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type ResultUncheckedUpdateManyWithoutProcedureInput = {
     id?: StringFieldUpdateOperationsInput | string
-    text?: StringFieldUpdateOperationsInput | string
+    text?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type AppointmentCreateManyClientInput = {
@@ -27594,7 +27594,7 @@ export namespace Prisma {
 
   export type CommentCreateManyClientInput = {
     id?: number
-    text: string
+    text?: string | null
     appointmentId?: number | null
     createdAt?: Date | string
     userId?: number | null
@@ -27668,7 +27668,7 @@ export namespace Prisma {
   }
 
   export type CommentUpdateWithoutClientInput = {
-    text?: StringFieldUpdateOperationsInput | string
+    text?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     appointment?: AppointmentUpdateOneWithoutCommentsNestedInput
     author?: UserUpdateOneWithoutCommentsNestedInput
@@ -27676,7 +27676,7 @@ export namespace Prisma {
 
   export type CommentUncheckedUpdateWithoutClientInput = {
     id?: IntFieldUpdateOperationsInput | number
-    text?: StringFieldUpdateOperationsInput | string
+    text?: NullableStringFieldUpdateOperationsInput | string | null
     appointmentId?: NullableIntFieldUpdateOperationsInput | number | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     userId?: NullableIntFieldUpdateOperationsInput | number | null
@@ -27684,7 +27684,7 @@ export namespace Prisma {
 
   export type CommentUncheckedUpdateManyWithoutClientInput = {
     id?: IntFieldUpdateOperationsInput | number
-    text?: StringFieldUpdateOperationsInput | string
+    text?: NullableStringFieldUpdateOperationsInput | string | null
     appointmentId?: NullableIntFieldUpdateOperationsInput | number | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     userId?: NullableIntFieldUpdateOperationsInput | number | null
@@ -27736,7 +27736,7 @@ export namespace Prisma {
 
   export type CommentCreateManyAppointmentInput = {
     id?: number
-    text: string
+    text?: string | null
     clientId?: number | null
     createdAt?: Date | string
     userId?: number | null
@@ -27774,7 +27774,7 @@ export namespace Prisma {
   }
 
   export type CommentUpdateWithoutAppointmentInput = {
-    text?: StringFieldUpdateOperationsInput | string
+    text?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     client?: ClientUpdateOneWithoutCommentsNestedInput
     author?: UserUpdateOneWithoutCommentsNestedInput
@@ -27782,7 +27782,7 @@ export namespace Prisma {
 
   export type CommentUncheckedUpdateWithoutAppointmentInput = {
     id?: IntFieldUpdateOperationsInput | number
-    text?: StringFieldUpdateOperationsInput | string
+    text?: NullableStringFieldUpdateOperationsInput | string | null
     clientId?: NullableIntFieldUpdateOperationsInput | number | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     userId?: NullableIntFieldUpdateOperationsInput | number | null
@@ -27790,7 +27790,7 @@ export namespace Prisma {
 
   export type CommentUncheckedUpdateManyWithoutAppointmentInput = {
     id?: IntFieldUpdateOperationsInput | number
-    text?: StringFieldUpdateOperationsInput | string
+    text?: NullableStringFieldUpdateOperationsInput | string | null
     clientId?: NullableIntFieldUpdateOperationsInput | number | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     userId?: NullableIntFieldUpdateOperationsInput | number | null

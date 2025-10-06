@@ -64,7 +64,7 @@ model Procedure {
 model Preparetions {
   id          String    @id @default(uuid())
   procedureId Int       @map("procedure_Id")
-  text        String
+  text        String?   @db.Text
   procedure   Procedure @relation(fields: [procedureId], references: [id], onDelete: Cascade)
 
   @@index([procedureId], map: "procedures_preparetions_procedure_Id_fkey")
@@ -74,7 +74,7 @@ model Preparetions {
 model InjectionZone {
   id          String    @id @default(uuid())
   procedureId Int       @map("procedure_Id")
-  text        String
+  text        String?   @db.Text
   procedure   Procedure @relation(fields: [procedureId], references: [id], onDelete: Cascade)
 
   @@index([procedureId], map: "procedures_injection_zone_procedure_Id_fkey")
@@ -84,7 +84,7 @@ model InjectionZone {
 model Contraindication {
   id          String    @id @default(uuid())
   procedureId Int       @map("procedure_Id")
-  text        String
+  text        String?   @db.Text
   procedure   Procedure @relation(fields: [procedureId], references: [id], onDelete: Cascade)
 
   @@index([procedureId], map: "procedures_contraindication_procedure_Id_fkey")
@@ -94,7 +94,7 @@ model Contraindication {
 model Rehabilitation {
   id          String    @id @default(uuid())
   procedureId Int       @map("procedure_Id")
-  text        String
+  text        String?   @db.Text
   procedure   Procedure @relation(fields: [procedureId], references: [id], onDelete: Cascade)
 
   @@index([procedureId], map: "procedures_rehabilitation_procedure_Id_fkey")
@@ -104,7 +104,7 @@ model Rehabilitation {
 model Result {
   id          String    @id @default(uuid())
   procedureId Int       @map("procedure_Id")
-  text        String
+  text        String?   @db.Text
   procedure   Procedure @relation(fields: [procedureId], references: [id], onDelete: Cascade)
 
   @@index([procedureId], map: "procedures_result_procedure_Id_fkey")
@@ -114,7 +114,7 @@ model Result {
 model ProcedurePrice {
   id          String    @id @default(uuid())
   procedureId Int       @map("procedure_Id")
-  zone        String
+  zone        String?   @db.Text
   price       Decimal
   procedure   Procedure @relation(fields: [procedureId], references: [id], onDelete: Cascade)
 
@@ -149,7 +149,7 @@ model ClientStatus {
   id           Int           @id @default(autoincrement())
   clientId     Int           @map("client_Id")
   loyaltyLevel LoyaltyLevel?
-  notes        String?
+  notes        String?       @db.Text
   createdAt    DateTime      @default(now())
   updatedAt    DateTime      @updatedAt
   client       Client        @relation(fields: [clientId], references: [id], onDelete: Cascade)
@@ -213,7 +213,7 @@ model Notification {
 
 model Comment {
   id            Int          @id @default(autoincrement())
-  text          String
+  text          String?      @db.Text
   clientId      Int?         @map("client_Id")
   appointmentId Int?         @map("appointment_Id")
   createdAt     DateTime     @default(now())
