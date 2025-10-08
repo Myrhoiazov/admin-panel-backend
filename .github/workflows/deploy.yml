@@ -40,6 +40,6 @@ jobs:
                       npm run build || echo "no build step"
 
                       echo "♻️ Restarting PM2..."
-                      pm2 restart myapp || pm2 start npm --name "myapp" -- run start
+                      pm2 restart backend || pm2 start npm --name "backend" -- run start
 
                       echo "✅ Deployment complete :- ) !"
