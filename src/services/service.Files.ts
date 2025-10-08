@@ -13,7 +13,7 @@ export const imageUpload = async (file: Express.Multer.File, folderNaam: string)
     const originalName = file.originalname;
     const newClientName = `${uuidv4()}-${originalName}`;
 
-    const uploadDir = path.resolve(__dirname, '..', 'public', 'upload', folderNaam);
+    const uploadDir = path.resolve(__dirname, '../../', 'public', 'upload', folderNaam);
 
     try {
         await fs.mkdir(uploadDir, { recursive: true });

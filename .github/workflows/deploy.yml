@@ -31,15 +31,18 @@ jobs:
                       cd /var/www/project/server
                       git config --global --add safe.directory /var/www/project/server
                       git fetch --all
-                      git reset --hard origin/main
+                      git pull origin main
 
                       echo "📦 Installing dependencies..."
-                      npm ci --omit=dev
-
+                      npm install
+                      
+                      echo "🧹 Cleaning old build artifacts..."
+                      rm -rf build/
+                      
                       echo "⚙️ Building project..."
                       npm run build || echo "no build step"
 
                       echo "♻️ Restarting PM2..."
-                      pm2 restart backend || pm2 start npm --name "backend" -- run start
+                      pm2 restart backend
 
                       echo "✅ Deployment complete :- ) !"
