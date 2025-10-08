@@ -1,0 +1,27 @@
+name: 🚀 Deploy to VPS
+
+on:
+    push:
+        branches:
+            - main # при пуше в main
+
+jobs:
+    deploy:
+        runs-on: ubuntu-latest
+
+        steps:
+            - name: Checkout repo
+              uses: actions/checkout@v4
+
+            - name: Connect to server and deploy
+              uses: appleboy/ssh-action@v1.1.0
+              with:
+                  host: ${{ secrets.SERVER_IP }}
+                  username: ${{ secrets.SERVER_USER }}
+                  key: ${{ secrets.SSH_PRIVATE_KEY }}
+                  script: |
+                      cd /var/www/server
+                      git pull origin main
+                      npm ci --omit=dev
+                      npm run build
+                      pm2 restart all
