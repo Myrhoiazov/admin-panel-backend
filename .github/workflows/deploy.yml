@@ -20,8 +20,26 @@ jobs:
                   username: ${{ secrets.SERVER_USER }}
                   key: ${{ secrets.SERVER_SSH_KEY }}
                   script: |
+                      set -e
+
+                      echo "🔧 Load NVM and Node environment..."
+                      export NVM_DIR="/root/.nvm"
+                      [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
+                      export PATH="$NVM_DIR/versions/node/v20.19.5/bin:$PATH"
+
+                      echo "✅ Pulling latest code..."
                       cd /var/www/project/server
-                      git pull origin main
+                      git config --global --add safe.directory /var/www/project/server
+                      git fetch --all
+                      git reset --hard origin/main
+
+                      echo "📦 Installing dependencies..."
                       npm ci --omit=dev
-                      npm run build
-                      pm2 restart all
+
+                      echo "⚙️ Building project..."
+                      npm run build || echo "no build step"
+
+                      echo "♻️ Restarting PM2..."
+                      pm2 restart myapp || pm2 start npm --name "myapp" -- run start
+
+                      echo "✅ Deployment complete!"
