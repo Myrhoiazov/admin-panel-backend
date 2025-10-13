@@ -35,10 +35,10 @@ jobs:
 
                       echo "📦 Installing dependencies..."
                       npm install
-                      
+
                       echo "🧹 Cleaning old build artifacts..."
                       rm -rf build/
-                      
+
                       echo "⚙️ Building project..."
                       npm run build || echo "no build step"
 
