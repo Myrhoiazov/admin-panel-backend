@@ -1,6 +1,7 @@
 import { Request, Response } from "express";
 import { createTransaction, getAllTransactions, getTransactionsSummary } from "../services/service.Transaction";
 import { Transaction } from "../../generated/prisma";
+import { deleteTransactionById } from "../services/service.Transaction";
 
 export const fetchAllTransactionsController = async (req: Request, res: Response) => {
 
@@ -35,3 +36,16 @@ export const getTransactionSummaryController = async (req: Request, res: Respons
         res.status(500).json({ error: 'Failed to fetch summary' });
     }
 };
+
+export const deleteTransactionByIdController = async (req: Request, res: Response) => {
+    const transactionId = Number(req.params.id);
+
+    try {
+        await deleteTransactionById(transactionId);
+        return res.status(200).json({ message: 'Transaction deleted successfully' });
+    } catch (error) {
+        console.error('Error deleting transaction:', error);
+        return res.status(500).json({ message: 'Internal server error' });
+    }
+}
+

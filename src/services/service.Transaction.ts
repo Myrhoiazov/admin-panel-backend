@@ -91,7 +91,6 @@ export const getAllTransactions = async (params: GetTransactionsParams) => {
 
     return transactions;
 };
-
 export const createTransaction = async (data: TTransaction) => {
 
     return Transaction.create({
@@ -103,7 +102,6 @@ export const createTransaction = async (data: TTransaction) => {
         },
     });
 };
-
 export const getTransactionsSummary = async (params: GetTransactionsParams) => {
     const { _type, _month = Month.ALL, _year = dayjs().year(), } = params;
 
@@ -142,3 +140,10 @@ export const getTransactionsSummary = async (params: GetTransactionsParams) => {
         balance: income - expense,
     };
 };
+export const deleteTransactionById = async (transactionId: number) => {
+    return Transaction.delete({
+        where: {
+            id: transactionId,
+        },
+    });
+}
